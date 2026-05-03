@@ -1,0 +1,96 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { SiteLayout } from "@/components/site/Layout";
+import { useReveal } from "@/hooks/use-reveal";
+import { Leaf, Sparkles, HeartPulse, Sun } from "lucide-react";
+import about from "@/assets/about-heritage.jpg";
+
+export const Route = createFileRoute("/about")({
+  head: () => ({
+    meta: [
+      { title: "About STM — Siddha Heritage & Holistic Healing in Puducherry" },
+      { name: "description", content: "Discover STM's roots in Siddha and Ayurvedic tradition. A family clinic in Puducherry devoted to natural, lasting healing." },
+      { property: "og:title", content: "About STM — Siddha Heritage in Puducherry" },
+      { property: "og:description", content: "A sanctuary where tradition meets thoughtful, personalised care." },
+    ],
+  }),
+  component: AboutPage,
+});
+
+const pillars = [
+  { icon: Leaf, title: "Rooted in Siddha", text: "An unbroken Tamil tradition of healing through herbs, minerals and breath." },
+  { icon: Sparkles, title: "Refined by Ayurveda", text: "The pan-Indian science of balance, sustenance and rasāyana." },
+  { icon: HeartPulse, title: "Restored by Varma", text: "The art of the body's vital points — quietly powerful, deeply effective." },
+  { icon: Sun, title: "Renewed by Yoga", text: "Movement, breath and stillness as daily medicine." },
+];
+
+function AboutPage() {
+  useReveal();
+  return (
+    <SiteLayout>
+      <section className="pt-40 pb-20 bg-hero text-primary-foreground relative overflow-hidden">
+        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-accent/20 blur-3xl" />
+        <div className="mx-auto max-w-5xl px-6 text-center animate-fade-up">
+          <p className="text-xs tracking-[0.3em] uppercase text-gold mb-5">About STM</p>
+          <h1 className="font-serif text-5xl md:text-6xl leading-tight">
+            A practice shaped by <span className="text-gradient-gold italic">tradition</span>,
+            guided by care.
+          </h1>
+          <p className="mt-6 text-white/75 max-w-2xl mx-auto leading-relaxed">
+            Om Sri Thirumoolar Siddha & Ayurveda Clinic was founded on a simple belief — that
+            healing happens slowly, naturally, and with deep listening.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-28">
+        <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-16 items-center">
+          <div className="reveal relative">
+            <div className="absolute -inset-4 bg-emerald-grad rounded-[2rem] opacity-20 blur-2xl" />
+            <img src={about} alt="Traditional Siddha herbs and copper bowls" loading="lazy" width={1024} height={1024}
+              className="relative rounded-[2rem] shadow-elevated w-full h-full object-cover" />
+          </div>
+          <div className="reveal space-y-6">
+            <p className="text-xs tracking-[0.3em] uppercase text-accent">Our Story</p>
+            <h2 className="font-serif text-4xl md:text-5xl text-primary leading-tight">
+              The medicine grew in our gardens, the wisdom in our homes.
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              STM was born in Puducherry — a city where the Bay of Bengal meets centuries of Tamil
+              spiritual heritage. Named in reverence to the great siddhar Thirumoolar, our clinic
+              carries forward a lineage that views the body, mind and spirit as one inseparable
+              song.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              We do not chase symptoms. We sit with them, observe them, and gently guide them
+              back to balance — using only what nature provides and what our masters refined
+              over millennia.
+            </p>
+            <Link to="/services" className="btn-gold inline-flex items-center gap-2 mt-2">
+              Explore our services
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-secondary/40">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-14 reveal">
+            <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Four Pillars</p>
+            <h2 className="font-serif text-4xl md:text-5xl text-primary">A complete philosophy of wellbeing.</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {pillars.map((p, i) => (
+              <div key={p.title} className="reveal bg-card rounded-3xl p-8 border border-border/60 shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-500" style={{ transitionDelay: `${i * 80}ms` }}>
+                <div className="w-12 h-12 rounded-xl bg-emerald-grad text-primary-foreground grid place-items-center mb-5 shadow-glow">
+                  <p.icon size={22} />
+                </div>
+                <h3 className="font-serif text-xl text-primary">{p.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </SiteLayout>
+  );
+}
