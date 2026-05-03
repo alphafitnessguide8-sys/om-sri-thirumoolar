@@ -145,16 +145,20 @@ function HomePage() {
 
           {/* Floating glass logo card */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto w-[22rem] h-[22rem] md:w-[26rem] md:h-[26rem]">
-              <div className="absolute inset-0 rounded-full bg-emerald-grad blur-3xl opacity-50 animate-pulse" />
-              <div className="absolute inset-4 rounded-full border border-gold/30 animate-spin-slow" />
-              <div className="absolute inset-10 rounded-full border border-accent/20 animate-spin-slow [animation-direction:reverse]" />
+            <div className="relative mx-auto w-[22rem] h-[22rem] md:w-[28rem] md:h-[28rem]">
+              {/* Sun glow rays */}
+              <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_oklch(0.85_0.18_85/0.55)_0%,_oklch(0.75_0.2_75/0.35)_30%,_transparent_65%)] blur-2xl animate-pulse" />
+              <div className="absolute inset-[-10%] rounded-full bg-[conic-gradient(from_0deg,_oklch(0.9_0.15_85/0.25),_transparent_20%,_oklch(0.85_0.18_75/0.3)_40%,_transparent_60%,_oklch(0.9_0.15_85/0.25)_80%,_transparent)] blur-xl animate-spin-slow opacity-70" />
+              <div className="absolute inset-[6%] rounded-full bg-gold/20 blur-3xl" />
+              <div className="absolute inset-4 rounded-full border border-gold/40 animate-spin-slow" />
+              <div className="absolute inset-10 rounded-full border border-accent/25 animate-spin-slow [animation-direction:reverse]" />
               <div className="absolute inset-0 grid place-items-center">
-                <div className="glass rounded-full p-6 shadow-elevated">
+                <div className="relative rounded-full p-4 bg-ivory/95 shadow-elevated ring-1 ring-gold/30">
+                  <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_oklch(0.95_0.12_85/0.6),_transparent_70%)] blur-md" />
                   <img
                     src={logo}
                     alt="STM Clinic logo"
-                    className="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover"
+                    className="relative w-60 h-60 md:w-72 md:h-72 rounded-full object-contain"
                   />
                 </div>
               </div>
