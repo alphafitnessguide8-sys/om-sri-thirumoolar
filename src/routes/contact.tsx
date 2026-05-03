@@ -63,7 +63,7 @@ function ContactPage() {
             <div className="relative rounded-3xl overflow-hidden shadow-elevated border border-border/60 h-[480px]">
               <iframe
                 title="STM Clinic location"
-                src="https://www.google.com/maps?q=V.V.P+Nagar+Thattanchavady+Puducherry+605009&output=embed"
+                src="https://www.google.com/maps?q=WRR3%2BRP+Puducherry&output=embed"
                 className="w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
