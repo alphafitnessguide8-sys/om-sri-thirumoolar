@@ -134,6 +134,7 @@ function HomePage() {
 
         {/* Particles & floating accents */}
         <Particles />
+        <FloatingLeaves density={7} />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ transform: `translate3d(0, ${py * -0.12}px, 0)` }}
@@ -150,7 +151,7 @@ function HomePage() {
             <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs tracking-[0.22em] uppercase text-gold">
               <Sparkles size={14} /> Survive · Triumph · Merriment
             </div>
-            <h1 className="font-serif text-6xl md:text-8xl leading-[1.02] tracking-tight text-aura">
+            <h1 className="heading-aura font-serif text-6xl md:text-8xl leading-[1.02] tracking-tight text-aura">
               Ancient healing,<br />
               <span className="text-gradient-gold italic">gracefully</span> renewed.
             </h1>
@@ -160,7 +161,7 @@ function HomePage() {
               and Yoga. A sanctuary in Puducherry where tradition listens to your body.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
-              <Link to="/appointment" className="btn-gold inline-flex items-center gap-2">
+              <Link to="/appointment" className="btn-gold breathe inline-flex items-center gap-2">
                 Book a Consultation <ArrowRight size={16} />
               </Link>
               <a href="tel:9952232078" className="btn-outline-ivory inline-flex items-center gap-2">
@@ -226,7 +227,7 @@ function HomePage() {
         <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-gold/10 blur-3xl" />
         <div className="mx-auto max-w-5xl px-6 text-center reveal">
           <p className="text-xs tracking-[0.3em] uppercase text-accent mb-5">Our Promise</p>
-          <h2 className="font-serif text-4xl md:text-6xl text-primary leading-[1.1]">
+          <h2 className="heading-aura font-serif text-4xl md:text-6xl text-primary leading-[1.1]">
             Healing that honours the body's <span className="text-gradient-emerald italic">own quiet intelligence.</span>
           </h2>
           <div className="mt-8"><GoldDivider /></div>
@@ -244,7 +245,7 @@ function HomePage() {
           <div className="flex items-end justify-between flex-wrap gap-4 mb-16 reveal">
             <div>
               <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Disciplines</p>
-              <h2 className="font-serif text-4xl md:text-6xl text-primary leading-[1.05]">Four traditions, one path.</h2>
+              <h2 className="heading-aura font-serif text-4xl md:text-6xl text-primary leading-[1.05]">Four traditions, one path.</h2>
             </div>
             <Link to="/services" className="text-primary hover:text-accent inline-flex items-center gap-2 group">
               Explore all services <ArrowRight size={16} className="group-hover:translate-x-1 transition" />
@@ -279,7 +280,7 @@ function HomePage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center mb-16 reveal">
             <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Specialisations</p>
-            <h2 className="font-serif text-4xl md:text-6xl text-primary leading-[1.05]">Conditions we care for.</h2>
+            <h2 className="heading-aura font-serif text-4xl md:text-6xl text-primary leading-[1.05]">Conditions we care for.</h2>
             <div className="mt-6"><GoldDivider /></div>
             <p className="mt-6 text-muted-foreground max-w-xl mx-auto leading-[1.8]">
               From persistent pain to deeper organic concerns — every protocol is personal.
@@ -289,7 +290,7 @@ function HomePage() {
             {specs.map((s, i) => (
               <div
                 key={s.label}
-                className="reveal group relative bg-card rounded-2xl p-7 border border-border/60 hover:border-gold/40 hover:shadow-glow transition-all duration-700 hover:-translate-y-1"
+                className="reveal glass-hover group relative bg-card rounded-2xl p-7 border border-border/60 hover:shadow-glow"
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
                 <div className="absolute inset-x-5 top-0 h-px gold-rule opacity-0 group-hover:opacity-100 transition" />
@@ -327,7 +328,7 @@ function HomePage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center mb-16 reveal">
             <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Voices of Healing</p>
-            <h2 className="font-serif text-4xl md:text-6xl text-primary leading-[1.05]">Stories from our patients.</h2>
+            <h2 className="heading-aura font-serif text-4xl md:text-6xl text-primary leading-[1.05]">Stories from our patients.</h2>
             <div className="mt-6"><GoldDivider /></div>
           </div>
         </div>
@@ -365,12 +366,12 @@ function HomePage() {
             <div className="relative grid lg:grid-cols-2 gap-10 items-center">
               <div>
                 <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">Begin Your Healing</p>
-                <h2 className="font-serif text-4xl md:text-6xl leading-[1.05] text-aura">
+                <h2 className="heading-aura font-serif text-4xl md:text-6xl leading-[1.05] text-aura">
                   Your body remembers wellness. Let us help it return.
                 </h2>
               </div>
               <div className="flex flex-col sm:flex-row lg:justify-end gap-4">
-                <Link to="/appointment" className="btn-gold inline-flex items-center justify-center gap-2">
+                <Link to="/appointment" className="btn-gold breathe inline-flex items-center justify-center gap-2">
                   Book Appointment <ArrowRight size={16} />
                 </Link>
                 <a href="https://wa.me/919952232078" className="btn-outline-ivory text-center">
