@@ -155,7 +155,7 @@ function HomePage() {
               Ancient healing,<br />
               <span className="text-gradient-gold italic">gracefully</span> renewed.
             </h1>
-            <div className="gold-line w-40" />
+            <div className="energy-line w-40 rounded-full" />
             <p className="text-lg md:text-xl text-white/75 max-w-xl leading-[1.8]">
               At STM — Om Sri Thirumoolar — we restore balance through Siddha, Ayurveda, Varma
               and Yoga. A sanctuary in Puducherry where tradition listens to your body.
