@@ -424,9 +424,19 @@ function HomePage() {
                   {Array.from({ length: 5 }).map((_, k) => <Star key={k} size={16} fill="currentColor" />)}
                 </div>
                 <p className="font-serif text-lg md:text-xl text-foreground/85 leading-[1.7] relative">"{t.note}"</p>
-                <div className="mt-6 pt-5 border-t border-border/60 relative">
-                  <p className="font-medium text-primary">{t.name}</p>
-                  <p className="text-xs text-muted-foreground tracking-wider uppercase">{t.role}</p>
+                <div className="mt-6 pt-5 border-t border-border/60 relative flex items-center gap-4">
+                  <img
+                    src={t.avatar}
+                    alt={`${t.name} — STM patient`}
+                    loading="lazy"
+                    width={96}
+                    height={96}
+                    className="w-12 h-12 rounded-full object-cover ring-2 ring-gold/40 shadow-soft"
+                  />
+                  <div>
+                    <p className="font-medium text-primary">{t.name}</p>
+                    <p className="text-xs text-muted-foreground tracking-wider uppercase">{t.role}</p>
+                  </div>
                 </div>
               </div>
             ))}
