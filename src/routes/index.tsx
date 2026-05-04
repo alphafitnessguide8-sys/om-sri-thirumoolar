@@ -278,22 +278,72 @@ function HomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
             {services.map((s, i) => (
               <div key={s.title} className="reveal" style={{ transitionDelay: `${i * 120}ms` }}>
-                <div className="card-tilt group relative h-full bg-card rounded-3xl p-8 shadow-soft border border-border/60 overflow-hidden hover:border-gold/40 transition-colors">
-                  <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-accent/10 group-hover:bg-accent/25 transition blur-2xl" />
-                  <div className="absolute inset-x-6 top-0 h-px gold-rule opacity-0 group-hover:opacity-100 transition" />
-                  <div className="relative">
-                    <div className="w-16 h-16 rounded-2xl bg-emerald-grad text-primary-foreground grid place-items-center shadow-glow group-hover:scale-105 transition-transform duration-500">
-                      <s.icon size={26} />
+                <div className="card-tilt group relative h-full bg-card rounded-3xl shadow-soft border border-border/60 overflow-hidden hover:border-gold/40 transition-colors flex flex-col">
+                  <div className="img-zoom relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={s.img}
+                      alt={`${s.title} therapy at STM Puducherry`}
+                      loading="lazy"
+                      width={800}
+                      height={600}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/10 to-transparent" />
+                    <div className="absolute top-4 left-4 w-11 h-11 rounded-xl bg-ivory/90 backdrop-blur text-primary grid place-items-center shadow-soft ring-1 ring-gold/30">
+                      <s.icon size={20} />
                     </div>
-                    <h3 className="mt-7 font-serif text-2xl md:text-3xl text-primary">{s.title}</h3>
-                    <p className="mt-3 text-sm md:text-base text-muted-foreground leading-[1.8]">{s.desc}</p>
-                    <div className="mt-7 inline-flex items-center gap-2 text-sm text-accent font-medium">
+                  </div>
+                  <div className="relative p-7 flex-1 flex flex-col">
+                    <div className="absolute inset-x-6 top-0 h-px gold-rule opacity-0 group-hover:opacity-100 transition" />
+                    <h3 className="font-serif text-2xl md:text-3xl text-primary">{s.title}</h3>
+                    <p className="mt-3 text-sm md:text-base text-muted-foreground leading-[1.8] flex-1">{s.desc}</p>
+                    <Link to="/services" className="mt-6 inline-flex items-center gap-2 text-sm text-accent font-medium">
                       Learn more <ArrowRight size={14} className="group-hover:translate-x-1 transition" />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TREATMENT GALLERY */}
+      <section className="relative py-32 layered-section">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-16 reveal">
+            <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Gallery</p>
+            <h2 className="heading-aura font-serif text-4xl md:text-6xl text-primary leading-[1.05]">Glimpses of our practice.</h2>
+            <div className="mt-6"><GoldDivider /></div>
+            <p className="mt-6 text-muted-foreground max-w-xl mx-auto leading-[1.8]">
+              Inside the rituals, herbs and quiet moments that define healing at STM.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+            {gallery.map((g, i) => {
+              const tall = i === 0 || i === 4;
+              return (
+                <div
+                  key={i}
+                  className={`reveal img-zoom relative rounded-3xl overflow-hidden shadow-soft border border-border/50 group ${tall ? "row-span-2 aspect-[3/4] md:aspect-[3/5]" : "aspect-[4/3]"}`}
+                  style={{ transitionDelay: `${i * 80}ms` }}
+                >
+                  <img
+                    src={g.img}
+                    alt={`${g.label} — ${g.tag} treatment`}
+                    loading="lazy"
+                    width={800}
+                    height={1000}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent opacity-90 group-hover:opacity-95 transition" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 text-primary-foreground">
+                    <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-1">{g.tag}</p>
+                    <p className="font-serif text-xl md:text-2xl">{g.label}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
