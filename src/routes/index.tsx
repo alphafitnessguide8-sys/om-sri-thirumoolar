@@ -24,6 +24,20 @@ import {
 import logo from "@/assets/stm-logo.jpeg";
 import heroImg from "@/assets/hero-herbs.jpg";
 import leafImg from "@/assets/leaf-accent.jpg";
+import imgSiddha from "@/assets/treatment-siddha.jpg";
+import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
+import imgVarma from "@/assets/treatment-varma.jpg";
+import imgYoga from "@/assets/treatment-yoga.jpg";
+import imgGalleryHerbs from "@/assets/gallery-herbs.jpg";
+import imgGalleryMassage from "@/assets/gallery-massage.jpg";
+import imgGalleryKizhi from "@/assets/gallery-kizhi.jpg";
+import imgGalleryYoga from "@/assets/gallery-yoga.jpg";
+import imgParallaxGarden from "@/assets/parallax-garden.jpg";
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import avatar4 from "@/assets/avatar-4.jpg";
+import avatar5 from "@/assets/avatar-5.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,10 +60,19 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { icon: Leaf, title: "Siddha", desc: "Tamil Nadu's ancient science of life — restoring the rhythm of body and breath." },
-  { icon: Sparkles, title: "Ayurveda", desc: "Time-honoured therapies that align the doshas and rebuild vitality from within." },
-  { icon: HeartPulse, title: "Varma Therapy", desc: "Subtle pressure on vital points to release pain, paralysis and energy blocks." },
-  { icon: Sun, title: "Yoga Therapy", desc: "Personalised āsana and prāṇāyāma to renew strength, calm and clarity." },
+  { icon: Leaf, title: "Siddha", desc: "Tamil Nadu's ancient science of life — restoring the rhythm of body and breath.", img: imgSiddha },
+  { icon: Sparkles, title: "Ayurveda", desc: "Time-honoured therapies that align the doshas and rebuild vitality from within.", img: imgAyurveda },
+  { icon: HeartPulse, title: "Varma Therapy", desc: "Subtle pressure on vital points to release pain, paralysis and energy blocks.", img: imgVarma },
+  { icon: Sun, title: "Yoga Therapy", desc: "Personalised āsana and prāṇāyāma to renew strength, calm and clarity.", img: imgYoga },
+];
+
+const gallery = [
+  { img: imgGalleryHerbs, label: "Herbal Formulations", tag: "Siddha" },
+  { img: imgGalleryMassage, label: "Abhyanga Therapy", tag: "Ayurveda" },
+  { img: imgGalleryKizhi, label: "Kizhi & Varma", tag: "Varma" },
+  { img: imgGalleryYoga, label: "Yoga & Pranayama", tag: "Yoga" },
+  { img: imgSiddha, label: "Traditional Preparations", tag: "Siddha" },
+  { img: imgAyurveda, label: "Shirodhara", tag: "Ayurveda" },
 ];
 
 const specs = [
@@ -64,11 +87,11 @@ const specs = [
 ];
 
 const testimonials = [
-  { name: "Lakshmi R.", note: "Years of sciatica eased within weeks. The care felt sacred — not clinical.", role: "Puducherry" },
-  { name: "Arun K.", note: "After my stroke, Varma therapy at STM gave my hand back to me. Forever grateful.", role: "Cuddalore" },
-  { name: "Meera S.", note: "Their fertility care is gentle, patient and deeply rooted in tradition.", role: "Villupuram" },
-  { name: "Ravi P.", note: "Chronic migraines that pills could not touch — calmed by their patient protocols.", role: "Chennai" },
-  { name: "Anitha V.", note: "A truly soulful clinic. You feel held from the moment you arrive.", role: "Karaikal" },
+  { name: "Lakshmi R.", note: "Years of sciatica eased within weeks. The care felt sacred — not clinical.", role: "Puducherry", avatar: avatar1 },
+  { name: "Arun K.", note: "After my stroke, Varma therapy at STM gave my hand back to me. Forever grateful.", role: "Cuddalore", avatar: avatar2 },
+  { name: "Meera S.", note: "Their fertility care is gentle, patient and deeply rooted in tradition.", role: "Villupuram", avatar: avatar3 },
+  { name: "Ravi P.", note: "Chronic migraines that pills could not touch — calmed by their patient protocols.", role: "Chennai", avatar: avatar4 },
+  { name: "Anitha V.", note: "A truly soulful clinic. You feel held from the moment you arrive.", role: "Karaikal", avatar: avatar5 },
 ];
 
 // Subtle particle field — pure CSS, very light
