@@ -277,6 +277,27 @@
     animation: energy 6s linear infinite;
   }
 
+  /* Image zoom on hover */
+  .img-zoom { overflow: hidden; }
+  .img-zoom img { transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); will-change: transform; }
+  .img-zoom:hover img { transform: scale(1.08); }
+
+  /* Slow ambient zoom for parallax sections */
+  @keyframes slow-zoom {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+  .slow-zoom { animation: slow-zoom 22s ease-in-out infinite; }
+
+  /* Image overlay for premium depth */
+  .img-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, oklch(0.14 0.04 158 / 0.55));
+    pointer-events: none;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.001ms !important;

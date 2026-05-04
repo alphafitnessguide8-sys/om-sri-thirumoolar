@@ -23,7 +23,21 @@ import {
 } from "lucide-react";
 import logo from "@/assets/stm-logo.jpeg";
 import heroImg from "@/assets/hero-herbs.jpg";
-import leafImg from "@/assets/leaf-accent.jpg";
+
+import imgSiddha from "@/assets/treatment-siddha.jpg";
+import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
+import imgVarma from "@/assets/treatment-varma.jpg";
+import imgYoga from "@/assets/treatment-yoga.jpg";
+import imgGalleryHerbs from "@/assets/gallery-herbs.jpg";
+import imgGalleryMassage from "@/assets/gallery-massage.jpg";
+import imgGalleryKizhi from "@/assets/gallery-kizhi.jpg";
+import imgGalleryYoga from "@/assets/gallery-yoga.jpg";
+import imgParallaxGarden from "@/assets/parallax-garden.jpg";
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import avatar4 from "@/assets/avatar-4.jpg";
+import avatar5 from "@/assets/avatar-5.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,10 +60,19 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { icon: Leaf, title: "Siddha", desc: "Tamil Nadu's ancient science of life — restoring the rhythm of body and breath." },
-  { icon: Sparkles, title: "Ayurveda", desc: "Time-honoured therapies that align the doshas and rebuild vitality from within." },
-  { icon: HeartPulse, title: "Varma Therapy", desc: "Subtle pressure on vital points to release pain, paralysis and energy blocks." },
-  { icon: Sun, title: "Yoga Therapy", desc: "Personalised āsana and prāṇāyāma to renew strength, calm and clarity." },
+  { icon: Leaf, title: "Siddha", desc: "Tamil Nadu's ancient science of life — restoring the rhythm of body and breath.", img: imgSiddha },
+  { icon: Sparkles, title: "Ayurveda", desc: "Time-honoured therapies that align the doshas and rebuild vitality from within.", img: imgAyurveda },
+  { icon: HeartPulse, title: "Varma Therapy", desc: "Subtle pressure on vital points to release pain, paralysis and energy blocks.", img: imgVarma },
+  { icon: Sun, title: "Yoga Therapy", desc: "Personalised āsana and prāṇāyāma to renew strength, calm and clarity.", img: imgYoga },
+];
+
+const gallery = [
+  { img: imgGalleryHerbs, label: "Herbal Formulations", tag: "Siddha" },
+  { img: imgGalleryMassage, label: "Abhyanga Therapy", tag: "Ayurveda" },
+  { img: imgGalleryKizhi, label: "Kizhi & Varma", tag: "Varma" },
+  { img: imgGalleryYoga, label: "Yoga & Pranayama", tag: "Yoga" },
+  { img: imgSiddha, label: "Traditional Preparations", tag: "Siddha" },
+  { img: imgAyurveda, label: "Shirodhara", tag: "Ayurveda" },
 ];
 
 const specs = [
@@ -64,11 +87,11 @@ const specs = [
 ];
 
 const testimonials = [
-  { name: "Lakshmi R.", note: "Years of sciatica eased within weeks. The care felt sacred — not clinical.", role: "Puducherry" },
-  { name: "Arun K.", note: "After my stroke, Varma therapy at STM gave my hand back to me. Forever grateful.", role: "Cuddalore" },
-  { name: "Meera S.", note: "Their fertility care is gentle, patient and deeply rooted in tradition.", role: "Villupuram" },
-  { name: "Ravi P.", note: "Chronic migraines that pills could not touch — calmed by their patient protocols.", role: "Chennai" },
-  { name: "Anitha V.", note: "A truly soulful clinic. You feel held from the moment you arrive.", role: "Karaikal" },
+  { name: "Lakshmi R.", note: "Years of sciatica eased within weeks. The care felt sacred — not clinical.", role: "Puducherry", avatar: avatar1 },
+  { name: "Arun K.", note: "After my stroke, Varma therapy at STM gave my hand back to me. Forever grateful.", role: "Cuddalore", avatar: avatar2 },
+  { name: "Meera S.", note: "Their fertility care is gentle, patient and deeply rooted in tradition.", role: "Villupuram", avatar: avatar3 },
+  { name: "Ravi P.", note: "Chronic migraines that pills could not touch — calmed by their patient protocols.", role: "Chennai", avatar: avatar4 },
+  { name: "Anitha V.", note: "A truly soulful clinic. You feel held from the moment you arrive.", role: "Karaikal", avatar: avatar5 },
 ];
 
 // Subtle particle field — pure CSS, very light
@@ -255,22 +278,72 @@ function HomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
             {services.map((s, i) => (
               <div key={s.title} className="reveal" style={{ transitionDelay: `${i * 120}ms` }}>
-                <div className="card-tilt group relative h-full bg-card rounded-3xl p-8 shadow-soft border border-border/60 overflow-hidden hover:border-gold/40 transition-colors">
-                  <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-accent/10 group-hover:bg-accent/25 transition blur-2xl" />
-                  <div className="absolute inset-x-6 top-0 h-px gold-rule opacity-0 group-hover:opacity-100 transition" />
-                  <div className="relative">
-                    <div className="w-16 h-16 rounded-2xl bg-emerald-grad text-primary-foreground grid place-items-center shadow-glow group-hover:scale-105 transition-transform duration-500">
-                      <s.icon size={26} />
+                <div className="card-tilt group relative h-full bg-card rounded-3xl shadow-soft border border-border/60 overflow-hidden hover:border-gold/40 transition-colors flex flex-col">
+                  <div className="img-zoom relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={s.img}
+                      alt={`${s.title} therapy at STM Puducherry`}
+                      loading="lazy"
+                      width={800}
+                      height={600}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/10 to-transparent" />
+                    <div className="absolute top-4 left-4 w-11 h-11 rounded-xl bg-ivory/90 backdrop-blur text-primary grid place-items-center shadow-soft ring-1 ring-gold/30">
+                      <s.icon size={20} />
                     </div>
-                    <h3 className="mt-7 font-serif text-2xl md:text-3xl text-primary">{s.title}</h3>
-                    <p className="mt-3 text-sm md:text-base text-muted-foreground leading-[1.8]">{s.desc}</p>
-                    <div className="mt-7 inline-flex items-center gap-2 text-sm text-accent font-medium">
+                  </div>
+                  <div className="relative p-7 flex-1 flex flex-col">
+                    <div className="absolute inset-x-6 top-0 h-px gold-rule opacity-0 group-hover:opacity-100 transition" />
+                    <h3 className="font-serif text-2xl md:text-3xl text-primary">{s.title}</h3>
+                    <p className="mt-3 text-sm md:text-base text-muted-foreground leading-[1.8] flex-1">{s.desc}</p>
+                    <Link to="/services" className="mt-6 inline-flex items-center gap-2 text-sm text-accent font-medium">
                       Learn more <ArrowRight size={14} className="group-hover:translate-x-1 transition" />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TREATMENT GALLERY */}
+      <section className="relative py-32 layered-section">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-16 reveal">
+            <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Gallery</p>
+            <h2 className="heading-aura font-serif text-4xl md:text-6xl text-primary leading-[1.05]">Glimpses of our practice.</h2>
+            <div className="mt-6"><GoldDivider /></div>
+            <p className="mt-6 text-muted-foreground max-w-xl mx-auto leading-[1.8]">
+              Inside the rituals, herbs and quiet moments that define healing at STM.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+            {gallery.map((g, i) => {
+              const tall = i === 0 || i === 4;
+              return (
+                <div
+                  key={i}
+                  className={`reveal img-zoom relative rounded-3xl overflow-hidden shadow-soft border border-border/50 group ${tall ? "row-span-2 aspect-[3/4] md:aspect-[3/5]" : "aspect-[4/3]"}`}
+                  style={{ transitionDelay: `${i * 80}ms` }}
+                >
+                  <img
+                    src={g.img}
+                    alt={`${g.label} — ${g.tag} treatment`}
+                    loading="lazy"
+                    width={800}
+                    height={1000}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent opacity-90 group-hover:opacity-95 transition" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 text-primary-foreground">
+                    <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-1">{g.tag}</p>
+                    <p className="font-serif text-xl md:text-2xl">{g.label}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -302,14 +375,20 @@ function HomePage() {
         </div>
       </section>
 
-      {/* PARALLAX QUOTE */}
-      <section className="relative py-36 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url(${leafImg})` }}
-        />
-        <div className="absolute inset-0 bg-[oklch(0.14_0.04_158)/0.85]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_oklch(0.45_0.12_150/0.3),_transparent_70%)]" />
+      {/* PARALLAX QUOTE — full-width treatment image with slow zoom */}
+      <section className="relative py-40 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src={imgParallaxGarden}
+            alt="STM herbal healing garden"
+            loading="lazy"
+            width={1920}
+            height={1080}
+            className="absolute inset-0 w-full h-full object-cover slow-zoom"
+          />
+        </div>
+        <div className="absolute inset-0 bg-[oklch(0.14_0.04_158)/0.78]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_oklch(0.45_0.12_150/0.35),_transparent_70%)]" />
         <div className="relative mx-auto max-w-3xl px-6 text-center text-primary-foreground reveal">
           <Quote className="mx-auto text-gold mb-6 opacity-80" size={36} />
           <p className="font-serif text-3xl md:text-5xl italic leading-[1.25] text-aura">
@@ -345,9 +424,19 @@ function HomePage() {
                   {Array.from({ length: 5 }).map((_, k) => <Star key={k} size={16} fill="currentColor" />)}
                 </div>
                 <p className="font-serif text-lg md:text-xl text-foreground/85 leading-[1.7] relative">"{t.note}"</p>
-                <div className="mt-6 pt-5 border-t border-border/60 relative">
-                  <p className="font-medium text-primary">{t.name}</p>
-                  <p className="text-xs text-muted-foreground tracking-wider uppercase">{t.role}</p>
+                <div className="mt-6 pt-5 border-t border-border/60 relative flex items-center gap-4">
+                  <img
+                    src={t.avatar}
+                    alt={`${t.name} — STM patient`}
+                    loading="lazy"
+                    width={96}
+                    height={96}
+                    className="w-12 h-12 rounded-full object-cover ring-2 ring-gold/40 shadow-soft"
+                  />
+                  <div>
+                    <p className="font-medium text-primary">{t.name}</p>
+                    <p className="text-xs text-muted-foreground tracking-wider uppercase">{t.role}</p>
+                  </div>
                 </div>
               </div>
             ))}
