@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/stm-logo.jpeg";
 import heroImg from "@/assets/hero-herbs.jpg";
-import leafImg from "@/assets/leaf-accent.jpg";
+
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
 import imgVarma from "@/assets/treatment-varma.jpg";
