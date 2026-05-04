@@ -375,14 +375,20 @@ function HomePage() {
         </div>
       </section>
 
-      {/* PARALLAX QUOTE */}
-      <section className="relative py-36 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url(${leafImg})` }}
-        />
-        <div className="absolute inset-0 bg-[oklch(0.14_0.04_158)/0.85]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_oklch(0.45_0.12_150/0.3),_transparent_70%)]" />
+      {/* PARALLAX QUOTE — full-width treatment image with slow zoom */}
+      <section className="relative py-40 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src={imgParallaxGarden}
+            alt="STM herbal healing garden"
+            loading="lazy"
+            width={1920}
+            height={1080}
+            className="absolute inset-0 w-full h-full object-cover slow-zoom"
+          />
+        </div>
+        <div className="absolute inset-0 bg-[oklch(0.14_0.04_158)/0.78]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_oklch(0.45_0.12_150/0.35),_transparent_70%)]" />
         <div className="relative mx-auto max-w-3xl px-6 text-center text-primary-foreground reveal">
           <Quote className="mx-auto text-gold mb-6 opacity-80" size={36} />
           <p className="font-serif text-3xl md:text-5xl italic leading-[1.25] text-aura">
