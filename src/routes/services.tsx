@@ -2,6 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { Leaf, Sparkles, HeartPulse, Sun, Check, ArrowRight } from "lucide-react";
+import siddhaImg from "@/assets/treatment-siddha.jpg";
+import ayurvedaImg from "@/assets/treatment-ayurveda.jpg";
+import varmaImg from "@/assets/treatment-varma.jpg";
+import yogaImg from "@/assets/treatment-yoga.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -18,6 +22,7 @@ export const Route = createFileRoute("/services")({
 const services = [
   {
     icon: Leaf,
+    image: siddhaImg,
     name: "Siddha Treatment",
     tag: "The Tamil science of life",
     desc: "Drawing from herbs, minerals and the wisdom of the siddhars, our Siddha protocols rebalance the three humours and restore vitality at its source.",
@@ -26,6 +31,7 @@ const services = [
   },
   {
     icon: Sparkles,
+    image: ayurvedaImg,
     name: "Ayurveda Treatment",
     tag: "The science of balance",
     desc: "Personalised Ayurvedic care — including panchakarma, abhyanga and herbal formulations — to align the body's natural rhythms.",
@@ -34,6 +40,7 @@ const services = [
   },
   {
     icon: HeartPulse,
+    image: varmaImg,
     name: "Varma Therapy",
     tag: "The art of vital points",
     desc: "An ancient Tamil therapeutic art that uses precise pressure on the body's energy centres to release pain, restore movement and renew the nervous system.",
@@ -42,6 +49,7 @@ const services = [
   },
   {
     icon: Sun,
+    image: yogaImg,
     name: "Yoga Therapy",
     tag: "Movement as medicine",
     desc: "Therapeutic āsana, prāṇāyāma and meditation sequences designed for your specific body, condition and goals.",
@@ -75,11 +83,20 @@ function ServicesPage() {
               className={`reveal grid lg:grid-cols-12 gap-8 items-center bg-card rounded-[2rem] p-8 md:p-12 border border-border/60 shadow-soft hover:shadow-elevated transition-all duration-500 ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}
             >
               <div className="lg:col-span-5">
-                <div className="relative aspect-[4/3] rounded-2xl bg-emerald-grad overflow-hidden shadow-glow">
-                  <div className="absolute inset-0 grid place-items-center">
-                    <s.icon className="text-white/90" size={120} strokeWidth={1} />
+                <div className="img-zoom relative aspect-[4/3] rounded-2xl overflow-hidden shadow-elevated ring-1 ring-border/40">
+                  <img
+                    src={s.image}
+                    alt={`${s.name} at STM Puducherry`}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-cover slow-zoom"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/40 via-accent/15 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/35 to-transparent" />
+                  <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gold/25 blur-2xl pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 glass rounded-full p-2.5">
+                    <s.icon className="text-white" size={18} strokeWidth={1.5} />
                   </div>
-                  <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gold/30 blur-2xl" />
                 </div>
               </div>
               <div className="lg:col-span-7 space-y-5">
