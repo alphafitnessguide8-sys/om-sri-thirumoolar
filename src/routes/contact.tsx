@@ -7,7 +7,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact STM — Siddha & Ayurveda Clinic in Thattanchavady, Puducherry" },
-      { name: "description", content: "Visit STM at No: 3, F-Lane, V.V.P Nagar, Thattanchavady, Puducherry – 605009. Call 9952232078. Open Mon–Sat 9am–8pm." },
+      { name: "description", content: "Visit STM at No: 3, F-Lane, V.V.P Nagar, Thattanchavady, Puducherry – 605009. Call 9952232078. Open Mon–Sun 7am–9pm." },
       { property: "og:title", content: "Contact STM — Puducherry" },
       { property: "og:description", content: "Find us in Thattanchavady, Puducherry. Call or message us on WhatsApp." },
     ],
@@ -39,7 +39,7 @@ function ContactPage() {
               { icon: MapPin, title: "Address", text: "No: 3, F-Lane, V.V.P Nagar, Thattanchavady, Puducherry – 605009" },
               { icon: Phone, title: "Phone", text: "9952232078", href: "tel:9952232078" },
               { icon: MessageCircle, title: "WhatsApp", text: "Chat with us instantly", href: "https://wa.me/919952232078" },
-              { icon: Clock, title: "Hours", text: "Monday – Saturday · 9:00 am to 8:00 pm" },
+              { icon: Clock, title: "Hours", text: "Monday – Sunday · 7:00 am to 9:00 pm" },
             ].map((c) => (
               <div key={c.title} className="bg-card rounded-2xl p-6 border border-border/60 shadow-soft hover:shadow-elevated transition">
                 <div className="flex items-start gap-4">
