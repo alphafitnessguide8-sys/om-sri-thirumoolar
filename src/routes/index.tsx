@@ -140,13 +140,13 @@ function HomePage() {
       {/* HERO */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center overflow-hidden bg-hero text-primary-foreground pt-28"
+        className="cine-letterbox relative min-h-screen flex items-center overflow-hidden bg-hero text-primary-foreground pt-28"
       >
         {/* Parallax image layer */}
         <img
           src={heroImg}
           alt=""
-          className="absolute inset-0 w-full h-[120%] object-cover opacity-40 will-change-transform"
+          className="cine-intro absolute inset-0 w-full h-[120%] object-cover opacity-40 will-change-transform"
           style={{ transform: `translate3d(0, ${py * 0.25}px, 0)` }}
           width={1920}
           height={1080}
@@ -154,6 +154,9 @@ function HomePage() {
         {/* Gradient depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.14_0.04_158)/0.88] via-[oklch(0.18_0.05_158)/0.7] to-[oklch(0.12_0.04_158)/0.98]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,_oklch(0.45_0.12_150/0.35),_transparent_60%)]" />
+
+        {/* Cinematic VFX: god rays, mist, grain, vignette */}
+        <CinematicFX />
 
         {/* Particles & floating accents */}
         <Particles />
@@ -174,9 +177,15 @@ function HomePage() {
             <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs tracking-[0.22em] uppercase text-gold">
               <Sparkles size={14} /> Survive · Triumph · Merriment
             </div>
-            <h1 className="heading-aura font-serif text-6xl md:text-8xl leading-[1.02] tracking-tight text-aura">
+            <h1 className="heading-aura relative font-serif text-6xl md:text-8xl leading-[1.02] tracking-tight text-aura">
               Ancient healing,<br />
               <span className="text-gradient-gold italic">gracefully</span> renewed.
+              <span
+                aria-hidden
+                className="title-shimmer absolute inset-0 pointer-events-none"
+              >
+                Ancient healing,<br />gracefully renewed.
+              </span>
             </h1>
             <div className="energy-line w-40 rounded-full" />
             <p className="text-lg md:text-xl text-white/75 max-w-xl leading-[1.8]">
