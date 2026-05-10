@@ -436,7 +436,7 @@ function HomePage() {
       </section>
 
       {/* TESTIMONIALS — auto-sliding marquee */}
-      <section className="py-32 bg-secondary/40 layered-section overflow-hidden">
+      <section id="testimonials" className="py-32 bg-secondary/40 layered-section overflow-hidden scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center mb-16 reveal">
             <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Voices of Healing</p>
