@@ -36,7 +36,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-white/75">
             <li className="flex gap-2"><MapPin size={16} className="mt-0.5 shrink-0" /> No: 3, F-Lane, V.V.P Nagar, Thattanchavady, Puducherry – 605009</li>
             <li className="flex gap-2"><Phone size={16} className="mt-0.5" /> <a href="tel:9952232078" className="hover:text-gold">9952232078</a></li>
-            <li className="flex gap-2"><Clock size={16} className="mt-0.5" /> Mon – Sat · 9am – 8pm</li>
+            <li className="flex gap-2"><Clock size={16} className="mt-0.5" /> Mon – Sun · 7am – 9pm</li>
           </ul>
         </div>
 
