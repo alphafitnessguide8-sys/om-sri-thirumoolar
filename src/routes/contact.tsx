@@ -7,7 +7,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact STM — Siddha & Ayurveda Clinic in Thattanchavady, Puducherry" },
-      { name: "description", content: "Visit STM at No: 3, F-Lane, V.V.P Nagar, Thattanchavady, Puducherry – 605009. Call 9952232078. Open Mon–Sat 9am–8pm." },
+      { name: "description", content: "Visit STM at No: 3, F-Lane, V.V.P Nagar, Thattanchavady, Puducherry – 605009. Call 9952232078. Open Mon–Sun 7am–9pm." },
       { property: "og:title", content: "Contact STM — Puducherry" },
       { property: "og:description", content: "Find us in Thattanchavady, Puducherry. Call or message us on WhatsApp." },
     ],
