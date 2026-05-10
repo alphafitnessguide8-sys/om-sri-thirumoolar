@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import logo from "@/assets/stm-logo.jpeg";
 import heroBowl from "@/assets/hero-bowl.jpg";
-import heroBowl from "@/assets/hero-bowl.jpg";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
