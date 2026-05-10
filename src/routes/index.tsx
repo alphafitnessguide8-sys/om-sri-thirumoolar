@@ -2,8 +2,6 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { GoldDivider } from "@/components/site/GoldDivider";
-import { FloatingLeaves } from "@/components/site/FloatingLeaves";
-import { CinematicFX } from "@/components/site/CinematicFX";
 import { useEffect, useRef, useState } from "react";
 import {
   Leaf,
@@ -17,13 +15,12 @@ import {
   ShieldCheck,
   Star,
   ArrowRight,
-  Phone,
   Quote,
   Award,
   Users,
 } from "lucide-react";
 import logo from "@/assets/stm-logo.jpeg";
-import heroImg from "@/assets/hero-herbs.jpg";
+import heroBowl from "@/assets/hero-bowl.jpg";
 import heroBowl from "@/assets/hero-bowl.jpg";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
