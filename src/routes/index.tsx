@@ -2,8 +2,6 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { GoldDivider } from "@/components/site/GoldDivider";
-import { FloatingLeaves } from "@/components/site/FloatingLeaves";
-import { CinematicFX } from "@/components/site/CinematicFX";
 import { useEffect, useRef, useState } from "react";
 import {
   Leaf,
@@ -17,13 +15,12 @@ import {
   ShieldCheck,
   Star,
   ArrowRight,
-  Phone,
   Quote,
   Award,
   Users,
 } from "lucide-react";
 import logo from "@/assets/stm-logo.jpeg";
-import heroImg from "@/assets/hero-herbs.jpg";
+import heroBowl from "@/assets/hero-bowl.jpg";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
@@ -138,110 +135,132 @@ function HomePage() {
 
   return (
     <SiteLayout>
-      {/* HERO */}
+      {/* HERO — premium split layout */}
       <section
         ref={heroRef}
-        className="cine-letterbox relative min-h-screen flex items-center overflow-hidden bg-hero text-primary-foreground pt-28"
+        className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20"
       >
-        {/* Parallax image layer */}
-        <img
-          src={heroImg}
-          alt=""
-          className="cine-intro absolute inset-0 w-full h-[120%] object-cover opacity-40 will-change-transform"
-          style={{ transform: `translate3d(0, ${py * 0.25}px, 0)` }}
-          width={1920}
-          height={1080}
-        />
-        {/* Gradient depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.14_0.04_158)/0.88] via-[oklch(0.18_0.05_158)/0.7] to-[oklch(0.12_0.04_158)/0.98]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,_oklch(0.45_0.12_150/0.35),_transparent_60%)]" />
+        {/* Soft cream + sage gradient background */}
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,_oklch(0.985_0.012_95)_0%,_oklch(0.96_0.025_105)_45%,_oklch(0.92_0.04_140)_100%)]" />
+        {/* Floating soft gradient orbs */}
+        <div className="absolute -top-32 -left-24 w-[28rem] h-[28rem] rounded-full bg-accent/15 blur-3xl animate-float-slow" />
+        <div className="absolute top-1/3 -right-32 w-[32rem] h-[32rem] rounded-full bg-gold/15 blur-3xl animate-float" />
+        <div className="absolute bottom-0 left-1/3 w-[24rem] h-[24rem] rounded-full bg-primary/8 blur-3xl" />
 
-        {/* Cinematic VFX: god rays, mist, grain, vignette */}
-        <CinematicFX />
-
-        {/* Particles & floating accents */}
-        <Particles />
-        <FloatingLeaves density={7} />
+        {/* Subtle sacred geometry — concentric rings */}
         <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ transform: `translate3d(0, ${py * -0.12}px, 0)` }}
+          aria-hidden
+          className="absolute -right-40 top-1/2 -translate-y-1/2 w-[40rem] h-[40rem] opacity-[0.07] pointer-events-none"
+          style={{ transform: `translate3d(0, calc(-50% + ${py * -0.05}px), 0)` }}
         >
-          <div className="absolute top-24 left-10 w-40 h-40 rounded-full bg-accent/30 blur-3xl animate-float" />
-          <div className="absolute bottom-32 right-16 w-56 h-56 rounded-full bg-gold/20 blur-3xl animate-float-slow" />
-          <Leaf className="absolute top-1/3 left-[8%] text-accent/40 animate-float" size={32} />
-          <Leaf className="absolute top-1/4 right-[14%] text-gold/40 animate-float-slow" size={28} />
-          <Leaf className="absolute bottom-[18%] left-[20%] text-accent/30 animate-float-slow" size={22} />
+          <div className="absolute inset-0 rounded-full border border-primary" />
+          <div className="absolute inset-[8%] rounded-full border border-primary" />
+          <div className="absolute inset-[18%] rounded-full border border-primary" />
+          <div className="absolute inset-[30%] rounded-full border border-primary" />
+          <div className="absolute inset-[44%] rounded-full border border-primary" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-10 items-center pb-24">
-          <div className="lg:col-span-7 space-y-8 animate-fade-up">
-            <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs tracking-[0.22em] uppercase text-gold">
-              <Sparkles size={14} /> Survive · Triumph · Merriment
+        <Particles />
+
+        <div className="relative mx-auto max-w-7xl w-full px-6 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* LEFT — Content */}
+          <div className="lg:col-span-7 space-y-7 animate-fade-up text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] tracking-[0.28em] uppercase text-primary/80 bg-ivory/70 border border-gold/30 backdrop-blur">
+              <Sparkles size={13} className="text-gold" /> Puducherry · Since 2009
             </div>
-            <h1 className="heading-aura relative font-serif text-6xl md:text-8xl leading-[1.02] tracking-tight text-aura">
-              Ancient healing,<br />
-              <span className="text-gradient-gold italic">gracefully</span> renewed.
-              <span
-                aria-hidden
-                className="title-shimmer absolute inset-0 pointer-events-none"
-              >
-                Ancient healing,<br />gracefully renewed.
-              </span>
+
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-[5.25rem] leading-[1.04] tracking-tight text-primary">
+              Ancient Healing,
+              <br />
+              <span className="text-gradient-emerald italic">Modern Harmony</span>
             </h1>
-            <div className="energy-line w-40 rounded-full" />
-            <p className="text-lg md:text-xl text-white/75 max-w-xl leading-[1.8]">
-              At STM — Om Sri Thirumoolar — we restore balance through Siddha, Ayurveda, Varma
-              and Yoga. A sanctuary in Puducherry where tradition listens to your body.
+
+            <div className="energy-line w-32 mx-auto lg:mx-0 rounded-full" />
+
+            <p className="text-lg md:text-xl text-foreground/70 max-w-xl mx-auto lg:mx-0 leading-[1.75] font-light">
+              Restoring balance through Siddha, Ayurveda, Varma and Yoga therapies — a sanctuary
+              of holistic wellness in the heart of Puducherry.
             </p>
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Link to="/appointment" className="btn-gold breathe inline-flex items-center gap-2">
-                Book a Consultation <ArrowRight size={16} />
+
+            <div className="flex flex-wrap gap-4 pt-2 justify-center lg:justify-start">
+              <Link to="/appointment" className="btn-gold inline-flex items-center gap-2">
+                Book Consultation <ArrowRight size={16} />
               </Link>
-              <a href="tel:9952232078" className="btn-outline-ivory inline-flex items-center gap-2">
-                <Phone size={16} /> 9952232078
-              </a>
+              <Link
+                to="/treatments"
+                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.85rem] border border-primary/25 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
+              >
+                Explore Treatments
+              </Link>
             </div>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-6 text-sm text-white/65">
-              <div className="flex items-center gap-2"><ShieldCheck size={16} className="text-gold" /> No Side Effects</div>
-              <div className="flex items-center gap-2"><Leaf size={16} className="text-accent" /> 100% Natural</div>
-              <div className="flex items-center gap-2"><Award size={16} className="text-gold" /> 15+ Years</div>
-              <div className="flex items-center gap-2"><Users size={16} className="text-accent" /> 10,000+ Patients</div>
+
+            {/* Trust indicators */}
+            <div className="grid grid-cols-3 gap-4 pt-8 max-w-lg mx-auto lg:mx-0">
+              <div className="text-center lg:text-left">
+                <div className="font-serif text-3xl md:text-4xl text-primary">15+</div>
+                <div className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mt-1">Years</div>
+              </div>
+              <div className="text-center lg:text-left border-x border-border/60">
+                <div className="font-serif text-3xl md:text-4xl text-primary">10k+</div>
+                <div className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mt-1">Patients</div>
+              </div>
+              <div className="text-center lg:text-left">
+                <div className="font-serif text-3xl md:text-4xl text-primary">4</div>
+                <div className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mt-1">Disciplines</div>
+              </div>
             </div>
           </div>
 
-          {/* Floating glass logo card with parallax tilt */}
+          {/* RIGHT — Hero visual */}
           <div className="lg:col-span-5 relative">
             <div
-              className="relative mx-auto w-[22rem] h-[22rem] md:w-[28rem] md:h-[28rem]"
-              style={{ transform: `translate3d(0, ${py * -0.08}px, 0)` }}
+              className="relative mx-auto w-full max-w-md aspect-[4/5]"
+              style={{ transform: `translate3d(0, ${py * -0.06}px, 0)` }}
             >
-              {/* Sun glow */}
-              <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_oklch(0.85_0.18_85/0.55)_0%,_oklch(0.75_0.2_75/0.35)_30%,_transparent_65%)] blur-2xl animate-pulse" />
-              <div className="absolute inset-[-10%] rounded-full bg-[conic-gradient(from_0deg,_oklch(0.9_0.15_85/0.25),_transparent_20%,_oklch(0.85_0.18_75/0.3)_40%,_transparent_60%,_oklch(0.9_0.15_85/0.25)_80%,_transparent)] blur-xl animate-spin-slow opacity-70" />
-              <div className="absolute inset-[6%] rounded-full bg-gold/20 blur-3xl" />
-              <div className="absolute inset-4 rounded-full border border-gold/40 animate-spin-slow" />
-              <div className="absolute inset-10 rounded-full border border-accent/25 animate-spin-slow [animation-direction:reverse]" />
+              {/* Soft ambient glow behind image */}
+              <div className="absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_30%_30%,_oklch(0.85_0.12_85/0.45),_transparent_60%)] blur-2xl" />
+              <div className="absolute -inset-4 rounded-[2.5rem] bg-[radial-gradient(circle_at_70%_70%,_oklch(0.62_0.16_145/0.3),_transparent_60%)] blur-2xl" />
 
-              {/* Rotating 3D leaf */}
-              <Leaf
-                className="absolute -top-4 left-1/2 -translate-x-1/2 text-gold/70 drop-shadow-[0_0_20px_oklch(0.85_0.15_85/0.6)]"
-                size={36}
-                style={{ animation: "tilt 6s ease-in-out infinite" }}
-              />
-              <Leaf
-                className="absolute -bottom-4 left-1/2 -translate-x-1/2 rotate-180 text-accent/60"
-                size={28}
-                style={{ animation: "tilt 8s ease-in-out infinite reverse" }}
-              />
+              {/* Image card */}
+              <div className="img-zoom relative w-full h-full rounded-[2rem] overflow-hidden shadow-elevated ring-1 ring-gold/30">
+                <img
+                  src={heroBowl}
+                  alt="Ayurvedic herbal healing bowl with turmeric, sage and lotus"
+                  className="w-full h-full object-cover"
+                  width={1024}
+                  height={1280}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-transparent pointer-events-none" />
+              </div>
 
-              <div className="absolute inset-0 grid place-items-center">
-                <div className="relative rounded-full p-4 bg-ivory/95 shadow-elevated ring-1 ring-gold/30">
-                  <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_oklch(0.95_0.12_85/0.6),_transparent_70%)] blur-md" />
-                  <img
-                    src={logo}
-                    alt="STM Clinic logo"
-                    className="relative w-60 h-60 md:w-72 md:h-72 rounded-full object-contain"
-                  />
+              {/* Subtle watermark badge — bottom right */}
+              <div className="absolute -bottom-5 -right-5 md:-bottom-6 md:-right-6 rounded-full bg-ivory/95 backdrop-blur shadow-elevated ring-1 ring-gold/40 p-2.5">
+                <img
+                  src={logo}
+                  alt="STM"
+                  className="w-14 h-14 md:w-16 md:h-16 rounded-full object-contain"
+                />
+              </div>
+
+              {/* Floating chip — top left */}
+              <div className="absolute -top-4 -left-4 md:-top-5 md:-left-5 bg-ivory/95 backdrop-blur rounded-2xl px-4 py-3 shadow-soft border border-gold/30 flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-accent/15 grid place-items-center">
+                  <Leaf size={16} className="text-accent" />
+                </div>
+                <div className="leading-tight">
+                  <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">100%</div>
+                  <div className="text-sm font-medium text-primary">Natural Care</div>
+                </div>
+              </div>
+
+              {/* Floating chip — middle right */}
+              <div className="absolute top-1/2 -right-6 md:-right-10 -translate-y-1/2 bg-ivory/95 backdrop-blur rounded-2xl px-4 py-3 shadow-soft border border-gold/30 flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-gold/20 grid place-items-center">
+                  <ShieldCheck size={16} className="text-gold" />
+                </div>
+                <div className="leading-tight">
+                  <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">No</div>
+                  <div className="text-sm font-medium text-primary">Side Effects</div>
                 </div>
               </div>
             </div>
@@ -249,7 +268,7 @@ function HomePage() {
         </div>
 
         {/* Scroll cue */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 text-[10px] tracking-[0.4em] uppercase animate-pulse">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-primary/40 text-[10px] tracking-[0.4em] uppercase animate-pulse">
           Scroll
         </div>
       </section>
@@ -413,7 +432,7 @@ function HomePage() {
       </section>
 
       {/* TESTIMONIALS — auto-sliding marquee */}
-      <section className="py-32 bg-secondary/40 layered-section overflow-hidden">
+      <section id="testimonials" className="py-32 bg-secondary/40 layered-section overflow-hidden scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center mb-16 reveal">
             <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Voices of Healing</p>
