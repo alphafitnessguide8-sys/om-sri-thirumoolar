@@ -19,7 +19,8 @@ import {
   Award,
   Users,
 } from "lucide-react";
-import heroBowl from "@/assets/hero-cinematic.jpg";
+import heroMortar from "@/assets/hero-mortar.jpg";
+import stmLogo from "@/assets/stm-logo.jpeg";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
