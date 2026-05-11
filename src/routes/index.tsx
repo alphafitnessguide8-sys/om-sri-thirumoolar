@@ -19,7 +19,8 @@ import {
   Award,
   Users,
 } from "lucide-react";
-import heroBowl from "@/assets/hero-cinematic.jpg";
+import heroMortar from "@/assets/hero-mortar.jpg";
+import stmLogo from "@/assets/stm-logo.jpeg";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
@@ -124,12 +125,35 @@ function Particles() {
 function HomePage() {
   useReveal();
   const heroRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const [py, setPy] = useState(0);
 
   useEffect(() => {
     const onScroll = () => setPy(window.scrollY);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const onMove = (e: MouseEvent) => {
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      stage.style.setProperty("--mx", `${x * 18}px`);
+      stage.style.setProperty("--my", `${y * 18}px`);
+    };
+    const onLeave = () => {
+      stage.style.setProperty("--mx", `0px`);
+      stage.style.setProperty("--my", `0px`);
+    };
+    window.addEventListener("mousemove", onMove);
+    stage.addEventListener("mouseleave", onLeave);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      stage.removeEventListener("mouseleave", onLeave);
+    };
   }, []);
 
   return (
@@ -229,31 +253,85 @@ function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — Cinematic herbal visual */}
+          {/* RIGHT — Cinematic floating logo composition */}
           <div className="lg:col-span-5 relative">
             <div
-              className="relative mx-auto w-full max-w-md aspect-[4/5]"
-              style={{ transform: `translate3d(0, ${py * -0.06}px, 0)` }}
+              ref={stageRef}
+              className="relative mx-auto w-full max-w-md aspect-square"
+              style={{
+                transform: `translate3d(var(--mx,0), calc(${py * -0.06}px + var(--my,0)), 0)`,
+                transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+              }}
             >
-              {/* Ambient glows */}
-              <div className="absolute -inset-10 rounded-[3rem] bg-[radial-gradient(circle_at_30%_30%,_rgba(212,162,76,0.45),_transparent_60%)] blur-2xl" />
-              <div className="absolute -inset-6 rounded-[2.5rem] bg-[radial-gradient(circle_at_70%_70%,_rgba(63,107,75,0.4),_transparent_60%)] blur-2xl" />
-
-              {/* Image card */}
-              <div className="img-zoom relative w-full h-full rounded-[2rem] overflow-hidden ring-1 ring-[#D4A24C]/40 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.7)]">
+              {/* Mortar & pestle backdrop with vignette */}
+              <div className="absolute inset-0 rounded-full overflow-hidden ring-1 ring-[#D4A24C]/20 shadow-[0_50px_120px_-20px_rgba(0,0,0,0.8)]">
                 <img
-                  src={heroBowl}
-                  alt="Cinematic Ayurvedic herbal bowl with turmeric, fresh herbs and lotus"
-                  className="w-full h-full object-cover slow-zoom"
+                  src={heroMortar}
+                  alt="Bronze Ayurvedic mortar and pestle in golden light"
+                  className="w-full h-full object-cover slow-zoom opacity-60"
                   width={1024}
-                  height={1280}
+                  height={1024}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0e2519]/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2rem] pointer-events-none" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_rgba(14,37,25,0.85)_75%)]" />
               </div>
 
-              {/* Single subtle floating chip */}
-              <div className="absolute -bottom-5 -left-5 md:-bottom-6 md:-left-6 bg-[#0e2519]/70 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/30 flex items-center gap-3 shadow-2xl">
+              {/* Radial golden aura */}
+              <div className="absolute inset-[-15%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.45)_0%,_rgba(212,162,76,0.18)_30%,_transparent_65%)] blur-2xl animate-aura pointer-events-none" />
+              <div className="absolute inset-[-5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.35),_transparent_60%)] blur-xl pointer-events-none" />
+
+              {/* Sacred rotating rings */}
+              <div className="absolute inset-[8%] rounded-full border border-[#D4A24C]/30 animate-spin-slow pointer-events-none">
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#F5D78A] shadow-[0_0_12px_#F5D78A]" />
+              </div>
+              <div
+                className="absolute inset-[2%] rounded-full border border-dashed border-[#D4A24C]/25 pointer-events-none"
+                style={{ animation: "spin 60s linear infinite reverse" }}
+              />
+              <div className="absolute inset-[18%] rounded-full border border-[#F5D78A]/15 pointer-events-none" />
+
+              {/* Orbiting leaf icons */}
+              {[0, 90, 180, 270].map((deg, i) => (
+                <div
+                  key={deg}
+                  className="absolute inset-[8%] pointer-events-none"
+                  style={{ animation: `spin ${28 + i * 4}s linear ${i % 2 ? "reverse" : ""} infinite` }}
+                >
+                  <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    style={{ transform: `translate(-50%, -50%) rotate(${deg}deg) translateY(-0.5rem)` }}
+                  >
+                    <div className="w-8 h-8 rounded-full bg-[#0e2519]/70 backdrop-blur grid place-items-center border border-[#D4A24C]/40 shadow-[0_0_20px_rgba(212,162,76,0.4)]">
+                      <Leaf size={14} className="text-[#D4A24C]" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Floating logo center */}
+              <div className="absolute inset-[22%] grid place-items-center pointer-events-none">
+                <div className="relative w-full h-full animate-float">
+                  <div className="absolute inset-[-20%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55),_transparent_60%)] blur-2xl animate-aura" />
+                  <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-[#D4A24C]/60 shadow-[0_0_60px_rgba(212,162,76,0.6),0_30px_60px_-15px_rgba(0,0,0,0.8),inset_0_2px_0_rgba(255,255,255,0.25)] bg-[#0e2519]">
+                    <img
+                      src={stmLogo}
+                      alt="STM — Om Sri Thirumoolar logo"
+                      className="w-full h-full object-cover"
+                      width={400}
+                      height={400}
+                    />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,_rgba(255,255,255,0.25),_transparent_55%)] pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Light rays sweep */}
+              <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
+                <div className="cine-ray cine-ray-1" />
+                <div className="cine-ray cine-ray-3" />
+              </div>
+
+              {/* Floating trust chip */}
+              <div className="absolute -bottom-2 -left-4 bg-[#0e2519]/80 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/40 flex items-center gap-3 shadow-2xl animate-float-slow">
                 <div className="w-9 h-9 rounded-full bg-[#D4A24C]/20 grid place-items-center">
                   <Leaf size={16} className="text-[#D4A24C]" />
                 </div>
