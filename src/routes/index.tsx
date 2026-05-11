@@ -343,7 +343,6 @@ function HomePage() {
             </div>
           </div>
         </div>
-        </div>
 
         {/* Scroll cue */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#F7F2E8]/40 text-[10px] tracking-[0.4em] uppercase animate-pulse">
