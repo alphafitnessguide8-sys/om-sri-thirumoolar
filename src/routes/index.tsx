@@ -9,6 +9,9 @@ import {
   HeartPulse,
   Brain,
   Bone,
+  Wind,
+  Activity,
+  Footprints,
   Droplets,
   Flame,
   Sun,
@@ -330,7 +333,97 @@ function HomePage() {
                 <div className="cine-ray cine-ray-3" />
               </div>
 
-              {/* Floating trust chip */}
+              {/* Holographic organ orbits */}
+              {/* Faint energy connection circle */}
+              <svg
+                aria-hidden
+                viewBox="0 0 100 100"
+                className="absolute inset-[-6%] w-[112%] h-[112%] pointer-events-none animate-spin-slow"
+              >
+                <defs>
+                  <radialGradient id="organGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#F5D78A" stopOpacity="0.5" />
+                    <stop offset="100%" stopColor="#3F6B4B" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="46"
+                  fill="none"
+                  stroke="#F5D78A"
+                  strokeOpacity="0.18"
+                  strokeWidth="0.25"
+                  strokeDasharray="0.6 1.4"
+                />
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  fill="none"
+                  stroke="#D4A24C"
+                  strokeOpacity="0.12"
+                  strokeWidth="0.2"
+                  strokeDasharray="0.3 2"
+                />
+              </svg>
+
+              {/* 6 orbiting organs — heart, lungs, brain, spine, knee, digestive */}
+              {[
+                { Icon: HeartPulse, deg: 0,   r: 52, dur: 38, blur: 0,   scale: 1 },
+                { Icon: Wind,       deg: 60,  r: 56, dur: 44, blur: 0.5, scale: 0.95 },
+                { Icon: Brain,      deg: 120, r: 50, dur: 36, blur: 0,   scale: 1.05 },
+                { Icon: Bone,       deg: 180, r: 54, dur: 42, blur: 0.6, scale: 0.95 },
+                { Icon: Footprints, deg: 240, r: 51, dur: 40, blur: 0,   scale: 1 },
+                { Icon: Activity,   deg: 300, r: 55, dur: 46, blur: 0.4, scale: 0.95 },
+              ].map(({ Icon, deg, r, dur, blur, scale }, i) => (
+                <div
+                  key={i}
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    animation: `spin ${dur}s linear ${i % 2 ? "reverse" : ""} infinite`,
+                  }}
+                >
+                  <div
+                    className="absolute top-1/2 left-1/2"
+                    style={{
+                      transform: `rotate(${deg}deg) translate(${r}%) rotate(-${deg}deg)`,
+                    }}
+                  >
+                    <div
+                      className="-translate-x-1/2 -translate-y-1/2 animate-float"
+                      style={{
+                        animationDuration: `${5 + i * 0.6}s`,
+                        animationDelay: `${i * 0.4}s`,
+                        filter: blur ? `blur(${blur}px)` : undefined,
+                        transform: `scale(${scale})`,
+                      }}
+                    >
+                      {/* Healing aura behind organ */}
+                      <div className="absolute inset-[-60%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.45),_rgba(63,107,75,0.15)_45%,_transparent_70%)] blur-md animate-aura" />
+                      {/* Glassy organ chip */}
+                      <div
+                        className="relative w-12 h-12 md:w-14 md:h-14 rounded-2xl grid place-items-center border border-[#F5D78A]/45 backdrop-blur-md breathe"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(245,215,138,0.18), rgba(63,107,75,0.18))",
+                          boxShadow:
+                            "0 0 24px rgba(245,215,138,0.35), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -8px 24px rgba(63,107,75,0.25)",
+                        }}
+                      >
+                        <Icon size={20} className="text-[#F5D78A] drop-shadow-[0_0_6px_rgba(245,215,138,0.8)]" strokeWidth={1.5} />
+                        {/* Tiny healing particles */}
+                        <span className="absolute -top-1 -right-1 w-1.5 h-1.5 rounded-full bg-[#F5D78A] animate-aura" />
+                        <span className="absolute -bottom-1 left-1 w-1 h-1 rounded-full bg-[#F5D78A]/70 animate-aura" style={{ animationDelay: "1.2s" }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Lower cinematic fog */}
+              <div className="absolute -bottom-8 inset-x-[-10%] h-32 bg-[radial-gradient(ellipse_at_center,_rgba(180,210,180,0.18),_transparent_70%)] blur-2xl pointer-events-none" />
+
               <div className="absolute -bottom-2 -left-4 bg-[#0e2519]/80 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/40 flex items-center gap-3 shadow-2xl animate-float-slow">
                 <div className="w-9 h-9 rounded-full bg-[#D4A24C]/20 grid place-items-center">
                   <Leaf size={16} className="text-[#D4A24C]" />
