@@ -125,12 +125,35 @@ function Particles() {
 function HomePage() {
   useReveal();
   const heroRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const [py, setPy] = useState(0);
 
   useEffect(() => {
     const onScroll = () => setPy(window.scrollY);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const onMove = (e: MouseEvent) => {
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      stage.style.setProperty("--mx", `${x * 18}px`);
+      stage.style.setProperty("--my", `${y * 18}px`);
+    };
+    const onLeave = () => {
+      stage.style.setProperty("--mx", `0px`);
+      stage.style.setProperty("--my", `0px`);
+    };
+    window.addEventListener("mousemove", onMove);
+    stage.addEventListener("mouseleave", onLeave);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      stage.removeEventListener("mouseleave", onLeave);
+    };
   }, []);
 
   return (
