@@ -19,8 +19,7 @@ import {
   Award,
   Users,
 } from "lucide-react";
-import logo from "@/assets/stm-logo.jpeg";
-import heroBowl from "@/assets/hero-bowl.jpg";
+import heroBowl from "@/assets/hero-cinematic.jpg";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
@@ -135,132 +134,132 @@ function HomePage() {
 
   return (
     <SiteLayout>
-      {/* HERO — premium split layout */}
+      {/* HERO — cinematic deep green premium */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20"
+        className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20 text-[#F5F5F2]"
       >
-        {/* Soft cream + sage gradient background */}
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,_oklch(0.985_0.012_95)_0%,_oklch(0.96_0.025_105)_45%,_oklch(0.92_0.04_140)_100%)]" />
-        {/* Floating soft gradient orbs */}
-        <div className="absolute -top-32 -left-24 w-[28rem] h-[28rem] rounded-full bg-accent/15 blur-3xl animate-float-slow" />
-        <div className="absolute top-1/3 -right-32 w-[32rem] h-[32rem] rounded-full bg-gold/15 blur-3xl animate-float" />
-        <div className="absolute bottom-0 left-1/3 w-[24rem] h-[24rem] rounded-full bg-primary/8 blur-3xl" />
+        {/* Deep forest green cinematic background */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_#2a5240_0%,_#18392B_45%,_#0e2519_100%)]" />
+        {/* Warm golden top-left light wash */}
+        <div className="absolute -top-40 -left-40 w-[42rem] h-[42rem] rounded-full bg-[#D4A24C]/20 blur-[140px]" />
+        <div className="absolute top-1/4 -right-40 w-[38rem] h-[38rem] rounded-full bg-[#3F6B4B]/40 blur-[140px] animate-float-slow" />
+        <div className="absolute bottom-0 left-1/4 w-[28rem] h-[28rem] rounded-full bg-[#D4A24C]/10 blur-3xl" />
 
-        {/* Subtle sacred geometry — concentric rings */}
+        {/* Subtle sacred geometry rings */}
         <div
           aria-hidden
-          className="absolute -right-40 top-1/2 -translate-y-1/2 w-[40rem] h-[40rem] opacity-[0.07] pointer-events-none"
+          className="absolute -right-48 top-1/2 -translate-y-1/2 w-[44rem] h-[44rem] opacity-[0.06] pointer-events-none"
           style={{ transform: `translate3d(0, calc(-50% + ${py * -0.05}px), 0)` }}
         >
-          <div className="absolute inset-0 rounded-full border border-primary" />
-          <div className="absolute inset-[8%] rounded-full border border-primary" />
-          <div className="absolute inset-[18%] rounded-full border border-primary" />
-          <div className="absolute inset-[30%] rounded-full border border-primary" />
-          <div className="absolute inset-[44%] rounded-full border border-primary" />
+          <div className="absolute inset-0 rounded-full border border-[#D4A24C]" />
+          <div className="absolute inset-[10%] rounded-full border border-[#D4A24C]" />
+          <div className="absolute inset-[22%] rounded-full border border-[#D4A24C]" />
+          <div className="absolute inset-[36%] rounded-full border border-[#D4A24C]" />
         </div>
+
+        {/* Vignette for cinematic depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.45)_100%)] pointer-events-none" />
 
         <Particles />
 
-        <div className="relative mx-auto max-w-7xl w-full px-6 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="relative mx-auto max-w-7xl w-full px-6 grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* LEFT — Content */}
           <div className="lg:col-span-7 space-y-7 animate-fade-up text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] tracking-[0.28em] uppercase text-primary/80 bg-ivory/70 border border-gold/30 backdrop-blur">
-              <Sparkles size={13} className="text-gold" /> Puducherry · Since 2009
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] tracking-[0.28em] uppercase text-[#F7F2E8]/85 bg-white/5 border border-[#D4A24C]/40 backdrop-blur">
+              <Sparkles size={13} className="text-[#D4A24C]" /> Puducherry · Since 2009
             </div>
 
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-[5.25rem] leading-[1.04] tracking-tight text-primary">
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-[5.25rem] leading-[1.04] tracking-tight text-[#F7F2E8]">
               Ancient Healing,
               <br />
-              <span className="text-gradient-emerald italic">Modern Harmony</span>
+              <span
+                className="italic"
+                style={{
+                  backgroundImage: "linear-gradient(135deg,#F5D78A 0%,#D4A24C 50%,#A87528 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                Gracefully Renewed
+              </span>
             </h1>
 
-            <div className="energy-line w-32 mx-auto lg:mx-0 rounded-full" />
+            <div className="h-px w-32 mx-auto lg:mx-0 bg-gradient-to-r from-transparent via-[#D4A24C]/70 to-transparent" />
 
-            <p className="text-lg md:text-xl text-foreground/70 max-w-xl mx-auto lg:mx-0 leading-[1.75] font-light">
-              Restoring balance through Siddha, Ayurveda, Varma and Yoga therapies — a sanctuary
-              of holistic wellness in the heart of Puducherry.
+            <p className="text-lg md:text-xl text-[#F5F5F2]/75 max-w-xl mx-auto lg:mx-0 leading-[1.8] font-light">
+              Restoring balance through Siddha, Ayurveda, Varma and Yoga therapies — a sanctuary of holistic wellness in the heart of Puducherry.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2 justify-center lg:justify-start">
-              <Link to="/appointment" className="btn-gold inline-flex items-center gap-2">
+              <Link
+                to="/appointment"
+                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.9rem] font-medium tracking-wide transition-all duration-500 hover:-translate-y-0.5"
+                style={{
+                  background: "linear-gradient(135deg,#E5B968 0%,#D4A24C 50%,#A87528 100%)",
+                  color: "#18392B",
+                  boxShadow: "0 12px 40px -10px rgba(212,162,76,0.55), inset 0 1px 0 rgba(255,255,255,0.3)",
+                }}
+              >
                 Book Consultation <ArrowRight size={16} />
               </Link>
               <Link
                 to="/treatments"
-                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.85rem] border border-primary/25 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
+                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.85rem] border border-[#F7F2E8]/30 text-[#F7F2E8] bg-white/5 backdrop-blur hover:bg-white/10 hover:border-[#D4A24C]/60 transition-all duration-500"
               >
                 Explore Treatments
               </Link>
             </div>
 
             {/* Trust indicators */}
-            <div className="grid grid-cols-3 gap-4 pt-8 max-w-lg mx-auto lg:mx-0">
+            <div className="grid grid-cols-3 gap-4 pt-10 max-w-lg mx-auto lg:mx-0">
               <div className="text-center lg:text-left">
-                <div className="font-serif text-3xl md:text-4xl text-primary">15+</div>
-                <div className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mt-1">Years</div>
+                <div className="font-serif text-3xl md:text-4xl text-[#F7F2E8]">15+</div>
+                <div className="text-[10px] tracking-[0.22em] uppercase text-[#F7F2E8]/55 mt-1">Years Experience</div>
               </div>
-              <div className="text-center lg:text-left border-x border-border/60">
-                <div className="font-serif text-3xl md:text-4xl text-primary">10k+</div>
-                <div className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mt-1">Patients</div>
+              <div className="text-center lg:text-left border-x border-[#F7F2E8]/15">
+                <div className="font-serif text-3xl md:text-4xl text-[#F7F2E8]">10k+</div>
+                <div className="text-[10px] tracking-[0.22em] uppercase text-[#F7F2E8]/55 mt-1">Patients Healed</div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="font-serif text-3xl md:text-4xl text-primary">4</div>
-                <div className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mt-1">Disciplines</div>
+                <div className="font-serif text-3xl md:text-4xl text-[#F7F2E8]">4</div>
+                <div className="text-[10px] tracking-[0.22em] uppercase text-[#F7F2E8]/55 mt-1">Disciplines</div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT — Hero visual */}
+          {/* RIGHT — Cinematic herbal visual */}
           <div className="lg:col-span-5 relative">
             <div
               className="relative mx-auto w-full max-w-md aspect-[4/5]"
               style={{ transform: `translate3d(0, ${py * -0.06}px, 0)` }}
             >
-              {/* Soft ambient glow behind image */}
-              <div className="absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_30%_30%,_oklch(0.85_0.12_85/0.45),_transparent_60%)] blur-2xl" />
-              <div className="absolute -inset-4 rounded-[2.5rem] bg-[radial-gradient(circle_at_70%_70%,_oklch(0.62_0.16_145/0.3),_transparent_60%)] blur-2xl" />
+              {/* Ambient glows */}
+              <div className="absolute -inset-10 rounded-[3rem] bg-[radial-gradient(circle_at_30%_30%,_rgba(212,162,76,0.45),_transparent_60%)] blur-2xl" />
+              <div className="absolute -inset-6 rounded-[2.5rem] bg-[radial-gradient(circle_at_70%_70%,_rgba(63,107,75,0.4),_transparent_60%)] blur-2xl" />
 
               {/* Image card */}
-              <div className="img-zoom relative w-full h-full rounded-[2rem] overflow-hidden shadow-elevated ring-1 ring-gold/30">
+              <div className="img-zoom relative w-full h-full rounded-[2rem] overflow-hidden ring-1 ring-[#D4A24C]/40 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.7)]">
                 <img
                   src={heroBowl}
-                  alt="Ayurvedic herbal healing bowl with turmeric, sage and lotus"
-                  className="w-full h-full object-cover"
+                  alt="Cinematic Ayurvedic herbal bowl with turmeric, fresh herbs and lotus"
+                  className="w-full h-full object-cover slow-zoom"
                   width={1024}
                   height={1280}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0e2519]/60 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2rem] pointer-events-none" />
               </div>
 
-              {/* Subtle watermark badge — bottom right */}
-              <div className="absolute -bottom-5 -right-5 md:-bottom-6 md:-right-6 rounded-full bg-ivory/95 backdrop-blur shadow-elevated ring-1 ring-gold/40 p-2.5">
-                <img
-                  src={logo}
-                  alt="STM"
-                  className="w-14 h-14 md:w-16 md:h-16 rounded-full object-contain"
-                />
-              </div>
-
-              {/* Floating chip — top left */}
-              <div className="absolute -top-4 -left-4 md:-top-5 md:-left-5 bg-ivory/95 backdrop-blur rounded-2xl px-4 py-3 shadow-soft border border-gold/30 flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-accent/15 grid place-items-center">
-                  <Leaf size={16} className="text-accent" />
+              {/* Single subtle floating chip */}
+              <div className="absolute -bottom-5 -left-5 md:-bottom-6 md:-left-6 bg-[#0e2519]/70 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/30 flex items-center gap-3 shadow-2xl">
+                <div className="w-9 h-9 rounded-full bg-[#D4A24C]/20 grid place-items-center">
+                  <Leaf size={16} className="text-[#D4A24C]" />
                 </div>
                 <div className="leading-tight">
-                  <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">100%</div>
-                  <div className="text-sm font-medium text-primary">Natural Care</div>
-                </div>
-              </div>
-
-              {/* Floating chip — middle right */}
-              <div className="absolute top-1/2 -right-6 md:-right-10 -translate-y-1/2 bg-ivory/95 backdrop-blur rounded-2xl px-4 py-3 shadow-soft border border-gold/30 flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-gold/20 grid place-items-center">
-                  <ShieldCheck size={16} className="text-gold" />
-                </div>
-                <div className="leading-tight">
-                  <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">No</div>
-                  <div className="text-sm font-medium text-primary">Side Effects</div>
+                  <div className="text-[10px] tracking-[0.2em] uppercase text-[#F7F2E8]/55">100%</div>
+                  <div className="text-sm font-medium text-[#F7F2E8]">Natural Care</div>
                 </div>
               </div>
             </div>
@@ -268,7 +267,7 @@ function HomePage() {
         </div>
 
         {/* Scroll cue */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-primary/40 text-[10px] tracking-[0.4em] uppercase animate-pulse">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#F7F2E8]/40 text-[10px] tracking-[0.4em] uppercase animate-pulse">
           Scroll
         </div>
       </section>
