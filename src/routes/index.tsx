@@ -263,171 +263,145 @@ function HomePage() {
           <div className="lg:col-span-5 relative">
             <div
               ref={stageRef}
-              className="relative mx-auto w-full max-w-md aspect-square"
+          {/* RIGHT — Cinematic 3D STM emblem with orbital organ system */}
+          <div className="lg:col-span-5 relative">
+            <div
+              ref={stageRef}
+              className="relative mx-auto w-full max-w-[34rem] aspect-square"
               style={{
-                transform: `translate3d(var(--mx,0), calc(${py * -0.06}px + var(--my,0)), 0)`,
-                transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+                transform: `translate3d(var(--mx,0), calc(${py * -0.05}px + var(--my,0)), 0)`,
+                transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
               }}
             >
-              {/* Mortar & pestle backdrop with vignette */}
-              <div className="absolute inset-0 rounded-full overflow-hidden ring-1 ring-[#D4A24C]/20 shadow-[0_50px_120px_-20px_rgba(0,0,0,0.8)]">
-                <img
-                  src={heroMortar}
-                  alt="Bronze Ayurvedic mortar and pestle in golden light"
-                  className="w-full h-full object-cover slow-zoom opacity-60"
-                  width={1024}
-                  height={1024}
-                />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_rgba(14,37,25,0.85)_75%)]" />
-              </div>
+              {/* Soft warm gold core glow behind logo */}
+              <div className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55)_0%,_rgba(212,162,76,0.25)_28%,_rgba(63,107,75,0.10)_55%,_transparent_75%)] blur-2xl animate-aura pointer-events-none" />
+              <div className="absolute inset-[5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.32),_transparent_65%)] blur-3xl pointer-events-none" />
 
-              {/* Radial golden aura */}
-              <div className="absolute inset-[-15%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.45)_0%,_rgba(212,162,76,0.18)_30%,_transparent_65%)] blur-2xl animate-aura pointer-events-none" />
-              <div className="absolute inset-[-5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.35),_transparent_60%)] blur-xl pointer-events-none" />
+              {/* Faint sacred geometry orbital paths */}
+              <svg
+                aria-hidden
+                viewBox="0 0 100 100"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+              >
+                <defs>
+                  <radialGradient id="orbitFade" cx="50%" cy="50%" r="50%">
+                    <stop offset="60%" stopColor="#F5D78A" stopOpacity="0" />
+                    <stop offset="100%" stopColor="#F5D78A" stopOpacity="0.45" />
+                  </radialGradient>
+                </defs>
+                <circle cx="50" cy="50" r="34" fill="none" stroke="#D4A24C" strokeOpacity="0.18" strokeWidth="0.18" strokeDasharray="0.4 1.2" />
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#F5D78A" strokeOpacity="0.16" strokeWidth="0.18" />
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#D4A24C" strokeOpacity="0.12" strokeWidth="0.18" strokeDasharray="0.3 2" />
+              </svg>
 
-              {/* Sacred rotating rings */}
-              <div className="absolute inset-[8%] rounded-full border border-[#D4A24C]/30 animate-spin-slow pointer-events-none">
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#F5D78A] shadow-[0_0_12px_#F5D78A]" />
-              </div>
-              <div
-                className="absolute inset-[2%] rounded-full border border-dashed border-[#D4A24C]/25 pointer-events-none"
-                style={{ animation: "spin 60s linear infinite reverse" }}
-              />
-              <div className="absolute inset-[18%] rounded-full border border-[#F5D78A]/15 pointer-events-none" />
-
-              {/* Orbiting leaf icons */}
-              {[0, 90, 180, 270].map((deg, i) => (
-                <div
-                  key={deg}
-                  className="absolute inset-[8%] pointer-events-none"
-                  style={{ animation: `spin ${28 + i * 4}s linear ${i % 2 ? "reverse" : ""} infinite` }}
-                >
+              {/* 3D STM emblem — center sun */}
+              <div className="absolute inset-[28%] grid place-items-center pointer-events-none">
+                <div className="relative w-full h-full breathe">
+                  {/* Outer metallic embossed ring */}
                   <div
-                    className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                    style={{ transform: `translate(-50%, -50%) rotate(${deg}deg) translateY(-0.5rem)` }}
+                    className="absolute inset-[-14%] rounded-full"
+                    style={{
+                      background:
+                        "conic-gradient(from 220deg, #6e4d1e, #F5D78A, #D4A24C, #8a5e22, #F5D78A, #A87528, #6e4d1e)",
+                      boxShadow:
+                        "0 30px 60px -20px rgba(0,0,0,0.7), 0 0 80px rgba(212,162,76,0.45)",
+                    }}
+                  />
+                  <div
+                    className="absolute inset-[-10%] rounded-full"
+                    style={{
+                      background:
+                        "radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35), transparent 45%), linear-gradient(160deg, #1a3a2a 0%, #0e2519 60%, #0a1c14 100%)",
+                      boxShadow: "inset 0 2px 0 rgba(255,255,255,0.18), inset 0 -8px 24px rgba(0,0,0,0.6)",
+                    }}
+                  />
+                  {/* Logo disc */}
+                  <div
+                    className="relative w-full h-full rounded-full overflow-hidden"
+                    style={{
+                      boxShadow:
+                        "inset 0 3px 0 rgba(255,255,255,0.35), inset 0 -10px 30px rgba(0,0,0,0.6), 0 0 60px rgba(245,215,138,0.35)",
+                    }}
                   >
-                    <div className="w-8 h-8 rounded-full bg-[#0e2519]/70 backdrop-blur grid place-items-center border border-[#D4A24C]/40 shadow-[0_0_20px_rgba(212,162,76,0.4)]">
-                      <Leaf size={14} className="text-[#D4A24C]" />
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-              {/* Floating logo center */}
-              <div className="absolute inset-[22%] grid place-items-center pointer-events-none">
-                <div className="relative w-full h-full animate-float">
-                  <div className="absolute inset-[-20%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55),_transparent_60%)] blur-2xl animate-aura" />
-                  <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-[#D4A24C]/60 shadow-[0_0_60px_rgba(212,162,76,0.6),0_30px_60px_-15px_rgba(0,0,0,0.8),inset_0_2px_0_rgba(255,255,255,0.25)] bg-[#0e2519]">
                     <img
                       src={stmLogo}
-                      alt="STM — Om Sri Thirumoolar logo"
+                      alt="STM — Om Sri Thirumoolar emblem"
                       className="w-full h-full object-cover"
                       width={400}
                       height={400}
                     />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,_rgba(255,255,255,0.25),_transparent_55%)] pointer-events-none" />
+                    {/* Glossy top reflection */}
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.35),_transparent_70%)] pointer-events-none" />
+                    {/* Gold rim light */}
+                    <div className="absolute inset-0 rounded-full pointer-events-none" style={{ boxShadow: "inset 0 0 0 1.5px rgba(245,215,138,0.55)" }} />
                   </div>
+                  {/* Subtle bottom shadow under emblem */}
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-6 rounded-[50%] bg-black/50 blur-xl" />
                 </div>
               </div>
 
-              {/* Light rays sweep */}
-              <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
-                <div className="cine-ray cine-ray-1" />
-                <div className="cine-ray cine-ray-3" />
-              </div>
-
-              {/* Holographic organ orbits */}
-              {/* Faint energy connection circle */}
-              <svg
-                aria-hidden
-                viewBox="0 0 100 100"
-                className="absolute inset-[-6%] w-[112%] h-[112%] pointer-events-none animate-spin-slow"
-              >
-                <defs>
-                  <radialGradient id="organGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#F5D78A" stopOpacity="0.5" />
-                    <stop offset="100%" stopColor="#3F6B4B" stopOpacity="0" />
-                  </radialGradient>
-                </defs>
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="46"
-                  fill="none"
-                  stroke="#F5D78A"
-                  strokeOpacity="0.18"
-                  strokeWidth="0.25"
-                  strokeDasharray="0.6 1.4"
-                />
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="40"
-                  fill="none"
-                  stroke="#D4A24C"
-                  strokeOpacity="0.12"
-                  strokeWidth="0.2"
-                  strokeDasharray="0.3 2"
-                />
-              </svg>
-
-              {/* 6 orbiting organs — heart, lungs, brain, spine, knee, digestive */}
+              {/* Orbital organs — 3 orbits, 2 organs each, opposite sides */}
               {[
-                { Icon: HeartPulse, deg: 0,   r: 52, dur: 38, blur: 0,   scale: 1 },
-                { Icon: Wind,       deg: 60,  r: 56, dur: 44, blur: 0.5, scale: 0.95 },
-                { Icon: Brain,      deg: 120, r: 50, dur: 36, blur: 0,   scale: 1.05 },
-                { Icon: Bone,       deg: 180, r: 54, dur: 42, blur: 0.6, scale: 0.95 },
-                { Icon: Footprints, deg: 240, r: 51, dur: 40, blur: 0,   scale: 1 },
-                { Icon: Activity,   deg: 300, r: 55, dur: 46, blur: 0.4, scale: 0.95 },
-              ].map(({ Icon, deg, r, dur, blur, scale }, i) => (
+                { src: organHeart,   alt: "Heart",   r: 34, deg: 20,  dur: 42, size: 64, blur: false },
+                { src: organBrain,   alt: "Brain",   r: 34, deg: 200, dur: 42, size: 64, blur: false },
+                { src: organLungs,   alt: "Lungs",   r: 42, deg: 110, dur: 56, size: 70, blur: true },
+                { src: organStomach, alt: "Stomach", r: 42, deg: 290, dur: 56, size: 66, blur: true },
+                { src: organSpine,   alt: "Spine",   r: 48, deg: 60,  dur: 70, size: 78, blur: false },
+                { src: organKnee,    alt: "Knee",    r: 48, deg: 240, dur: 70, size: 60, blur: false },
+              ].map((o, i) => (
                 <div
                   key={i}
                   className="absolute inset-0 pointer-events-none"
                   style={{
-                    animation: `spin ${dur}s linear ${i % 2 ? "reverse" : ""} infinite`,
+                    animation: `spin ${o.dur}s linear ${i % 2 ? "reverse" : ""} infinite`,
+                    transform: `rotate(${o.deg}deg)`,
                   }}
                 >
                   <div
                     className="absolute top-1/2 left-1/2"
-                    style={{
-                      transform: `rotate(${deg}deg) translate(${r}%) rotate(-${deg}deg)`,
-                    }}
+                    style={{ transform: `translate(-50%, -50%) translateX(${o.r}%)` }}
                   >
                     <div
-                      className="-translate-x-1/2 -translate-y-1/2 animate-float"
+                      className="animate-float"
                       style={{
-                        animationDuration: `${5 + i * 0.6}s`,
-                        animationDelay: `${i * 0.4}s`,
-                        filter: blur ? `blur(${blur}px)` : undefined,
-                        transform: `scale(${scale})`,
+                        animationDuration: `${6 + i * 0.5}s`,
+                        animationDelay: `${i * 0.3}s`,
+                        transform: `rotate(-${o.deg}deg)`,
                       }}
                     >
-                      {/* Healing aura behind organ */}
-                      <div className="absolute inset-[-60%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.45),_rgba(63,107,75,0.15)_45%,_transparent_70%)] blur-md animate-aura" />
-                      {/* Glassy organ chip */}
-                      <div
-                        className="relative w-12 h-12 md:w-14 md:h-14 rounded-2xl grid place-items-center border border-[#F5D78A]/45 backdrop-blur-md breathe"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, rgba(245,215,138,0.18), rgba(63,107,75,0.18))",
-                          boxShadow:
-                            "0 0 24px rgba(245,215,138,0.35), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -8px 24px rgba(63,107,75,0.25)",
-                        }}
-                      >
-                        <Icon size={20} className="text-[#F5D78A] drop-shadow-[0_0_6px_rgba(245,215,138,0.8)]" strokeWidth={1.5} />
-                        {/* Tiny healing particles */}
-                        <span className="absolute -top-1 -right-1 w-1.5 h-1.5 rounded-full bg-[#F5D78A] animate-aura" />
-                        <span className="absolute -bottom-1 left-1 w-1 h-1 rounded-full bg-[#F5D78A]/70 animate-aura" style={{ animationDelay: "1.2s" }} />
+                      <div className="relative" style={{ width: o.size, height: o.size }}>
+                        {/* Soft healing aura behind organ */}
+                        <div className="absolute inset-[-45%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.40),_rgba(63,107,75,0.12)_50%,_transparent_75%)] blur-md animate-aura" />
+                        <img
+                          src={o.src}
+                          alt={o.alt}
+                          width={256}
+                          height={256}
+                          loading="lazy"
+                          className="relative w-full h-full object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.55)]"
+                          style={{
+                            filter: o.blur
+                              ? "drop-shadow(0 0 10px rgba(245,215,138,0.35)) blur(0.4px)"
+                              : "drop-shadow(0 0 10px rgba(245,215,138,0.45))",
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
 
-              {/* Lower cinematic fog */}
-              <div className="absolute -bottom-8 inset-x-[-10%] h-32 bg-[radial-gradient(ellipse_at_center,_rgba(180,210,180,0.18),_transparent_70%)] blur-2xl pointer-events-none" />
+              {/* Cinematic light rays */}
+              <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
+                <div className="cine-ray cine-ray-1" />
+                <div className="cine-ray cine-ray-3" />
+              </div>
 
-              <div className="absolute -bottom-2 -left-4 bg-[#0e2519]/80 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/40 flex items-center gap-3 shadow-2xl animate-float-slow">
+              {/* Lower fog */}
+              <div className="absolute -bottom-6 inset-x-[-10%] h-32 bg-[radial-gradient(ellipse_at_center,_rgba(180,210,180,0.18),_transparent_70%)] blur-2xl pointer-events-none" />
+
+              {/* Floating trust chip */}
+              <div className="absolute -bottom-2 -left-2 bg-[#0e2519]/85 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/40 flex items-center gap-3 shadow-2xl animate-float-slow">
                 <div className="w-9 h-9 rounded-full bg-[#D4A24C]/20 grid place-items-center">
                   <Leaf size={16} className="text-[#D4A24C]" />
                 </div>
