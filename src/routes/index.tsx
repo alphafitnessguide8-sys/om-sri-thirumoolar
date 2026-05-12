@@ -9,9 +9,6 @@ import {
   HeartPulse,
   Brain,
   Bone,
-  Wind,
-  Activity,
-  Footprints,
   Droplets,
   Flame,
   Sun,
@@ -24,6 +21,12 @@ import {
 } from "lucide-react";
 import heroMortar from "@/assets/hero-mortar.jpg";
 import stmLogo from "@/assets/stm-logo.jpeg";
+import organHeart from "@/assets/organ-heart.png";
+import organLungs from "@/assets/organ-lungs.png";
+import organBrain from "@/assets/organ-brain.png";
+import organSpine from "@/assets/organ-spine.png";
+import organKnee from "@/assets/organ-knee.png";
+import organStomach from "@/assets/organ-stomach.png";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
