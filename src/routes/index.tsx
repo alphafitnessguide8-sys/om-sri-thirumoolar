@@ -259,10 +259,6 @@ function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — Cinematic floating logo composition */}
-          <div className="lg:col-span-5 relative">
-            <div
-              ref={stageRef}
           {/* RIGHT — Cinematic 3D STM emblem with orbital organ system */}
           <div className="lg:col-span-5 relative">
             <div
