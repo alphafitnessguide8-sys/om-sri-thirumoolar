@@ -2,6 +2,8 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { GoldDivider } from "@/components/site/GoldDivider";
+import { CinematicFX } from "@/components/site/CinematicFX";
+import { FloatingLeaves } from "@/components/site/FloatingLeaves";
 import { useEffect, useRef, useState } from "react";
 import {
   Leaf,
