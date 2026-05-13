@@ -362,56 +362,49 @@ function HomePage() {
                 </div>
               </div>
 
-              {/* Orbital organs — 3 orbits, 2 organs each, opposite sides */}
+              {/* Orbital organs — fixed clock positions matching the reference */}
               {[
-                { src: organHeart,   alt: "Heart",   r: 34, deg: 20,  dur: 42, size: 64, blur: false },
-                { src: organBrain,   alt: "Brain",   r: 34, deg: 200, dur: 42, size: 64, blur: false },
-                { src: organLungs,   alt: "Lungs",   r: 42, deg: 110, dur: 56, size: 70, blur: true },
-                { src: organStomach, alt: "Stomach", r: 42, deg: 290, dur: 56, size: 66, blur: true },
-                { src: organSpine,   alt: "Spine",   r: 48, deg: 60,  dur: 70, size: 78, blur: false },
-                { src: organKnee,    alt: "Knee",    r: 48, deg: 240, dur: 70, size: 60, blur: false },
-              ].map((o, i) => (
-                <div
-                  key={i}
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    animation: `spin ${o.dur}s linear ${i % 2 ? "reverse" : ""} infinite`,
-                    transform: `rotate(${o.deg}deg)`,
-                  }}
-                >
+                { src: organHeart,   alt: "Heart",   deg: 270, r: 46, size: 110 },
+                { src: organLungs,   alt: "Lungs",   deg: 330, r: 48, size: 100 },
+                { src: organSpine,   alt: "Spine",   deg: 30,  r: 50, size: 130 },
+                { src: organStomach, alt: "Stomach", deg: 90,  r: 44, size: 96  },
+                { src: organKnee,    alt: "Knee",    deg: 150, r: 48, size: 96  },
+                { src: organBrain,   alt: "Brain",   deg: 210, r: 48, size: 100 },
+              ].map((o, i) => {
+                const rad = (o.deg * Math.PI) / 180;
+                const x = 50 + o.r * Math.cos(rad);
+                const y = 50 + o.r * Math.sin(rad);
+                return (
                   <div
-                    className="absolute top-1/2 left-1/2"
-                    style={{ transform: `translate(-50%, -50%) translateX(${o.r}%)` }}
+                    key={i}
+                    className="absolute pointer-events-none animate-float"
+                    style={{
+                      left: `${x}%`,
+                      top: `${y}%`,
+                      width: o.size,
+                      height: o.size,
+                      transform: "translate(-50%, -50%)",
+                      animationDuration: `${7 + (i % 3)}s`,
+                      animationDelay: `${i * 0.4}s`,
+                    }}
                   >
-                    <div
-                      className="animate-float"
+                    {/* Soft healing aura behind organ */}
+                    <div className="absolute inset-[-35%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.45),_rgba(63,107,75,0.12)_50%,_transparent_75%)] blur-md animate-aura" />
+                    <img
+                      src={o.src}
+                      alt={o.alt}
+                      width={256}
+                      height={256}
+                      loading="lazy"
+                      className="relative w-full h-full object-contain"
                       style={{
-                        animationDuration: `${6 + i * 0.5}s`,
-                        animationDelay: `${i * 0.3}s`,
-                        transform: `rotate(-${o.deg}deg)`,
+                        filter:
+                          "drop-shadow(0 10px 18px rgba(0,0,0,0.55)) drop-shadow(0 0 14px rgba(245,215,138,0.45))",
                       }}
-                    >
-                      <div className="relative" style={{ width: o.size, height: o.size }}>
-                        {/* Soft healing aura behind organ */}
-                        <div className="absolute inset-[-45%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.40),_rgba(63,107,75,0.12)_50%,_transparent_75%)] blur-md animate-aura" />
-                        <img
-                          src={o.src}
-                          alt={o.alt}
-                          width={256}
-                          height={256}
-                          loading="lazy"
-                          className="relative w-full h-full object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.55)]"
-                          style={{
-                            filter: o.blur
-                              ? "drop-shadow(0 0 10px rgba(245,215,138,0.35)) blur(0.4px)"
-                              : "drop-shadow(0 0 10px rgba(245,215,138,0.45))",
-                          }}
-                        />
-                      </div>
-                    </div>
+                    />
                   </div>
-                </div>
-              ))}
+                );
+              })}
 
               {/* Cinematic light rays */}
               <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
