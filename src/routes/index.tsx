@@ -2,6 +2,8 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { GoldDivider } from "@/components/site/GoldDivider";
+import { CinematicFX } from "@/components/site/CinematicFX";
+import { FloatingLeaves } from "@/components/site/FloatingLeaves";
 import { useEffect, useRef, useState } from "react";
 import {
   Leaf,
@@ -189,7 +191,31 @@ function HomePage() {
         </div>
 
         {/* Vignette for cinematic depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.45)_100%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.55)_100%)] pointer-events-none" />
+
+        {/* Blurred herbal leaves layer */}
+        <div className="absolute inset-0 opacity-[0.18] mix-blend-screen pointer-events-none">
+          <FloatingLeaves density={10} />
+        </div>
+
+        {/* Cinematic god rays + mist + grain */}
+        <CinematicFX rays mist grain={false} vignette={false} />
+
+        {/* Bottom decorative herbal band — blends into shadow */}
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 pointer-events-none">
+          <div
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: `url(${imgGalleryHerbs})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              filter: "blur(6px) saturate(0.6) brightness(0.45)",
+              maskImage: "linear-gradient(to top, black 0%, black 30%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to top, black 0%, black 30%, transparent 100%)",
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/70 to-transparent" />
+        </div>
 
         <Particles />
 
