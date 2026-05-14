@@ -416,7 +416,7 @@ function HomePage() {
               <div className="absolute -bottom-6 inset-x-[-10%] h-32 bg-[radial-gradient(ellipse_at_center,_rgba(180,210,180,0.18),_transparent_70%)] blur-2xl pointer-events-none" />
 
               {/* Floating trust chip */}
-              <div className="absolute -bottom-2 -left-2 bg-[#0e2519]/85 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/40 flex items-center gap-3 shadow-2xl animate-float-slow">
+              <div className="absolute -bottom-6 right-0 bg-[#0e2519]/85 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/40 flex items-center gap-3 shadow-2xl animate-float-slow z-10">
                 <div className="w-9 h-9 rounded-full bg-[#D4A24C]/20 grid place-items-center">
                   <Leaf size={16} className="text-[#D4A24C]" />
                 </div>
