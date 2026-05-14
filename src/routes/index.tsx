@@ -364,12 +364,12 @@ function HomePage() {
 
               {/* Orbital organs — fixed clock positions matching the reference */}
               {[
-                { src: organHeart,   alt: "Heart",   deg: 270, r: 46, size: 110 },
-                { src: organLungs,   alt: "Lungs",   deg: 330, r: 48, size: 100 },
-                { src: organSpine,   alt: "Spine",   deg: 30,  r: 50, size: 130 },
-                { src: organStomach, alt: "Stomach", deg: 90,  r: 44, size: 96  },
-                { src: organKnee,    alt: "Knee",    deg: 150, r: 48, size: 96  },
-                { src: organBrain,   alt: "Brain",   deg: 210, r: 48, size: 100 },
+                { src: organHeart,   alt: "Heart",   deg: 270, r: 40, size: 96 },
+                { src: organLungs,   alt: "Lungs",   deg: 330, r: 42, size: 88 },
+                { src: organSpine,   alt: "Spine",   deg: 30,  r: 42, size: 110 },
+                { src: organStomach, alt: "Stomach", deg: 90,  r: 40, size: 84 },
+                { src: organKnee,    alt: "Knee",    deg: 150, r: 42, size: 84 },
+                { src: organBrain,   alt: "Brain",   deg: 210, r: 42, size: 88 },
               ].map((o, i) => {
                 const rad = (o.deg * Math.PI) / 180;
                 const x = 50 + o.r * Math.cos(rad);
