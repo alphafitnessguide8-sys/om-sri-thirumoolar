@@ -364,12 +364,12 @@ function HomePage() {
 
               {/* Orbital organs — fixed clock positions matching the reference */}
               {[
-                { src: organHeart,   alt: "Heart",   deg: 270, r: 46, size: 110 },
-                { src: organLungs,   alt: "Lungs",   deg: 330, r: 48, size: 100 },
-                { src: organSpine,   alt: "Spine",   deg: 30,  r: 50, size: 130 },
-                { src: organStomach, alt: "Stomach", deg: 90,  r: 44, size: 96  },
-                { src: organKnee,    alt: "Knee",    deg: 150, r: 48, size: 96  },
-                { src: organBrain,   alt: "Brain",   deg: 210, r: 48, size: 100 },
+                { src: organHeart,   alt: "Heart",   deg: 270, r: 40, size: 96 },
+                { src: organLungs,   alt: "Lungs",   deg: 330, r: 42, size: 88 },
+                { src: organSpine,   alt: "Spine",   deg: 30,  r: 42, size: 110 },
+                { src: organStomach, alt: "Stomach", deg: 90,  r: 40, size: 84 },
+                { src: organKnee,    alt: "Knee",    deg: 150, r: 42, size: 84 },
+                { src: organBrain,   alt: "Brain",   deg: 210, r: 42, size: 88 },
               ].map((o, i) => {
                 const rad = (o.deg * Math.PI) / 180;
                 const x = 50 + o.r * Math.cos(rad);
@@ -416,7 +416,7 @@ function HomePage() {
               <div className="absolute -bottom-6 inset-x-[-10%] h-32 bg-[radial-gradient(ellipse_at_center,_rgba(180,210,180,0.18),_transparent_70%)] blur-2xl pointer-events-none" />
 
               {/* Floating trust chip */}
-              <div className="absolute -bottom-2 -left-2 bg-[#0e2519]/85 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/40 flex items-center gap-3 shadow-2xl animate-float-slow">
+              <div className="absolute -bottom-6 right-0 bg-[#0e2519]/85 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/40 flex items-center gap-3 shadow-2xl animate-float-slow z-10">
                 <div className="w-9 h-9 rounded-full bg-[#D4A24C]/20 grid place-items-center">
                   <Leaf size={16} className="text-[#D4A24C]" />
                 </div>
