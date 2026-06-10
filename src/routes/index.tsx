@@ -299,21 +299,24 @@ function HomePage() {
               <div className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55)_0%,_rgba(212,162,76,0.25)_28%,_rgba(63,107,75,0.10)_55%,_transparent_75%)] blur-2xl animate-aura pointer-events-none" />
               <div className="absolute inset-[5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.32),_transparent_65%)] blur-3xl pointer-events-none" />
 
-              {/* Faint sacred geometry orbital paths */}
+              {/* Faint sacred geometry orbital paths — slow cinematic rotation */}
               <svg
                 aria-hidden
                 viewBox="0 0 100 100"
                 className="absolute inset-0 w-full h-full pointer-events-none"
+                style={{ animation: "spin 80s linear infinite", transformOrigin: "50% 50%" }}
               >
-                <defs>
-                  <radialGradient id="orbitFade" cx="50%" cy="50%" r="50%">
-                    <stop offset="60%" stopColor="#F5D78A" stopOpacity="0" />
-                    <stop offset="100%" stopColor="#F5D78A" stopOpacity="0.45" />
-                  </radialGradient>
-                </defs>
                 <circle cx="50" cy="50" r="34" fill="none" stroke="#D4A24C" strokeOpacity="0.18" strokeWidth="0.18" strokeDasharray="0.4 1.2" />
-                <circle cx="50" cy="50" r="42" fill="none" stroke="#F5D78A" strokeOpacity="0.16" strokeWidth="0.18" />
                 <circle cx="50" cy="50" r="48" fill="none" stroke="#D4A24C" strokeOpacity="0.12" strokeWidth="0.18" strokeDasharray="0.3 2" />
+              </svg>
+              <svg
+                aria-hidden
+                viewBox="0 0 100 100"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                style={{ animation: "spin 140s linear infinite reverse", transformOrigin: "50% 50%" }}
+              >
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#F5D78A" strokeOpacity="0.16" strokeWidth="0.18" />
+                <circle cx="50" cy="50" r="46" fill="none" stroke="#F5D78A" strokeOpacity="0.10" strokeWidth="0.12" strokeDasharray="0.2 1.8" />
               </svg>
 
               {/* 3D STM emblem — center sun */}
