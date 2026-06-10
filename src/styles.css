@@ -424,6 +424,39 @@
     pointer-events: none;
   }
 
+  /* ===== Synced energy pulse =====
+     Every element with .pulse-sync breathes on the same 4.2s heartbeat,
+     so emblem glow, ring opacity and organ auras all surge together. */
+  @keyframes pulse-sync {
+    0%, 100% { opacity: var(--pulse-min, 0.55); transform: scale(1); }
+    50%      { opacity: var(--pulse-max, 1);    transform: scale(var(--pulse-scale, 1.06)); }
+  }
+  .pulse-sync {
+    animation: pulse-sync 4.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    animation-delay: var(--pulse-delay, 0s);
+    transform-origin: 50% 50%;
+    will-change: transform, opacity;
+  }
+
+  /* GPU-promoted orbit layer — perf optimization */
+  .orbit-gpu {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: layout paint;
+  }
+
+  /* Per-organ depth parallax — multiplies the stage's --mx/--my by --depth */
+  .depth-parallax {
+    transform: translate3d(
+      calc(var(--mx, 0px) * var(--depth, 1)),
+      calc(var(--my, 0px) * var(--depth, 1)),
+      0
+    );
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.001ms !important;
