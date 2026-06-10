@@ -145,22 +145,31 @@ function HomePage() {
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
+    let raf = 0;
+    let nextX = 0, nextY = 0;
+    const apply = () => {
+      raf = 0;
+      stage.style.setProperty("--mx", `${nextX}px`);
+      stage.style.setProperty("--my", `${nextY}px`);
+    };
     const onMove = (e: MouseEvent) => {
       const r = stage.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
-      stage.style.setProperty("--mx", `${x * 18}px`);
-      stage.style.setProperty("--my", `${y * 18}px`);
+      nextX = x * 24;
+      nextY = y * 24;
+      if (!raf) raf = requestAnimationFrame(apply);
     };
     const onLeave = () => {
-      stage.style.setProperty("--mx", `0px`);
-      stage.style.setProperty("--my", `0px`);
+      nextX = 0; nextY = 0;
+      if (!raf) raf = requestAnimationFrame(apply);
     };
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
     stage.addEventListener("mouseleave", onLeave);
     return () => {
       window.removeEventListener("mousemove", onMove);
       stage.removeEventListener("mouseleave", onLeave);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
