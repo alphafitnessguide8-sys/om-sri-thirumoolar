@@ -145,22 +145,31 @@ function HomePage() {
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
+    let raf = 0;
+    let nextX = 0, nextY = 0;
+    const apply = () => {
+      raf = 0;
+      stage.style.setProperty("--mx", `${nextX}px`);
+      stage.style.setProperty("--my", `${nextY}px`);
+    };
     const onMove = (e: MouseEvent) => {
       const r = stage.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
-      stage.style.setProperty("--mx", `${x * 18}px`);
-      stage.style.setProperty("--my", `${y * 18}px`);
+      nextX = x * 24;
+      nextY = y * 24;
+      if (!raf) raf = requestAnimationFrame(apply);
     };
     const onLeave = () => {
-      stage.style.setProperty("--mx", `0px`);
-      stage.style.setProperty("--my", `0px`);
+      nextX = 0; nextY = 0;
+      if (!raf) raf = requestAnimationFrame(apply);
     };
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
     stage.addEventListener("mouseleave", onLeave);
     return () => {
       window.removeEventListener("mousemove", onMove);
       stage.removeEventListener("mouseleave", onLeave);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -295,28 +304,35 @@ function HomePage() {
                 transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
               }}
             >
-              {/* Soft warm gold core glow behind logo */}
-              <div className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55)_0%,_rgba(212,162,76,0.25)_28%,_rgba(63,107,75,0.10)_55%,_transparent_75%)] blur-2xl animate-aura pointer-events-none" />
+              {/* Soft warm gold core glow behind logo — synced pulse */}
+              <div
+                className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55)_0%,_rgba(212,162,76,0.25)_28%,_rgba(63,107,75,0.10)_55%,_transparent_75%)] blur-2xl pulse-sync pointer-events-none"
+                style={{ ["--pulse-min" as any]: 0.55, ["--pulse-max" as any]: 1, ["--pulse-scale" as any]: 1.08 }}
+              />
               <div className="absolute inset-[5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.32),_transparent_65%)] blur-3xl pointer-events-none" />
 
               {/* Faint sacred geometry orbital paths — slow cinematic rotation */}
               <svg
                 aria-hidden
                 viewBox="0 0 100 100"
-                className="absolute inset-0 w-full h-full pointer-events-none"
+                className="absolute inset-0 w-full h-full pointer-events-none orbit-gpu"
                 style={{ animation: "spin 80s linear infinite", transformOrigin: "50% 50%" }}
               >
-                <circle cx="50" cy="50" r="34" fill="none" stroke="#D4A24C" strokeOpacity="0.18" strokeWidth="0.18" strokeDasharray="0.4 1.2" />
-                <circle cx="50" cy="50" r="48" fill="none" stroke="#D4A24C" strokeOpacity="0.12" strokeWidth="0.18" strokeDasharray="0.3 2" />
+                <g className="pulse-sync" style={{ ["--pulse-min" as any]: 0.55, ["--pulse-max" as any]: 1, ["--pulse-scale" as any]: 1 }}>
+                  <circle cx="50" cy="50" r="34" fill="none" stroke="#D4A24C" strokeOpacity="0.28" strokeWidth="0.18" strokeDasharray="0.4 1.2" />
+                  <circle cx="50" cy="50" r="48" fill="none" stroke="#D4A24C" strokeOpacity="0.20" strokeWidth="0.18" strokeDasharray="0.3 2" />
+                </g>
               </svg>
               <svg
                 aria-hidden
                 viewBox="0 0 100 100"
-                className="absolute inset-0 w-full h-full pointer-events-none"
+                className="absolute inset-0 w-full h-full pointer-events-none orbit-gpu"
                 style={{ animation: "spin 140s linear infinite reverse", transformOrigin: "50% 50%" }}
               >
-                <circle cx="50" cy="50" r="42" fill="none" stroke="#F5D78A" strokeOpacity="0.16" strokeWidth="0.18" />
-                <circle cx="50" cy="50" r="46" fill="none" stroke="#F5D78A" strokeOpacity="0.10" strokeWidth="0.12" strokeDasharray="0.2 1.8" />
+                <g className="pulse-sync" style={{ ["--pulse-min" as any]: 0.45, ["--pulse-max" as any]: 0.95, ["--pulse-scale" as any]: 1 }}>
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="#F5D78A" strokeOpacity="0.22" strokeWidth="0.18" />
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="#F5D78A" strokeOpacity="0.16" strokeWidth="0.12" strokeDasharray="0.2 1.8" />
+                </g>
               </svg>
 
               {/* 3D STM emblem — center sun */}
@@ -357,8 +373,16 @@ function HomePage() {
                     />
                     {/* Glossy top reflection */}
                     <div className="absolute inset-x-0 top-0 h-1/2 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.35),_transparent_70%)] pointer-events-none" />
-                    {/* Gold rim light */}
-                    <div className="absolute inset-0 rounded-full pointer-events-none" style={{ boxShadow: "inset 0 0 0 1.5px rgba(245,215,138,0.55)" }} />
+                    {/* Gold rim light — pulses with emblem heartbeat */}
+                    <div
+                      className="absolute inset-0 rounded-full pointer-events-none pulse-sync"
+                      style={{
+                        boxShadow: "inset 0 0 0 1.5px rgba(245,215,138,0.55), inset 0 0 30px rgba(245,215,138,0.4)",
+                        ["--pulse-min" as any]: 0.7,
+                        ["--pulse-max" as any]: 1,
+                        ["--pulse-scale" as any]: 1,
+                      }}
+                    />
                   </div>
                   {/* Subtle bottom shadow under emblem */}
                   <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-6 rounded-[50%] bg-black/50 blur-xl" />
@@ -367,16 +391,16 @@ function HomePage() {
 
               {/* Orbital organs — slow cinematic clockwise orbit, organs stay upright */}
               <div
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-0 pointer-events-none orbit-gpu"
                 style={{ animation: "spin 90s linear infinite", transformOrigin: "50% 50%" }}
               >
                 {[
-                  { src: organHeart,   alt: "Heart",   deg: 270, r: 40, size: 96 },
-                  { src: organLungs,   alt: "Lungs",   deg: 330, r: 42, size: 88 },
-                  { src: organSpine,   alt: "Spine",   deg: 30,  r: 42, size: 110 },
-                  { src: organStomach, alt: "Stomach", deg: 90,  r: 40, size: 84 },
-                  { src: organKnee,    alt: "Knee",    deg: 150, r: 42, size: 84 },
-                  { src: organBrain,   alt: "Brain",   deg: 210, r: 42, size: 88 },
+                  { src: organHeart,   alt: "Heart",   deg: 270, r: 40, size: 96,  depth: 1.2 },
+                  { src: organLungs,   alt: "Lungs",   deg: 330, r: 42, size: 88,  depth: 0.9 },
+                  { src: organSpine,   alt: "Spine",   deg: 30,  r: 42, size: 110, depth: 1.4 },
+                  { src: organStomach, alt: "Stomach", deg: 90,  r: 40, size: 84,  depth: 0.6 },
+                  { src: organKnee,    alt: "Knee",    deg: 150, r: 42, size: 84,  depth: 0.7 },
+                  { src: organBrain,   alt: "Brain",   deg: 210, r: 42, size: 88,  depth: 0.8 },
                 ].map((o, i) => {
                   const rad = (o.deg * Math.PI) / 180;
                   const x = 50 + o.r * Math.cos(rad);
@@ -395,30 +419,45 @@ function HomePage() {
                     >
                       {/* Counter-rotate so organ stays upright */}
                       <div
-                        className="w-full h-full"
+                        className="w-full h-full orbit-gpu"
                         style={{ animation: "spin 90s linear infinite reverse", transformOrigin: "50% 50%" }}
                       >
+                        {/* Per-organ depth parallax — heavier organs move more */}
                         <div
-                          className="w-full h-full animate-float"
-                          style={{
-                            animationDuration: `${7 + (i % 3)}s`,
-                            animationDelay: `${i * 0.4}s`,
-                          }}
+                          className="w-full h-full depth-parallax"
+                          style={{ ["--depth" as any]: o.depth }}
                         >
-                          {/* Soft healing aura behind organ */}
-                          <div className="absolute inset-[-35%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.45),_rgba(63,107,75,0.12)_50%,_transparent_75%)] blur-md animate-aura" />
-                          <img
-                            src={o.src}
-                            alt={o.alt}
-                            width={256}
-                            height={256}
-                            loading="lazy"
-                            className="relative w-full h-full object-contain"
+                          <div
+                            className="w-full h-full animate-float"
                             style={{
-                              filter:
-                                "drop-shadow(0 10px 18px rgba(0,0,0,0.55)) drop-shadow(0 0 14px rgba(245,215,138,0.45))",
+                              animationDuration: `${7 + (i % 3)}s`,
+                              animationDelay: `${i * 0.4}s`,
                             }}
-                          />
+                          >
+                            {/* Synced healing aura — all organs pulse on same beat */}
+                            <div
+                              className="absolute inset-[-35%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55),_rgba(63,107,75,0.12)_50%,_transparent_75%)] blur-md pulse-sync"
+                              style={{
+                                ["--pulse-min" as any]: 0.45,
+                                ["--pulse-max" as any]: 1,
+                                ["--pulse-scale" as any]: 1.12,
+                              }}
+                            />
+                            <img
+                              src={o.src}
+                              alt={o.alt}
+                              width={256}
+                              height={256}
+                              loading="lazy"
+                              decoding="async"
+                              className="relative w-full h-full object-contain"
+                              style={{
+                                filter:
+                                  "drop-shadow(0 10px 18px rgba(0,0,0,0.55)) drop-shadow(0 0 14px rgba(245,215,138,0.45))",
+                                willChange: "transform",
+                              }}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
