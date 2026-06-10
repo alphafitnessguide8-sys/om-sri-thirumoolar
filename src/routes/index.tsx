@@ -299,21 +299,24 @@ function HomePage() {
               <div className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55)_0%,_rgba(212,162,76,0.25)_28%,_rgba(63,107,75,0.10)_55%,_transparent_75%)] blur-2xl animate-aura pointer-events-none" />
               <div className="absolute inset-[5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.32),_transparent_65%)] blur-3xl pointer-events-none" />
 
-              {/* Faint sacred geometry orbital paths */}
+              {/* Faint sacred geometry orbital paths — slow cinematic rotation */}
               <svg
                 aria-hidden
                 viewBox="0 0 100 100"
                 className="absolute inset-0 w-full h-full pointer-events-none"
+                style={{ animation: "spin 80s linear infinite", transformOrigin: "50% 50%" }}
               >
-                <defs>
-                  <radialGradient id="orbitFade" cx="50%" cy="50%" r="50%">
-                    <stop offset="60%" stopColor="#F5D78A" stopOpacity="0" />
-                    <stop offset="100%" stopColor="#F5D78A" stopOpacity="0.45" />
-                  </radialGradient>
-                </defs>
                 <circle cx="50" cy="50" r="34" fill="none" stroke="#D4A24C" strokeOpacity="0.18" strokeWidth="0.18" strokeDasharray="0.4 1.2" />
-                <circle cx="50" cy="50" r="42" fill="none" stroke="#F5D78A" strokeOpacity="0.16" strokeWidth="0.18" />
                 <circle cx="50" cy="50" r="48" fill="none" stroke="#D4A24C" strokeOpacity="0.12" strokeWidth="0.18" strokeDasharray="0.3 2" />
+              </svg>
+              <svg
+                aria-hidden
+                viewBox="0 0 100 100"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                style={{ animation: "spin 140s linear infinite reverse", transformOrigin: "50% 50%" }}
+              >
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#F5D78A" strokeOpacity="0.16" strokeWidth="0.18" />
+                <circle cx="50" cy="50" r="46" fill="none" stroke="#F5D78A" strokeOpacity="0.10" strokeWidth="0.12" strokeDasharray="0.2 1.8" />
               </svg>
 
               {/* 3D STM emblem — center sun */}
@@ -362,49 +365,66 @@ function HomePage() {
                 </div>
               </div>
 
-              {/* Orbital organs — fixed clock positions matching the reference */}
-              {[
-                { src: organHeart,   alt: "Heart",   deg: 270, r: 40, size: 96 },
-                { src: organLungs,   alt: "Lungs",   deg: 330, r: 42, size: 88 },
-                { src: organSpine,   alt: "Spine",   deg: 30,  r: 42, size: 110 },
-                { src: organStomach, alt: "Stomach", deg: 90,  r: 40, size: 84 },
-                { src: organKnee,    alt: "Knee",    deg: 150, r: 42, size: 84 },
-                { src: organBrain,   alt: "Brain",   deg: 210, r: 42, size: 88 },
-              ].map((o, i) => {
-                const rad = (o.deg * Math.PI) / 180;
-                const x = 50 + o.r * Math.cos(rad);
-                const y = 50 + o.r * Math.sin(rad);
-                return (
-                  <div
-                    key={i}
-                    className="absolute pointer-events-none animate-float"
-                    style={{
-                      left: `${x}%`,
-                      top: `${y}%`,
-                      width: o.size,
-                      height: o.size,
-                      transform: "translate(-50%, -50%)",
-                      animationDuration: `${7 + (i % 3)}s`,
-                      animationDelay: `${i * 0.4}s`,
-                    }}
-                  >
-                    {/* Soft healing aura behind organ */}
-                    <div className="absolute inset-[-35%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.45),_rgba(63,107,75,0.12)_50%,_transparent_75%)] blur-md animate-aura" />
-                    <img
-                      src={o.src}
-                      alt={o.alt}
-                      width={256}
-                      height={256}
-                      loading="lazy"
-                      className="relative w-full h-full object-contain"
+              {/* Orbital organs — slow cinematic clockwise orbit, organs stay upright */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ animation: "spin 90s linear infinite", transformOrigin: "50% 50%" }}
+              >
+                {[
+                  { src: organHeart,   alt: "Heart",   deg: 270, r: 40, size: 96 },
+                  { src: organLungs,   alt: "Lungs",   deg: 330, r: 42, size: 88 },
+                  { src: organSpine,   alt: "Spine",   deg: 30,  r: 42, size: 110 },
+                  { src: organStomach, alt: "Stomach", deg: 90,  r: 40, size: 84 },
+                  { src: organKnee,    alt: "Knee",    deg: 150, r: 42, size: 84 },
+                  { src: organBrain,   alt: "Brain",   deg: 210, r: 42, size: 88 },
+                ].map((o, i) => {
+                  const rad = (o.deg * Math.PI) / 180;
+                  const x = 50 + o.r * Math.cos(rad);
+                  const y = 50 + o.r * Math.sin(rad);
+                  return (
+                    <div
+                      key={i}
+                      className="absolute"
                       style={{
-                        filter:
-                          "drop-shadow(0 10px 18px rgba(0,0,0,0.55)) drop-shadow(0 0 14px rgba(245,215,138,0.45))",
+                        left: `${x}%`,
+                        top: `${y}%`,
+                        width: o.size,
+                        height: o.size,
+                        transform: "translate(-50%, -50%)",
                       }}
-                    />
-                  </div>
-                );
-              })}
+                    >
+                      {/* Counter-rotate so organ stays upright */}
+                      <div
+                        className="w-full h-full"
+                        style={{ animation: "spin 90s linear infinite reverse", transformOrigin: "50% 50%" }}
+                      >
+                        <div
+                          className="w-full h-full animate-float"
+                          style={{
+                            animationDuration: `${7 + (i % 3)}s`,
+                            animationDelay: `${i * 0.4}s`,
+                          }}
+                        >
+                          {/* Soft healing aura behind organ */}
+                          <div className="absolute inset-[-35%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.45),_rgba(63,107,75,0.12)_50%,_transparent_75%)] blur-md animate-aura" />
+                          <img
+                            src={o.src}
+                            alt={o.alt}
+                            width={256}
+                            height={256}
+                            loading="lazy"
+                            className="relative w-full h-full object-contain"
+                            style={{
+                              filter:
+                                "drop-shadow(0 10px 18px rgba(0,0,0,0.55)) drop-shadow(0 0 14px rgba(245,215,138,0.45))",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
 
               {/* Cinematic light rays */}
               <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
