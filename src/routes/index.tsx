@@ -314,12 +314,46 @@ function HomePage() {
                 transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
               }}
             >
+              {/* Volumetric outer halo — soft, breathing, sacred */}
+              <div
+                className="absolute inset-[-8%] rounded-full pulse-sync pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(245,215,138,0.22) 0%, rgba(212,162,76,0.10) 35%, transparent 65%)",
+                  filter: "blur(28px)",
+                  ["--pulse-min" as any]: 0.45,
+                  ["--pulse-max" as any]: 0.9,
+                  ["--pulse-scale" as any]: 1.05,
+                }}
+              />
               {/* Soft warm gold core glow behind logo — synced pulse */}
               <div
                 className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55)_0%,_rgba(212,162,76,0.25)_28%,_rgba(63,107,75,0.10)_55%,_transparent_75%)] blur-2xl pulse-sync pointer-events-none"
                 style={{ ["--pulse-min" as any]: 0.55, ["--pulse-max" as any]: 1, ["--pulse-scale" as any]: 1.08 }}
               />
               <div className="absolute inset-[5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.32),_transparent_65%)] blur-3xl pointer-events-none" />
+
+              {/* Sacred light rays radiating from emblem — deferred, GPU, pulse-synced */}
+              {fxReady && (
+                <div
+                  aria-hidden
+                  className="absolute inset-0 pointer-events-none orbit-gpu pulse-sync"
+                  style={{
+                    background:
+                      "conic-gradient(from 0deg, transparent 0deg, rgba(245,215,138,0.18) 6deg, transparent 18deg, transparent 42deg, rgba(245,215,138,0.14) 48deg, transparent 60deg, transparent 90deg, rgba(245,215,138,0.18) 96deg, transparent 108deg, transparent 132deg, rgba(245,215,138,0.14) 138deg, transparent 150deg, transparent 180deg, rgba(245,215,138,0.18) 186deg, transparent 198deg, transparent 222deg, rgba(245,215,138,0.14) 228deg, transparent 240deg, transparent 270deg, rgba(245,215,138,0.18) 276deg, transparent 288deg, transparent 312deg, rgba(245,215,138,0.14) 318deg, transparent 330deg)",
+                    mask: "radial-gradient(circle, transparent 22%, #000 30%, #000 55%, transparent 78%)",
+                    WebkitMask:
+                      "radial-gradient(circle, transparent 22%, #000 30%, #000 55%, transparent 78%)",
+                    filter: "blur(6px)",
+                    mixBlendMode: "screen",
+                    animation: "spin 180s linear infinite",
+                    transformOrigin: "50% 50%",
+                    ["--pulse-min" as any]: 0.35,
+                    ["--pulse-max" as any]: 0.85,
+                    ["--pulse-scale" as any]: 1.04,
+                  }}
+                />
+              )}
 
               {/* Faint sacred geometry orbital paths — slow cinematic rotation */}
               <svg
