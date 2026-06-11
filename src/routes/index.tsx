@@ -39,6 +39,8 @@ import imgGalleryMassage from "@/assets/gallery-massage.jpg";
 import imgGalleryKizhi from "@/assets/gallery-kizhi.jpg";
 import imgGalleryYoga from "@/assets/gallery-yoga.jpg";
 import imgParallaxGarden from "@/assets/parallax-garden.jpg";
+import heroHerbsLeft from "@/assets/hero-herbs-left.png";
+import heroHerbsRight from "@/assets/hero-herbs-right.png";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
@@ -220,21 +222,42 @@ function HomePage() {
         {/* Cinematic god rays + mist — deferred */}
         {fxReady && <CinematicFX rays mist grain={false} vignette={false} />}
 
-        {/* Bottom decorative herbal band — blends into shadow */}
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 pointer-events-none">
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage: `url(${imgGalleryHerbs})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              filter: "blur(6px) saturate(0.6) brightness(0.45)",
-              maskImage: "linear-gradient(to top, black 0%, black 30%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to top, black 0%, black 30%, transparent 100%)",
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/70 to-transparent" />
-        </div>
+        {/* Bottom shadow gradient for depth */}
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/60 to-transparent pointer-events-none" />
+
+        {/* Bottom-left: Ayurvedic herbs + mortar & pestle */}
+        <img
+          src={heroHerbsLeft}
+          alt="Ayurvedic herbs, turmeric and wooden mortar and pestle"
+          aria-hidden
+          width={1024}
+          height={1024}
+          loading="lazy"
+          decoding="async"
+          className="hidden md:block absolute -bottom-10 -left-10 lg:-left-6 w-[18rem] lg:w-[22rem] xl:w-[26rem] pointer-events-none select-none z-[1]"
+          style={{
+            filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.75)) drop-shadow(0 0 40px rgba(212,162,76,0.18))",
+            maskImage: "linear-gradient(to top, black 70%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to top, black 70%, transparent 100%)",
+          }}
+        />
+
+        {/* Bottom-right: Neem, copper bowl & sandalwood */}
+        <img
+          src={heroHerbsRight}
+          alt="Neem leaves, copper bowl with healing oil and sandalwood"
+          aria-hidden
+          width={1024}
+          height={1024}
+          loading="lazy"
+          decoding="async"
+          className="hidden md:block absolute -bottom-10 -right-10 lg:-right-6 w-[18rem] lg:w-[22rem] xl:w-[26rem] pointer-events-none select-none z-[1]"
+          style={{
+            filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.75)) drop-shadow(0 0 40px rgba(212,162,76,0.18))",
+            maskImage: "linear-gradient(to top, black 70%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to top, black 70%, transparent 100%)",
+          }}
+        />
 
         {fxReady && <Particles />}
 
