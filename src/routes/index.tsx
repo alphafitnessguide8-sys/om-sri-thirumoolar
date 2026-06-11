@@ -135,11 +135,19 @@ function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [py, setPy] = useState(0);
+  // Lazy-start non-critical FX after first paint to protect LCP
+  const [fxReady, setFxReady] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setPy(window.scrollY);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const idle =
+      (window as any).requestIdleCallback?.(() => setFxReady(true), { timeout: 1200 }) ??
+      window.setTimeout(() => setFxReady(true), 600);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      (window as any).cancelIdleCallback?.(idle) ?? clearTimeout(idle as number);
+    };
   }, []);
 
   useEffect(() => {
@@ -202,13 +210,15 @@ function HomePage() {
         {/* Vignette for cinematic depth */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.55)_100%)] pointer-events-none" />
 
-        {/* Blurred herbal leaves layer */}
-        <div className="absolute inset-0 opacity-[0.18] mix-blend-screen pointer-events-none">
-          <FloatingLeaves density={10} />
-        </div>
+        {/* Blurred herbal leaves layer — deferred */}
+        {fxReady && (
+          <div className="absolute inset-0 opacity-[0.18] mix-blend-screen pointer-events-none animate-fade-in">
+            <FloatingLeaves density={10} />
+          </div>
+        )}
 
-        {/* Cinematic god rays + mist + grain */}
-        <CinematicFX rays mist grain={false} vignette={false} />
+        {/* Cinematic god rays + mist — deferred */}
+        {fxReady && <CinematicFX rays mist grain={false} vignette={false} />}
 
         {/* Bottom decorative herbal band — blends into shadow */}
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 pointer-events-none">
@@ -226,7 +236,7 @@ function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/70 to-transparent" />
         </div>
 
-        <Particles />
+        {fxReady && <Particles />}
 
         <div className="relative mx-auto max-w-7xl w-full px-6 grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* LEFT — Content */}
@@ -304,12 +314,46 @@ function HomePage() {
                 transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
               }}
             >
+              {/* Volumetric outer halo — soft, breathing, sacred */}
+              <div
+                className="absolute inset-[-8%] rounded-full pulse-sync pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(245,215,138,0.22) 0%, rgba(212,162,76,0.10) 35%, transparent 65%)",
+                  filter: "blur(28px)",
+                  ["--pulse-min" as any]: 0.45,
+                  ["--pulse-max" as any]: 0.9,
+                  ["--pulse-scale" as any]: 1.05,
+                }}
+              />
               {/* Soft warm gold core glow behind logo — synced pulse */}
               <div
                 className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55)_0%,_rgba(212,162,76,0.25)_28%,_rgba(63,107,75,0.10)_55%,_transparent_75%)] blur-2xl pulse-sync pointer-events-none"
                 style={{ ["--pulse-min" as any]: 0.55, ["--pulse-max" as any]: 1, ["--pulse-scale" as any]: 1.08 }}
               />
               <div className="absolute inset-[5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.32),_transparent_65%)] blur-3xl pointer-events-none" />
+
+              {/* Sacred light rays radiating from emblem — deferred, GPU, pulse-synced */}
+              {fxReady && (
+                <div
+                  aria-hidden
+                  className="absolute inset-0 pointer-events-none orbit-gpu pulse-sync"
+                  style={{
+                    background:
+                      "conic-gradient(from 0deg, transparent 0deg, rgba(245,215,138,0.18) 6deg, transparent 18deg, transparent 42deg, rgba(245,215,138,0.14) 48deg, transparent 60deg, transparent 90deg, rgba(245,215,138,0.18) 96deg, transparent 108deg, transparent 132deg, rgba(245,215,138,0.14) 138deg, transparent 150deg, transparent 180deg, rgba(245,215,138,0.18) 186deg, transparent 198deg, transparent 222deg, rgba(245,215,138,0.14) 228deg, transparent 240deg, transparent 270deg, rgba(245,215,138,0.18) 276deg, transparent 288deg, transparent 312deg, rgba(245,215,138,0.14) 318deg, transparent 330deg)",
+                    mask: "radial-gradient(circle, transparent 22%, #000 30%, #000 55%, transparent 78%)",
+                    WebkitMask:
+                      "radial-gradient(circle, transparent 22%, #000 30%, #000 55%, transparent 78%)",
+                    filter: "blur(6px)",
+                    mixBlendMode: "screen",
+                    animation: "spin 180s linear infinite",
+                    transformOrigin: "50% 50%",
+                    ["--pulse-min" as any]: 0.35,
+                    ["--pulse-max" as any]: 0.85,
+                    ["--pulse-scale" as any]: 1.04,
+                  }}
+                />
+              )}
 
               {/* Faint sacred geometry orbital paths — slow cinematic rotation */}
               <svg
@@ -465,11 +509,13 @@ function HomePage() {
                 })}
               </div>
 
-              {/* Cinematic light rays */}
-              <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
-                <div className="cine-ray cine-ray-1" />
-                <div className="cine-ray cine-ray-3" />
-              </div>
+              {/* Cinematic light rays — deferred */}
+              {fxReady && (
+                <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none animate-fade-in">
+                  <div className="cine-ray cine-ray-1" />
+                  <div className="cine-ray cine-ray-3" />
+                </div>
+              )}
 
               {/* Lower fog */}
               <div className="absolute -bottom-6 inset-x-[-10%] h-32 bg-[radial-gradient(ellipse_at_center,_rgba(180,210,180,0.18),_transparent_70%)] blur-2xl pointer-events-none" />
