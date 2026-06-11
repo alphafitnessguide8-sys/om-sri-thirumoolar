@@ -135,11 +135,19 @@ function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [py, setPy] = useState(0);
+  // Lazy-start non-critical FX after first paint to protect LCP
+  const [fxReady, setFxReady] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setPy(window.scrollY);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const idle =
+      (window as any).requestIdleCallback?.(() => setFxReady(true), { timeout: 1200 }) ??
+      window.setTimeout(() => setFxReady(true), 600);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      (window as any).cancelIdleCallback?.(idle) ?? clearTimeout(idle as number);
+    };
   }, []);
 
   useEffect(() => {
