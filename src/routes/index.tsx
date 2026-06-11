@@ -210,13 +210,15 @@ function HomePage() {
         {/* Vignette for cinematic depth */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.55)_100%)] pointer-events-none" />
 
-        {/* Blurred herbal leaves layer */}
-        <div className="absolute inset-0 opacity-[0.18] mix-blend-screen pointer-events-none">
-          <FloatingLeaves density={10} />
-        </div>
+        {/* Blurred herbal leaves layer — deferred */}
+        {fxReady && (
+          <div className="absolute inset-0 opacity-[0.18] mix-blend-screen pointer-events-none animate-fade-in">
+            <FloatingLeaves density={10} />
+          </div>
+        )}
 
-        {/* Cinematic god rays + mist + grain */}
-        <CinematicFX rays mist grain={false} vignette={false} />
+        {/* Cinematic god rays + mist — deferred */}
+        {fxReady && <CinematicFX rays mist grain={false} vignette={false} />}
 
         {/* Bottom decorative herbal band — blends into shadow */}
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 pointer-events-none">
@@ -234,7 +236,7 @@ function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/70 to-transparent" />
         </div>
 
-        <Particles />
+        {fxReady && <Particles />}
 
         <div className="relative mx-auto max-w-7xl w-full px-6 grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* LEFT — Content */}
