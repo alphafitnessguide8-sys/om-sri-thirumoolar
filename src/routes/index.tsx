@@ -39,6 +39,8 @@ import imgGalleryMassage from "@/assets/gallery-massage.jpg";
 import imgGalleryKizhi from "@/assets/gallery-kizhi.jpg";
 import imgGalleryYoga from "@/assets/gallery-yoga.jpg";
 import imgParallaxGarden from "@/assets/parallax-garden.jpg";
+import heroHerbsLeft from "@/assets/hero-herbs-left.png";
+import heroHerbsRight from "@/assets/hero-herbs-right.png";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
@@ -220,21 +222,38 @@ function HomePage() {
         {/* Cinematic god rays + mist — deferred */}
         {fxReady && <CinematicFX rays mist grain={false} vignette={false} />}
 
-        {/* Bottom decorative herbal band — blends into shadow */}
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 pointer-events-none">
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage: `url(${imgGalleryHerbs})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              filter: "blur(6px) saturate(0.6) brightness(0.45)",
-              maskImage: "linear-gradient(to top, black 0%, black 30%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to top, black 0%, black 30%, transparent 100%)",
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/70 to-transparent" />
-        </div>
+        {/* Bottom shadow gradient for depth */}
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/60 to-transparent pointer-events-none z-[2]" />
+
+        {/* Bottom-left: Ayurvedic herbs + mortar & pestle */}
+        <img
+          src={heroHerbsLeft}
+          alt="Ayurvedic herbs, turmeric and wooden mortar and pestle"
+          aria-hidden
+          width={1024}
+          height={1024}
+          loading="eager"
+          decoding="async"
+          className="hidden md:block absolute -bottom-6 -left-8 w-[11rem] lg:w-[14rem] xl:w-[16rem] pointer-events-none select-none z-[3] opacity-90"
+          style={{
+            filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.85)) drop-shadow(0 0 30px rgba(212,162,76,0.25))",
+          }}
+        />
+
+        {/* Bottom-right: Neem, copper bowl & sandalwood */}
+        <img
+          src={heroHerbsRight}
+          alt="Neem leaves, copper bowl with healing oil and sandalwood"
+          aria-hidden
+          width={1024}
+          height={1024}
+          loading="eager"
+          decoding="async"
+          className="hidden md:block absolute -bottom-6 -right-8 w-[11rem] lg:w-[14rem] xl:w-[16rem] pointer-events-none select-none z-[3] opacity-90"
+          style={{
+            filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.85)) drop-shadow(0 0 30px rgba(212,162,76,0.25))",
+          }}
+        />
 
         {fxReady && <Particles />}
 
@@ -521,12 +540,16 @@ function HomePage() {
                               animationDelay: `${i * 0.4}s`,
                             }}
                           >
-                            {/* Synced healing aura — all organs pulse on same beat */}
+                            {/* Synced healing aura — soft circular glow */}
                             <div
-                              className="absolute inset-[-35%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55),_rgba(63,107,75,0.12)_50%,_transparent_75%)] blur-md pulse-sync"
+                              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[170%] h-[170%] rounded-full pulse-sync"
                               style={{
-                                ["--pulse-min" as any]: 0.45,
-                                ["--pulse-max" as any]: 1,
+                                background:
+                                  "radial-gradient(circle, rgba(245,215,138,0.45) 0%, rgba(245,215,138,0.15) 28%, transparent 60%)",
+                                filter: "blur(18px)",
+                                mixBlendMode: "screen",
+                                ["--pulse-min" as any]: 0.4,
+                                ["--pulse-max" as any]: 0.95,
                                 ["--pulse-scale" as any]: 1.12,
                               }}
                             />
