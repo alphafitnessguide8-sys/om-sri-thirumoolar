@@ -314,46 +314,89 @@ function HomePage() {
                 transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
               }}
             >
-              {/* Volumetric outer halo — soft, breathing, sacred */}
+              {/* Volumetric outer halo — wider, brighter, breathing */}
               <div
-                className="absolute inset-[-8%] rounded-full pulse-sync pointer-events-none"
+                className="absolute inset-[-18%] rounded-full pulse-sync pointer-events-none"
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(245,215,138,0.22) 0%, rgba(212,162,76,0.10) 35%, transparent 65%)",
-                  filter: "blur(28px)",
-                  ["--pulse-min" as any]: 0.45,
-                  ["--pulse-max" as any]: 0.9,
-                  ["--pulse-scale" as any]: 1.05,
+                    "radial-gradient(circle, rgba(255,225,150,0.55) 0%, rgba(245,215,138,0.30) 18%, rgba(212,162,76,0.18) 38%, transparent 68%)",
+                  filter: "blur(40px)",
+                  mixBlendMode: "screen",
+                  ["--pulse-min" as any]: 0.65,
+                  ["--pulse-max" as any]: 1,
+                  ["--pulse-scale" as any]: 1.08,
                 }}
               />
-              {/* Soft warm gold core glow behind logo — synced pulse */}
+              {/* Hot golden core glow behind logo */}
               <div
-                className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle,_rgba(245,215,138,0.55)_0%,_rgba(212,162,76,0.25)_28%,_rgba(63,107,75,0.10)_55%,_transparent_75%)] blur-2xl pulse-sync pointer-events-none"
-                style={{ ["--pulse-min" as any]: 0.55, ["--pulse-max" as any]: 1, ["--pulse-scale" as any]: 1.08 }}
+                className="absolute inset-[12%] rounded-full bg-[radial-gradient(circle,_rgba(255,235,170,0.85)_0%,_rgba(245,215,138,0.55)_22%,_rgba(212,162,76,0.30)_42%,_rgba(63,107,75,0.10)_62%,_transparent_78%)] blur-2xl pulse-sync pointer-events-none"
+                style={{
+                  mixBlendMode: "screen",
+                  ["--pulse-min" as any]: 0.7,
+                  ["--pulse-max" as any]: 1,
+                  ["--pulse-scale" as any]: 1.1,
+                }}
               />
               <div className="absolute inset-[5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.32),_transparent_65%)] blur-3xl pointer-events-none" />
 
-              {/* Sacred light rays radiating from emblem — deferred, GPU, pulse-synced */}
+              {/* Bright starburst rays (8 spokes) — sharp gold burst */}
               {fxReady && (
                 <div
                   aria-hidden
-                  className="absolute inset-0 pointer-events-none orbit-gpu pulse-sync"
+                  className="absolute inset-[-10%] pointer-events-none orbit-gpu pulse-sync"
                   style={{
                     background:
-                      "conic-gradient(from 0deg, transparent 0deg, rgba(245,215,138,0.18) 6deg, transparent 18deg, transparent 42deg, rgba(245,215,138,0.14) 48deg, transparent 60deg, transparent 90deg, rgba(245,215,138,0.18) 96deg, transparent 108deg, transparent 132deg, rgba(245,215,138,0.14) 138deg, transparent 150deg, transparent 180deg, rgba(245,215,138,0.18) 186deg, transparent 198deg, transparent 222deg, rgba(245,215,138,0.14) 228deg, transparent 240deg, transparent 270deg, rgba(245,215,138,0.18) 276deg, transparent 288deg, transparent 312deg, rgba(245,215,138,0.14) 318deg, transparent 330deg)",
-                    mask: "radial-gradient(circle, transparent 22%, #000 30%, #000 55%, transparent 78%)",
+                      "conic-gradient(from 0deg, transparent 0deg, rgba(255,230,160,0.65) 2deg, transparent 8deg, transparent 43deg, rgba(255,225,150,0.45) 45deg, transparent 50deg, transparent 86deg, rgba(255,230,160,0.65) 90deg, transparent 96deg, transparent 133deg, rgba(255,225,150,0.45) 135deg, transparent 140deg, transparent 176deg, rgba(255,230,160,0.65) 180deg, transparent 186deg, transparent 223deg, rgba(255,225,150,0.45) 225deg, transparent 230deg, transparent 266deg, rgba(255,230,160,0.65) 270deg, transparent 276deg, transparent 313deg, rgba(255,225,150,0.45) 315deg, transparent 320deg, transparent 358deg)",
+                    mask: "radial-gradient(circle, transparent 18%, #000 26%, #000 60%, transparent 82%)",
                     WebkitMask:
-                      "radial-gradient(circle, transparent 22%, #000 30%, #000 55%, transparent 78%)",
-                    filter: "blur(6px)",
+                      "radial-gradient(circle, transparent 18%, #000 26%, #000 60%, transparent 82%)",
+                    filter: "blur(2px) brightness(1.15)",
                     mixBlendMode: "screen",
-                    animation: "spin 180s linear infinite",
+                    animation: "spin 220s linear infinite",
                     transformOrigin: "50% 50%",
-                    ["--pulse-min" as any]: 0.35,
+                    ["--pulse-min" as any]: 0.55,
+                    ["--pulse-max" as any]: 1,
+                    ["--pulse-scale" as any]: 1.06,
+                  }}
+                />
+              )}
+
+              {/* Soft fan rays — wider, blurrier counter-rotation for depth */}
+              {fxReady && (
+                <div
+                  aria-hidden
+                  className="absolute inset-[-12%] pointer-events-none orbit-gpu pulse-sync"
+                  style={{
+                    background:
+                      "conic-gradient(from 22deg, transparent 0deg, rgba(245,215,138,0.30) 10deg, transparent 30deg, transparent 70deg, rgba(245,215,138,0.22) 80deg, transparent 100deg, transparent 140deg, rgba(245,215,138,0.30) 150deg, transparent 170deg, transparent 210deg, rgba(245,215,138,0.22) 220deg, transparent 240deg, transparent 280deg, rgba(245,215,138,0.30) 290deg, transparent 310deg, transparent 350deg)",
+                    mask: "radial-gradient(circle, transparent 20%, #000 32%, #000 58%, transparent 80%)",
+                    WebkitMask:
+                      "radial-gradient(circle, transparent 20%, #000 32%, #000 58%, transparent 80%)",
+                    filter: "blur(10px)",
+                    mixBlendMode: "screen",
+                    animation: "spin 340s linear infinite reverse",
+                    transformOrigin: "50% 50%",
+                    ["--pulse-min" as any]: 0.4,
                     ["--pulse-max" as any]: 0.85,
                     ["--pulse-scale" as any]: 1.04,
                   }}
                 />
               )}
+
+              {/* Central hot sun behind emblem */}
+              <div
+                className="absolute inset-[28%] rounded-full pulse-sync pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(255,245,200,0.9) 0%, rgba(255,220,140,0.5) 35%, transparent 70%)",
+                  filter: "blur(18px)",
+                  mixBlendMode: "screen",
+                  ["--pulse-min" as any]: 0.75,
+                  ["--pulse-max" as any]: 1,
+                  ["--pulse-scale" as any]: 1.05,
+                }}
+              />
+
 
               {/* Faint sacred geometry orbital paths — slow cinematic rotation */}
               <svg
