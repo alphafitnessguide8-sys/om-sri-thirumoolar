@@ -234,7 +234,7 @@ function HomePage() {
           height={1024}
           loading="eager"
           decoding="async"
-          className="hidden md:block absolute bottom-0 left-0 w-[16rem] lg:w-[20rem] xl:w-[24rem] pointer-events-none select-none z-[3]"
+          className="hidden md:block absolute -bottom-6 -left-8 w-[11rem] lg:w-[14rem] xl:w-[16rem] pointer-events-none select-none z-[3] opacity-90"
           style={{
             filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.85)) drop-shadow(0 0 30px rgba(212,162,76,0.25))",
           }}
@@ -249,7 +249,7 @@ function HomePage() {
           height={1024}
           loading="eager"
           decoding="async"
-          className="hidden md:block absolute bottom-0 right-0 w-[16rem] lg:w-[20rem] xl:w-[24rem] pointer-events-none select-none z-[3]"
+          className="hidden md:block absolute -bottom-6 -right-8 w-[11rem] lg:w-[14rem] xl:w-[16rem] pointer-events-none select-none z-[3] opacity-90"
           style={{
             filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.85)) drop-shadow(0 0 30px rgba(212,162,76,0.25))",
           }}
