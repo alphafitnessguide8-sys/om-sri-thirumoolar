@@ -223,7 +223,7 @@ function HomePage() {
         {fxReady && <CinematicFX rays mist grain={false} vignette={false} />}
 
         {/* Bottom shadow gradient for depth */}
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/60 to-transparent pointer-events-none" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/60 to-transparent pointer-events-none z-[2]" />
 
         {/* Bottom-left: Ayurvedic herbs + mortar & pestle */}
         <img
@@ -234,11 +234,9 @@ function HomePage() {
           height={1024}
           loading="lazy"
           decoding="async"
-          className="hidden md:block absolute -bottom-10 -left-10 lg:-left-6 w-[18rem] lg:w-[22rem] xl:w-[26rem] pointer-events-none select-none z-[1]"
+          className="hidden md:block absolute bottom-0 left-0 w-[16rem] lg:w-[20rem] xl:w-[24rem] pointer-events-none select-none z-[3]"
           style={{
-            filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.75)) drop-shadow(0 0 40px rgba(212,162,76,0.18))",
-            maskImage: "linear-gradient(to top, black 70%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to top, black 70%, transparent 100%)",
+            filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.85)) drop-shadow(0 0 30px rgba(212,162,76,0.25))",
           }}
         />
 
@@ -251,11 +249,9 @@ function HomePage() {
           height={1024}
           loading="lazy"
           decoding="async"
-          className="hidden md:block absolute -bottom-10 -right-10 lg:-right-6 w-[18rem] lg:w-[22rem] xl:w-[26rem] pointer-events-none select-none z-[1]"
+          className="hidden md:block absolute bottom-0 right-0 w-[16rem] lg:w-[20rem] xl:w-[24rem] pointer-events-none select-none z-[3]"
           style={{
-            filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.75)) drop-shadow(0 0 40px rgba(212,162,76,0.18))",
-            maskImage: "linear-gradient(to top, black 70%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to top, black 70%, transparent 100%)",
+            filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.85)) drop-shadow(0 0 30px rgba(212,162,76,0.25))",
           }}
         />
 
