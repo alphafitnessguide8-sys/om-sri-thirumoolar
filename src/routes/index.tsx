@@ -232,7 +232,7 @@ function HomePage() {
           aria-hidden
           width={1024}
           height={1024}
-          loading="lazy"
+          loading="eager"
           decoding="async"
           className="hidden md:block absolute bottom-0 left-0 w-[16rem] lg:w-[20rem] xl:w-[24rem] pointer-events-none select-none z-[3]"
           style={{
@@ -247,7 +247,7 @@ function HomePage() {
           aria-hidden
           width={1024}
           height={1024}
-          loading="lazy"
+          loading="eager"
           decoding="async"
           className="hidden md:block absolute bottom-0 right-0 w-[16rem] lg:w-[20rem] xl:w-[24rem] pointer-events-none select-none z-[3]"
           style={{
