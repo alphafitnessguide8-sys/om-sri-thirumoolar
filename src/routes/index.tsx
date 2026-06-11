@@ -540,16 +540,16 @@ function HomePage() {
                               animationDelay: `${i * 0.4}s`,
                             }}
                           >
-                            {/* Synced healing aura — all organs pulse on same beat */}
+                            {/* Synced healing aura — soft circular glow */}
                             <div
-                              className="absolute inset-[-45%] rounded-full pulse-sync"
+                              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[170%] h-[170%] rounded-full pulse-sync"
                               style={{
                                 background:
-                                  "radial-gradient(circle, rgba(245,215,138,0.55) 0%, rgba(245,215,138,0.25) 25%, rgba(63,107,75,0.10) 50%, transparent 70%)",
-                                filter: "blur(22px)",
+                                  "radial-gradient(circle, rgba(245,215,138,0.45) 0%, rgba(245,215,138,0.15) 28%, transparent 60%)",
+                                filter: "blur(18px)",
                                 mixBlendMode: "screen",
-                                ["--pulse-min" as any]: 0.45,
-                                ["--pulse-max" as any]: 1,
+                                ["--pulse-min" as any]: 0.4,
+                                ["--pulse-max" as any]: 0.95,
                                 ["--pulse-scale" as any]: 1.12,
                               }}
                             />
