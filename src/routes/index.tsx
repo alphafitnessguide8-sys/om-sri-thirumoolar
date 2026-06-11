@@ -509,11 +509,13 @@ function HomePage() {
                 })}
               </div>
 
-              {/* Cinematic light rays */}
-              <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
-                <div className="cine-ray cine-ray-1" />
-                <div className="cine-ray cine-ray-3" />
-              </div>
+              {/* Cinematic light rays — deferred */}
+              {fxReady && (
+                <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none animate-fade-in">
+                  <div className="cine-ray cine-ray-1" />
+                  <div className="cine-ray cine-ray-3" />
+                </div>
+              )}
 
               {/* Lower fog */}
               <div className="absolute -bottom-6 inset-x-[-10%] h-32 bg-[radial-gradient(ellipse_at_center,_rgba(180,210,180,0.18),_transparent_70%)] blur-2xl pointer-events-none" />
