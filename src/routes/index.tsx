@@ -520,7 +520,7 @@ function HomePage() {
                 <svg
                   aria-hidden
                   viewBox="0 0 100 100"
-                  className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+                  className="chain-fx absolute inset-0 w-full h-full pointer-events-none overflow-visible"
                 >
                   <defs>
                     <radialGradient id="chainNode" cx="50%" cy="50%" r="50%">
