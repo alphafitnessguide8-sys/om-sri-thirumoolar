@@ -22,6 +22,7 @@ import {
   Users,
 } from "lucide-react";
 import heroMortar from "@/assets/hero-mortar.jpg";
+import heroBgCinematic from "@/assets/hero-bg-cinematic.jpg";
 import stmLogo from "@/assets/stm-logo.jpeg";
 import organHeart from "@/assets/organ-heart.png";
 import organLungs from "@/assets/organ-lungs.png";
@@ -190,12 +191,25 @@ function HomePage() {
         ref={heroRef}
         className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20 text-[#F5F5F2]"
       >
-        {/* Deep forest green cinematic background */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_#2a5240_0%,_#18392B_45%,_#0e2519_100%)]" />
-        {/* Warm golden top-left light wash */}
-        <div className="absolute -top-40 -left-40 w-[42rem] h-[42rem] rounded-full bg-[#D4A24C]/20 blur-[140px]" />
-        <div className="absolute top-1/4 -right-40 w-[38rem] h-[38rem] rounded-full bg-[#3F6B4B]/40 blur-[140px] animate-float-slow" />
-        <div className="absolute bottom-0 left-1/4 w-[28rem] h-[28rem] rounded-full bg-[#D4A24C]/10 blur-3xl" />
+        {/* Deep forest green cinematic background base */}
+        <div className="absolute inset-0 bg-[#0a1c14]" />
+        {/* Cinematic photoreal forest + golden glow background plate */}
+        <img
+          src={heroBgCinematic}
+          alt=""
+          aria-hidden
+          width={1920}
+          height={1280}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover opacity-95 slow-zoom"
+        />
+        {/* Emerald color grade over the photo */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(20,60,40,0.25)_0%,_rgba(10,28,20,0.55)_70%,_rgba(8,20,14,0.85)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1c14]/85 via-[#0a1c14]/30 to-transparent" />
+        {/* Warm golden ambient washes */}
+        <div className="absolute top-1/3 right-[12%] w-[44rem] h-[44rem] rounded-full bg-[#D4A24C]/25 blur-[160px] pointer-events-none" />
+        <div className="absolute -top-32 -left-32 w-[34rem] h-[34rem] rounded-full bg-[#D4A24C]/15 blur-[140px] pointer-events-none" />
 
         {/* Subtle sacred geometry rings */}
         <div
