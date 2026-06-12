@@ -514,6 +514,63 @@ function HomePage() {
                 className="absolute inset-0 pointer-events-none orbit-gpu"
                 style={{ animation: "spin 90s linear infinite", transformOrigin: "50% 50%" }}
               >
+                {/* Golden connecting chain — links each organ to the center emblem */}
+                <svg
+                  aria-hidden
+                  viewBox="0 0 100 100"
+                  className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+                >
+                  <defs>
+                    <radialGradient id="chainNode" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#FFF1B8" stopOpacity="1" />
+                      <stop offset="40%" stopColor="#F5D78A" stopOpacity="0.9" />
+                      <stop offset="100%" stopColor="#D4A24C" stopOpacity="0" />
+                    </radialGradient>
+                    <filter id="chainGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="0.8" result="b" />
+                      <feMerge>
+                        <feMergeNode in="b" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#chainGlow)" className="pulse-sync" style={{ ["--pulse-min" as any]: 0.55, ["--pulse-max" as any]: 1, ["--pulse-scale" as any]: 1 }}>
+                    {[270, 330, 30, 90, 150, 210].map((deg, i) => {
+                      const rad = (deg * Math.PI) / 180;
+                      const r = i === 0 ? 40 : i === 3 ? 40 : 42;
+                      const x = 50 + r * Math.cos(rad);
+                      const y = 50 + r * Math.sin(rad);
+                      // start a bit outside the emblem ring (~r 18) so line doesn't cross the logo
+                      const sx = 50 + 18 * Math.cos(rad);
+                      const sy = 50 + 18 * Math.sin(rad);
+                      // end just before the organ (~r-6)
+                      const ex = 50 + (r - 6) * Math.cos(rad);
+                      const ey = 50 + (r - 6) * Math.sin(rad);
+                      return (
+                        <g key={deg}>
+                          <line
+                            x1={sx} y1={sy} x2={ex} y2={ey}
+                            stroke="#F5D78A" strokeOpacity="0.65" strokeWidth="0.22"
+                            strokeDasharray="0.6 0.9" strokeLinecap="round"
+                          />
+                          <line
+                            x1={sx} y1={sy} x2={ex} y2={ey}
+                            stroke="#FFE9A8" strokeOpacity="0.35" strokeWidth="0.7"
+                            strokeLinecap="round"
+                          />
+                          {/* Node where chain meets the organ */}
+                          <circle cx={ex} cy={ey} r="1.6" fill="url(#chainNode)" />
+                          <circle cx={ex} cy={ey} r="0.5" fill="#FFF6D6" />
+                          {/* Inner anchor node near emblem */}
+                          <circle cx={sx} cy={sy} r="0.9" fill="url(#chainNode)" />
+                        </g>
+                      );
+                    })}
+                    {/* Ringed chain encircling all six nodes */}
+                    <circle cx="50" cy="50" r="41" fill="none" stroke="#F5D78A" strokeOpacity="0.45" strokeWidth="0.18" strokeDasharray="0.5 0.9" />
+                  </g>
+                </svg>
+
                 {[
                   { src: organHeart,   alt: "Heart",   deg: 270, r: 40, size: 96,  depth: 1.2 },
                   { src: organLungs,   alt: "Lungs",   deg: 330, r: 42, size: 88,  depth: 0.9 },
