@@ -164,11 +164,13 @@ function HomePage() {
       stage.style.setProperty("--my", `${nextY}px`);
     };
     const onMove = (e: MouseEvent) => {
-      const r = stage.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      nextX = x * 24;
-      nextY = y * 24;
+      // Track cursor across the whole viewport so organs respond freely,
+      // not just when the pointer is inside the stage bounds.
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+      // Wider travel range — organs drift further with the cursor
+      nextX = x * 90;
+      nextY = y * 90;
       if (!raf) raf = requestAnimationFrame(apply);
     };
     const onLeave = () => {
@@ -518,7 +520,7 @@ function HomePage() {
                 <svg
                   aria-hidden
                   viewBox="0 0 100 100"
-                  className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+                  className="chain-fx absolute inset-0 w-full h-full pointer-events-none overflow-visible"
                 >
                   <defs>
                     <radialGradient id="chainNode" cx="50%" cy="50%" r="50%">
