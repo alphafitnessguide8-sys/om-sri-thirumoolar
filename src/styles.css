@@ -355,6 +355,54 @@
     animation: mist-drift 36s ease-in-out -8s infinite reverse;
   }
 
+  /* ===== Responsive chain glow tuning =====
+     Vars control the chain SVG's opacity, hue and warmth per breakpoint
+     so the golden chain stays premium on every screen size. */
+  .chain-fx {
+    --chain-opacity: 0.92;
+    --chain-bright: 1;
+    --chain-sat: 1.05;
+    --chain-hue: 0deg;
+    --chain-blur: 0px;
+    opacity: var(--chain-opacity);
+    filter:
+      brightness(var(--chain-bright))
+      saturate(var(--chain-sat))
+      hue-rotate(var(--chain-hue))
+      drop-shadow(0 0 var(--chain-blur) oklch(0.85 0.14 85 / 0.45));
+    will-change: filter, opacity;
+  }
+  /* Mobile — slightly cooler & softer so the chain doesn't overpower small organs */
+  @media (max-width: 639px) {
+    .chain-fx {
+      --chain-opacity: 0.7;
+      --chain-bright: 0.95;
+      --chain-sat: 0.9;
+      --chain-hue: -4deg;
+      --chain-blur: 4px;
+    }
+  }
+  /* Tablet — balanced warmth, mid intensity */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .chain-fx {
+      --chain-opacity: 0.82;
+      --chain-bright: 1;
+      --chain-sat: 1;
+      --chain-hue: -2deg;
+      --chain-blur: 6px;
+    }
+  }
+  /* Desktop — full premium warm gold with the strongest halo */
+  @media (min-width: 1024px) {
+    .chain-fx {
+      --chain-opacity: 0.95;
+      --chain-bright: 1.05;
+      --chain-sat: 1.12;
+      --chain-hue: 2deg;
+      --chain-blur: 10px;
+    }
+  }
+
   .cine-grain {
     position: absolute;
     inset: -20%;
