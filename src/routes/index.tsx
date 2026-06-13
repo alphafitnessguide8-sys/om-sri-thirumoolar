@@ -19,7 +19,14 @@ import {
   Users,
 } from "lucide-react";
 
-import heroCinematic from "@/assets/hero-stm-cinematic.jpg";
+import heroCinematic from "@/assets/hero-forest-bg.jpg";
+import stmLogo from "@/assets/stm-logo.jpeg";
+import organHeart from "@/assets/organ-heart.png";
+import organBrain from "@/assets/organ-brain.png";
+import organLungs from "@/assets/organ-lungs.png";
+import organKnee from "@/assets/organ-knee.png";
+import organSpine from "@/assets/organ-spine.png";
+import organStomach from "@/assets/organ-stomach.png";
 
 import imgParallaxGarden from "@/assets/parallax-garden.jpg";
 
@@ -213,8 +220,89 @@ function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — empty (background image shows emblem); reserve space */}
-          <div className="hidden lg:block" />
+          {/* RIGHT — 3D floating organ ring with center logo */}
+          <div className="relative hidden lg:flex items-center justify-center h-[640px]">
+            {/* Orbital rings */}
+            <div className="absolute inset-0 grid place-items-center pointer-events-none">
+              {[520, 420, 320].map((s, i) => (
+                <div
+                  key={s}
+                  className="absolute rounded-full border border-[#D4A24C]/25 animate-spin-slow"
+                  style={{
+                    width: s,
+                    height: s,
+                    boxShadow: "0 0 40px rgba(212,162,76,0.18), inset 0 0 30px rgba(212,162,76,0.12)",
+                    animationDuration: `${60 + i * 20}s`,
+                    animationDirection: i % 2 ? "reverse" : "normal",
+                  }}
+                >
+                  {Array.from({ length: 6 }).map((_, k) => {
+                    const angle = (k / 6) * Math.PI * 2;
+                    const x = Math.cos(angle) * (s / 2);
+                    const y = Math.sin(angle) * (s / 2);
+                    return (
+                      <span
+                        key={k}
+                        className="absolute w-2 h-2 rounded-full bg-[#F5D78A]"
+                        style={{
+                          left: "50%",
+                          top: "50%",
+                          transform: `translate(${x - 4}px, ${y - 4}px)`,
+                          boxShadow: "0 0 12px 3px rgba(245,215,138,0.85), 0 0 24px 6px rgba(212,162,76,0.5)",
+                          animation: `breathe ${3 + k * 0.4}s ease-in-out ${k * 0.3}s infinite`,
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              ))}
+              <div
+                className="absolute w-[300px] h-[300px] rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(245,215,138,0.35) 0%, rgba(212,162,76,0.15) 40%, transparent 70%)",
+                  filter: "blur(20px)",
+                }}
+              />
+            </div>
+
+            {/* Center logo */}
+            <div className="relative z-10 w-44 h-44 rounded-full overflow-hidden border-4 border-[#D4A24C] shadow-[0_0_60px_rgba(212,162,76,0.6)] animate-[breathe_5s_ease-in-out_infinite] bg-[#F7F2E8]">
+              <img src={stmLogo} alt="STM Ayurveda Clinic Logo" className="w-full h-full object-cover" />
+            </div>
+
+            {/* Floating 3D organs */}
+            {[
+              { src: organHeart, alt: "Heart", top: "2%", left: "50%", size: 110, delay: "0s", dur: "6s" },
+              { src: organBrain, alt: "Brain", top: "18%", left: "12%", size: 100, delay: "1.2s", dur: "7s" },
+              { src: organLungs, alt: "Lungs", top: "18%", left: "88%", size: 110, delay: "0.6s", dur: "6.5s" },
+              { src: organKnee, alt: "Knee", top: "62%", left: "10%", size: 95, delay: "2s", dur: "7.5s" },
+              { src: organSpine, alt: "Spine", top: "60%", left: "90%", size: 100, delay: "1.6s", dur: "8s" },
+              { src: organStomach, alt: "Stomach", top: "88%", left: "50%", size: 105, delay: "2.4s", dur: "6.8s" },
+            ].map((o) => (
+              <div
+                key={o.alt}
+                className="absolute z-20"
+                style={{
+                  top: o.top,
+                  left: o.left,
+                  transform: "translate(-50%, -50%)",
+                  width: o.size,
+                  height: o.size,
+                  animation: `float ${o.dur} ease-in-out ${o.delay} infinite`,
+                  filter:
+                    "drop-shadow(0 0 18px rgba(245,215,138,0.55)) drop-shadow(0 0 36px rgba(212,162,76,0.35))",
+                }}
+              >
+                <img
+                  src={o.src}
+                  alt={o.alt}
+                  className="w-full h-full object-contain"
+                  style={{ transform: "perspective(600px) rotateY(-6deg)" }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* 100% Natural Care badge */}
