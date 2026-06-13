@@ -13,7 +13,11 @@ import {
   Flame,
   Sun,
   ArrowRight,
+  Quote,
+  Star,
 } from "lucide-react";
+
+import imgParallaxGarden from "@/assets/parallax-garden.jpg";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
