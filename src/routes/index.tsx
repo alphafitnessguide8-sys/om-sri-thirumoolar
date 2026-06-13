@@ -15,7 +15,11 @@ import {
   ArrowRight,
   Quote,
   Star,
+  ChevronDown,
+  Users,
 } from "lucide-react";
+
+import heroCinematic from "@/assets/hero-stm-cinematic.jpg";
 
 import imgParallaxGarden from "@/assets/parallax-garden.jpg";
 
@@ -124,60 +128,112 @@ function HomePage() {
 
   return (
     <SiteLayout>
-      {/* HERO — clean minimal */}
+      {/* HERO — cinematic STM */}
       <section
         ref={heroRef}
-        className="relative min-h-[80vh] flex items-center overflow-hidden pt-28 pb-20 text-[#F5F5F2]"
+        className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16 text-[#F5F5F2]"
       >
-        <div className="absolute inset-0 bg-[#0a1c14]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1c14] via-[#0e2519] to-[#0a1c14]" />
+        {/* Background image */}
+        <img
+          src={heroCinematic}
+          alt="STM Ayurveda — sacred healing emblem surrounded by anatomical organs in a luminous forest"
+          width={1920}
+          height={1280}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Left-side darkening for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1c14]/95 via-[#0a1c14]/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1c14]/40 via-transparent to-[#0a1c14]/70" />
 
-        <div className="relative mx-auto max-w-5xl w-full px-6 text-center animate-fade-up">
-          <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] tracking-[0.28em] uppercase text-[#F7F2E8]/85 bg-white/5 border border-[#D4A24C]/40 backdrop-blur">
-            <Sparkles size={13} className="text-[#D4A24C]" /> Puducherry · Since 2009
+        <div className="relative mx-auto max-w-7xl w-full px-6 lg:px-10 grid lg:grid-cols-2 gap-10 items-center">
+          {/* LEFT — text */}
+          <div className="animate-fade-up">
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] tracking-[0.28em] uppercase text-[#F7F2E8]/90 bg-white/5 border border-[#D4A24C]/40 backdrop-blur">
+              <Sparkles size={13} className="text-[#D4A24C]" /> Puducherry · Since 2009
+            </div>
+
+            <h1 className="mt-7 font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-[#F7F2E8]">
+              Ancient Healing,
+              <br />
+              <span
+                className="italic"
+                style={{
+                  backgroundImage: "linear-gradient(135deg,#F5D78A 0%,#D4A24C 50%,#A87528 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                Gracefully Renewed
+              </span>
+            </h1>
+
+            <div className="mt-7 flex items-center gap-3">
+              <span className="h-px w-24 bg-gradient-to-r from-[#D4A24C]/80 to-transparent" />
+              <Leaf size={14} className="text-[#D4A24C]" />
+            </div>
+
+            <p className="mt-7 max-w-xl text-base md:text-lg text-[#F5F5F2]/80 leading-[1.85] font-light">
+              Restoring balance through Siddha, Ayurveda, Varma and Yoga therapies — a sanctuary of holistic wellness in the heart of Puducherry.
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                to="/appointment"
+                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.9rem] font-medium tracking-wide transition-all duration-500 hover:-translate-y-0.5"
+                style={{
+                  background: "linear-gradient(135deg,#E5B968 0%,#D4A24C 50%,#A87528 100%)",
+                  color: "#18392B",
+                  boxShadow: "0 12px 40px -10px rgba(212,162,76,0.55), inset 0 1px 0 rgba(255,255,255,0.3)",
+                }}
+              >
+                Book Consultation <ArrowRight size={16} />
+              </Link>
+              <Link
+                to="/treatments"
+                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.85rem] border border-[#F7F2E8]/30 text-[#F7F2E8] bg-white/5 backdrop-blur hover:bg-white/10 hover:border-[#D4A24C]/60 transition-all duration-500"
+              >
+                Explore Treatments
+              </Link>
+            </div>
+
+            {/* Stats */}
+            <div className="mt-12 grid grid-cols-3 gap-6 max-w-lg">
+              {[
+                { icon: Leaf, value: "15+", label: "Years Experience" },
+                { icon: Users, value: "10k+", label: "Patients Healed" },
+                { icon: Sparkles, value: "4", label: "Disciplines" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <s.icon size={18} className="text-[#D4A24C] mb-2" />
+                  <p className="font-serif text-2xl md:text-3xl text-[#F7F2E8]">{s.value}</p>
+                  <p className="text-[10px] tracking-[0.22em] uppercase text-[#F5F5F2]/60 mt-1">{s.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <h1 className="mt-8 font-serif text-5xl md:text-7xl leading-[1.05] tracking-tight text-[#F7F2E8]">
-            Ancient Healing,
-            <br />
-            <span
-              className="italic"
-              style={{
-                backgroundImage: "linear-gradient(135deg,#F5D78A 0%,#D4A24C 50%,#A87528 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Gracefully Renewed
+          {/* RIGHT — empty (background image shows emblem); reserve space */}
+          <div className="hidden lg:block" />
+        </div>
+
+        {/* 100% Natural Care badge */}
+        <div className="absolute bottom-10 right-6 md:right-10 z-10">
+          <div className="flex items-center gap-3 rounded-full px-5 py-3 bg-[#0a1c14]/70 backdrop-blur border border-[#D4A24C]/40 text-[#F7F2E8]">
+            <span className="grid place-items-center w-8 h-8 rounded-full bg-[#D4A24C]/15 border border-[#D4A24C]/40">
+              <Leaf size={14} className="text-[#D4A24C]" />
             </span>
-          </h1>
-
-          <div className="mx-auto mt-8 h-px w-32 bg-gradient-to-r from-transparent via-[#D4A24C]/70 to-transparent" />
-
-          <p className="mx-auto mt-8 max-w-2xl text-lg md:text-xl text-[#F5F5F2]/75 leading-[1.8] font-light">
-            Restoring balance through Siddha, Ayurveda, Varma and Yoga therapies — a sanctuary of holistic wellness in the heart of Puducherry.
-          </p>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link
-              to="/appointment"
-              className="inline-flex items-center gap-2 rounded-full px-7 py-[0.9rem] font-medium tracking-wide transition-all duration-500 hover:-translate-y-0.5"
-              style={{
-                background: "linear-gradient(135deg,#E5B968 0%,#D4A24C 50%,#A87528 100%)",
-                color: "#18392B",
-                boxShadow: "0 12px 40px -10px rgba(212,162,76,0.55), inset 0 1px 0 rgba(255,255,255,0.3)",
-              }}
-            >
-              Book Consultation <ArrowRight size={16} />
-            </Link>
-            <Link
-              to="/treatments"
-              className="inline-flex items-center gap-2 rounded-full px-7 py-[0.85rem] border border-[#F7F2E8]/30 text-[#F7F2E8] bg-white/5 backdrop-blur hover:bg-white/10 hover:border-[#D4A24C]/60 transition-all duration-500"
-            >
-              Explore Treatments
-            </Link>
+            <div className="leading-tight">
+              <p className="font-serif text-base">100%</p>
+              <p className="text-[11px] tracking-wider text-[#F5F5F2]/75">Natural Care</p>
+            </div>
           </div>
+        </div>
+
+        {/* Scroll cue */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[#F5F5F2]/70">
+          <span className="text-[10px] tracking-[0.4em] uppercase">Scroll</span>
+          <ChevronDown size={16} className="animate-bounce text-[#D4A24C]" />
         </div>
       </section>
 
