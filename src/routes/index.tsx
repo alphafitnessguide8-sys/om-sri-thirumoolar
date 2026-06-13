@@ -2,9 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { GoldDivider } from "@/components/site/GoldDivider";
-import { CinematicFX } from "@/components/site/CinematicFX";
-import { FloatingLeaves } from "@/components/site/FloatingLeaves";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import {
   Leaf,
   Sparkles,
@@ -14,22 +12,8 @@ import {
   Droplets,
   Flame,
   Sun,
-  ShieldCheck,
-  Star,
   ArrowRight,
-  Quote,
-  Award,
-  Users,
 } from "lucide-react";
-import heroMortar from "@/assets/hero-mortar.jpg";
-import heroBgCinematic from "@/assets/hero-bg-cinematic.jpg";
-import stmLogo from "@/assets/stm-logo.jpeg";
-import organHeart from "@/assets/organ-heart.png";
-import organLungs from "@/assets/organ-lungs.png";
-import organBrain from "@/assets/organ-brain.png";
-import organSpine from "@/assets/organ-spine.png";
-import organKnee from "@/assets/organ-knee.png";
-import organStomach from "@/assets/organ-stomach.png";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
@@ -39,9 +23,6 @@ import imgGalleryHerbs from "@/assets/gallery-herbs.jpg";
 import imgGalleryMassage from "@/assets/gallery-massage.jpg";
 import imgGalleryKizhi from "@/assets/gallery-kizhi.jpg";
 import imgGalleryYoga from "@/assets/gallery-yoga.jpg";
-import imgParallaxGarden from "@/assets/parallax-garden.jpg";
-import heroHerbsLeft from "@/assets/hero-herbs-left.png";
-import heroHerbsRight from "@/assets/hero-herbs-right.png";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
