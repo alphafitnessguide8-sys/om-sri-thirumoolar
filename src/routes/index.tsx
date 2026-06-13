@@ -117,55 +117,6 @@ function Particles() {
 function HomePage() {
   useReveal();
   const heroRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [py, setPy] = useState(0);
-  // Lazy-start non-critical FX after first paint to protect LCP
-  const [fxReady, setFxReady] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setPy(window.scrollY);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    const idle =
-      (window as any).requestIdleCallback?.(() => setFxReady(true), { timeout: 1200 }) ??
-      window.setTimeout(() => setFxReady(true), 600);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      (window as any).cancelIdleCallback?.(idle) ?? clearTimeout(idle as number);
-    };
-  }, []);
-
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    let raf = 0;
-    let nextX = 0, nextY = 0;
-    const apply = () => {
-      raf = 0;
-      stage.style.setProperty("--mx", `${nextX}px`);
-      stage.style.setProperty("--my", `${nextY}px`);
-    };
-    const onMove = (e: MouseEvent) => {
-      // Track cursor across the whole viewport so organs respond freely,
-      // not just when the pointer is inside the stage bounds.
-      const x = e.clientX / window.innerWidth - 0.5;
-      const y = e.clientY / window.innerHeight - 0.5;
-      // Wider travel range — organs drift further with the cursor
-      nextX = x * 90;
-      nextY = y * 90;
-      if (!raf) raf = requestAnimationFrame(apply);
-    };
-    const onLeave = () => {
-      nextX = 0; nextY = 0;
-      if (!raf) raf = requestAnimationFrame(apply);
-    };
-    window.addEventListener("mousemove", onMove, { passive: true });
-    stage.addEventListener("mouseleave", onLeave);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      stage.removeEventListener("mouseleave", onLeave);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
 
   return (
     <SiteLayout>
