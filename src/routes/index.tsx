@@ -19,7 +19,14 @@ import {
   Users,
 } from "lucide-react";
 
-import heroCinematic from "@/assets/hero-stm-cinematic.jpg";
+import heroCinematic from "@/assets/hero-forest-bg.jpg";
+import stmLogo from "@/assets/stm-logo.jpeg";
+import organHeart from "@/assets/organ-heart.png";
+import organBrain from "@/assets/organ-brain.png";
+import organLungs from "@/assets/organ-lungs.png";
+import organKnee from "@/assets/organ-knee.png";
+import organSpine from "@/assets/organ-spine.png";
+import organStomach from "@/assets/organ-stomach.png";
 
 import imgParallaxGarden from "@/assets/parallax-garden.jpg";
 
