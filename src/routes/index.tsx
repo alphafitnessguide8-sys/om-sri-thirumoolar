@@ -2,9 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { GoldDivider } from "@/components/site/GoldDivider";
-import { CinematicFX } from "@/components/site/CinematicFX";
-import { FloatingLeaves } from "@/components/site/FloatingLeaves";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import {
   Leaf,
   Sparkles,
@@ -14,22 +12,12 @@ import {
   Droplets,
   Flame,
   Sun,
-  ShieldCheck,
-  Star,
   ArrowRight,
   Quote,
-  Award,
-  Users,
+  Star,
 } from "lucide-react";
-import heroMortar from "@/assets/hero-mortar.jpg";
-import heroBgCinematic from "@/assets/hero-bg-cinematic.jpg";
-import stmLogo from "@/assets/stm-logo.jpeg";
-import organHeart from "@/assets/organ-heart.png";
-import organLungs from "@/assets/organ-lungs.png";
-import organBrain from "@/assets/organ-brain.png";
-import organSpine from "@/assets/organ-spine.png";
-import organKnee from "@/assets/organ-knee.png";
-import organStomach from "@/assets/organ-stomach.png";
+
+import imgParallaxGarden from "@/assets/parallax-garden.jpg";
 
 import imgSiddha from "@/assets/treatment-siddha.jpg";
 import imgAyurveda from "@/assets/treatment-ayurveda.jpg";
@@ -39,9 +27,6 @@ import imgGalleryHerbs from "@/assets/gallery-herbs.jpg";
 import imgGalleryMassage from "@/assets/gallery-massage.jpg";
 import imgGalleryKizhi from "@/assets/gallery-kizhi.jpg";
 import imgGalleryYoga from "@/assets/gallery-yoga.jpg";
-import imgParallaxGarden from "@/assets/parallax-garden.jpg";
-import heroHerbsLeft from "@/assets/hero-herbs-left.png";
-import heroHerbsRight from "@/assets/hero-herbs-right.png";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
@@ -136,564 +121,63 @@ function Particles() {
 function HomePage() {
   useReveal();
   const heroRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [py, setPy] = useState(0);
-  // Lazy-start non-critical FX after first paint to protect LCP
-  const [fxReady, setFxReady] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setPy(window.scrollY);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    const idle =
-      (window as any).requestIdleCallback?.(() => setFxReady(true), { timeout: 1200 }) ??
-      window.setTimeout(() => setFxReady(true), 600);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      (window as any).cancelIdleCallback?.(idle) ?? clearTimeout(idle as number);
-    };
-  }, []);
-
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    let raf = 0;
-    let nextX = 0, nextY = 0;
-    const apply = () => {
-      raf = 0;
-      stage.style.setProperty("--mx", `${nextX}px`);
-      stage.style.setProperty("--my", `${nextY}px`);
-    };
-    const onMove = (e: MouseEvent) => {
-      // Track cursor across the whole viewport so organs respond freely,
-      // not just when the pointer is inside the stage bounds.
-      const x = e.clientX / window.innerWidth - 0.5;
-      const y = e.clientY / window.innerHeight - 0.5;
-      // Wider travel range — organs drift further with the cursor
-      nextX = x * 90;
-      nextY = y * 90;
-      if (!raf) raf = requestAnimationFrame(apply);
-    };
-    const onLeave = () => {
-      nextX = 0; nextY = 0;
-      if (!raf) raf = requestAnimationFrame(apply);
-    };
-    window.addEventListener("mousemove", onMove, { passive: true });
-    stage.addEventListener("mouseleave", onLeave);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      stage.removeEventListener("mouseleave", onLeave);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
 
   return (
     <SiteLayout>
-      {/* HERO — cinematic deep green premium */}
+      {/* HERO — clean minimal */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20 text-[#F5F5F2]"
+        className="relative min-h-[80vh] flex items-center overflow-hidden pt-28 pb-20 text-[#F5F5F2]"
       >
-        {/* Deep forest green cinematic background base */}
         <div className="absolute inset-0 bg-[#0a1c14]" />
-        {/* Cinematic photoreal forest + golden glow background plate */}
-        <img
-          src={heroBgCinematic}
-          alt=""
-          aria-hidden
-          width={1920}
-          height={1280}
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover opacity-95 slow-zoom"
-        />
-        {/* Emerald color grade over the photo */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(20,60,40,0.25)_0%,_rgba(10,28,20,0.55)_70%,_rgba(8,20,14,0.85)_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1c14]/85 via-[#0a1c14]/30 to-transparent" />
-        {/* Warm golden ambient washes */}
-        <div className="absolute top-1/3 right-[12%] w-[44rem] h-[44rem] rounded-full bg-[#D4A24C]/25 blur-[160px] pointer-events-none" />
-        <div className="absolute -top-32 -left-32 w-[34rem] h-[34rem] rounded-full bg-[#D4A24C]/15 blur-[140px] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1c14] via-[#0e2519] to-[#0a1c14]" />
 
-        {/* Subtle sacred geometry rings */}
-        <div
-          aria-hidden
-          className="absolute -right-48 top-1/2 -translate-y-1/2 w-[44rem] h-[44rem] opacity-[0.06] pointer-events-none"
-          style={{ transform: `translate3d(0, calc(-50% + ${py * -0.05}px), 0)` }}
-        >
-          <div className="absolute inset-0 rounded-full border border-[#D4A24C]" />
-          <div className="absolute inset-[10%] rounded-full border border-[#D4A24C]" />
-          <div className="absolute inset-[22%] rounded-full border border-[#D4A24C]" />
-          <div className="absolute inset-[36%] rounded-full border border-[#D4A24C]" />
-        </div>
-
-        {/* Vignette for cinematic depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.55)_100%)] pointer-events-none" />
-
-        {/* Blurred herbal leaves layer — deferred */}
-        {fxReady && (
-          <div className="absolute inset-0 opacity-[0.18] mix-blend-screen pointer-events-none animate-fade-in">
-            <FloatingLeaves density={10} />
-          </div>
-        )}
-
-        {/* Cinematic god rays + mist — deferred */}
-        {fxReady && <CinematicFX rays mist grain={false} vignette={false} />}
-
-        {/* Bottom shadow gradient for depth */}
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0a1c14] via-[#0a1c14]/60 to-transparent pointer-events-none z-[2]" />
-
-        {/* Bottom-left: Ayurvedic herbs + mortar & pestle */}
-        <img
-          src={heroHerbsLeft}
-          alt="Ayurvedic herbs, turmeric and wooden mortar and pestle"
-          aria-hidden
-          width={1024}
-          height={1024}
-          loading="eager"
-          decoding="async"
-          className="hidden md:block absolute -bottom-6 -left-8 w-[11rem] lg:w-[14rem] xl:w-[16rem] pointer-events-none select-none z-[3] opacity-90"
-          style={{
-            filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.85)) drop-shadow(0 0 30px rgba(212,162,76,0.25))",
-          }}
-        />
-
-        {/* Bottom-right: Neem, copper bowl & sandalwood */}
-        <img
-          src={heroHerbsRight}
-          alt="Neem leaves, copper bowl with healing oil and sandalwood"
-          aria-hidden
-          width={1024}
-          height={1024}
-          loading="eager"
-          decoding="async"
-          className="hidden md:block absolute -bottom-6 -right-8 w-[11rem] lg:w-[14rem] xl:w-[16rem] pointer-events-none select-none z-[3] opacity-90"
-          style={{
-            filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.85)) drop-shadow(0 0 30px rgba(212,162,76,0.25))",
-          }}
-        />
-
-        {fxReady && <Particles />}
-
-        <div className="relative mx-auto max-w-7xl w-full px-6 grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-          {/* LEFT — Content */}
-          <div className="lg:col-span-7 space-y-7 animate-fade-up text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] tracking-[0.28em] uppercase text-[#F7F2E8]/85 bg-white/5 border border-[#D4A24C]/40 backdrop-blur">
-              <Sparkles size={13} className="text-[#D4A24C]" /> Puducherry · Since 2009
-            </div>
-
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-[5.25rem] leading-[1.04] tracking-tight text-[#F7F2E8]">
-              Ancient Healing,
-              <br />
-              <span
-                className="italic"
-                style={{
-                  backgroundImage: "linear-gradient(135deg,#F5D78A 0%,#D4A24C 50%,#A87528 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
-                }}
-              >
-                Gracefully Renewed
-              </span>
-            </h1>
-
-            <div className="h-px w-32 mx-auto lg:mx-0 bg-gradient-to-r from-transparent via-[#D4A24C]/70 to-transparent" />
-
-            <p className="text-lg md:text-xl text-[#F5F5F2]/75 max-w-xl mx-auto lg:mx-0 leading-[1.8] font-light">
-              Restoring balance through Siddha, Ayurveda, Varma and Yoga therapies — a sanctuary of holistic wellness in the heart of Puducherry.
-            </p>
-
-            <div className="flex flex-wrap gap-4 pt-2 justify-center lg:justify-start">
-              <Link
-                to="/appointment"
-                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.9rem] font-medium tracking-wide transition-all duration-500 hover:-translate-y-0.5"
-                style={{
-                  background: "linear-gradient(135deg,#E5B968 0%,#D4A24C 50%,#A87528 100%)",
-                  color: "#18392B",
-                  boxShadow: "0 12px 40px -10px rgba(212,162,76,0.55), inset 0 1px 0 rgba(255,255,255,0.3)",
-                }}
-              >
-                Book Consultation <ArrowRight size={16} />
-              </Link>
-              <Link
-                to="/treatments"
-                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.85rem] border border-[#F7F2E8]/30 text-[#F7F2E8] bg-white/5 backdrop-blur hover:bg-white/10 hover:border-[#D4A24C]/60 transition-all duration-500"
-              >
-                Explore Treatments
-              </Link>
-            </div>
-
-            {/* Trust indicators */}
-            <div className="grid grid-cols-3 gap-4 pt-10 max-w-lg mx-auto lg:mx-0">
-              <div className="text-center lg:text-left">
-                <div className="font-serif text-3xl md:text-4xl text-[#F7F2E8]">15+</div>
-                <div className="text-[10px] tracking-[0.22em] uppercase text-[#F7F2E8]/55 mt-1">Years Experience</div>
-              </div>
-              <div className="text-center lg:text-left border-x border-[#F7F2E8]/15">
-                <div className="font-serif text-3xl md:text-4xl text-[#F7F2E8]">10k+</div>
-                <div className="text-[10px] tracking-[0.22em] uppercase text-[#F7F2E8]/55 mt-1">Patients Healed</div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="font-serif text-3xl md:text-4xl text-[#F7F2E8]">4</div>
-                <div className="text-[10px] tracking-[0.22em] uppercase text-[#F7F2E8]/55 mt-1">Disciplines</div>
-              </div>
-            </div>
+        <div className="relative mx-auto max-w-5xl w-full px-6 text-center animate-fade-up">
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] tracking-[0.28em] uppercase text-[#F7F2E8]/85 bg-white/5 border border-[#D4A24C]/40 backdrop-blur">
+            <Sparkles size={13} className="text-[#D4A24C]" /> Puducherry · Since 2009
           </div>
 
-          {/* RIGHT — Cinematic 3D STM emblem with orbital organ system */}
-          <div className="lg:col-span-5 relative">
-            <div
-              ref={stageRef}
-              className="relative mx-auto w-full max-w-[34rem] aspect-square"
+          <h1 className="mt-8 font-serif text-5xl md:text-7xl leading-[1.05] tracking-tight text-[#F7F2E8]">
+            Ancient Healing,
+            <br />
+            <span
+              className="italic"
               style={{
-                transform: `translate3d(var(--mx,0), calc(${py * -0.05}px + var(--my,0)), 0)`,
-                transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
+                backgroundImage: "linear-gradient(135deg,#F5D78A 0%,#D4A24C 50%,#A87528 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
               }}
             >
-              {/* Volumetric outer halo — wider, brighter, breathing */}
-              <div
-                className="absolute inset-[-18%] rounded-full pulse-sync pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(circle, rgba(255,225,150,0.55) 0%, rgba(245,215,138,0.30) 18%, rgba(212,162,76,0.18) 38%, transparent 68%)",
-                  filter: "blur(40px)",
-                  mixBlendMode: "screen",
-                  ["--pulse-min" as any]: 0.65,
-                  ["--pulse-max" as any]: 1,
-                  ["--pulse-scale" as any]: 1.08,
-                }}
-              />
-              {/* Hot golden core glow behind logo */}
-              <div
-                className="absolute inset-[12%] rounded-full bg-[radial-gradient(circle,_rgba(255,235,170,0.85)_0%,_rgba(245,215,138,0.55)_22%,_rgba(212,162,76,0.30)_42%,_rgba(63,107,75,0.10)_62%,_transparent_78%)] blur-2xl pulse-sync pointer-events-none"
-                style={{
-                  mixBlendMode: "screen",
-                  ["--pulse-min" as any]: 0.7,
-                  ["--pulse-max" as any]: 1,
-                  ["--pulse-scale" as any]: 1.1,
-                }}
-              />
-              <div className="absolute inset-[5%] rounded-full bg-[radial-gradient(circle,_rgba(63,107,75,0.32),_transparent_65%)] blur-3xl pointer-events-none" />
+              Gracefully Renewed
+            </span>
+          </h1>
 
-              {/* Bright starburst rays (8 spokes) — sharp gold burst */}
-              {fxReady && (
-                <div
-                  aria-hidden
-                  className="absolute inset-[-10%] pointer-events-none orbit-gpu pulse-sync"
-                  style={{
-                    background:
-                      "conic-gradient(from 0deg, transparent 0deg, rgba(255,230,160,0.65) 2deg, transparent 8deg, transparent 43deg, rgba(255,225,150,0.45) 45deg, transparent 50deg, transparent 86deg, rgba(255,230,160,0.65) 90deg, transparent 96deg, transparent 133deg, rgba(255,225,150,0.45) 135deg, transparent 140deg, transparent 176deg, rgba(255,230,160,0.65) 180deg, transparent 186deg, transparent 223deg, rgba(255,225,150,0.45) 225deg, transparent 230deg, transparent 266deg, rgba(255,230,160,0.65) 270deg, transparent 276deg, transparent 313deg, rgba(255,225,150,0.45) 315deg, transparent 320deg, transparent 358deg)",
-                    mask: "radial-gradient(circle, transparent 18%, #000 26%, #000 60%, transparent 82%)",
-                    WebkitMask:
-                      "radial-gradient(circle, transparent 18%, #000 26%, #000 60%, transparent 82%)",
-                    filter: "blur(2px) brightness(1.15)",
-                    mixBlendMode: "screen",
-                    animation: "spin 220s linear infinite",
-                    transformOrigin: "50% 50%",
-                    ["--pulse-min" as any]: 0.55,
-                    ["--pulse-max" as any]: 1,
-                    ["--pulse-scale" as any]: 1.06,
-                  }}
-                />
-              )}
+          <div className="mx-auto mt-8 h-px w-32 bg-gradient-to-r from-transparent via-[#D4A24C]/70 to-transparent" />
 
-              {/* Soft fan rays — wider, blurrier counter-rotation for depth */}
-              {fxReady && (
-                <div
-                  aria-hidden
-                  className="absolute inset-[-12%] pointer-events-none orbit-gpu pulse-sync"
-                  style={{
-                    background:
-                      "conic-gradient(from 22deg, transparent 0deg, rgba(245,215,138,0.30) 10deg, transparent 30deg, transparent 70deg, rgba(245,215,138,0.22) 80deg, transparent 100deg, transparent 140deg, rgba(245,215,138,0.30) 150deg, transparent 170deg, transparent 210deg, rgba(245,215,138,0.22) 220deg, transparent 240deg, transparent 280deg, rgba(245,215,138,0.30) 290deg, transparent 310deg, transparent 350deg)",
-                    mask: "radial-gradient(circle, transparent 20%, #000 32%, #000 58%, transparent 80%)",
-                    WebkitMask:
-                      "radial-gradient(circle, transparent 20%, #000 32%, #000 58%, transparent 80%)",
-                    filter: "blur(10px)",
-                    mixBlendMode: "screen",
-                    animation: "spin 340s linear infinite reverse",
-                    transformOrigin: "50% 50%",
-                    ["--pulse-min" as any]: 0.4,
-                    ["--pulse-max" as any]: 0.85,
-                    ["--pulse-scale" as any]: 1.04,
-                  }}
-                />
-              )}
+          <p className="mx-auto mt-8 max-w-2xl text-lg md:text-xl text-[#F5F5F2]/75 leading-[1.8] font-light">
+            Restoring balance through Siddha, Ayurveda, Varma and Yoga therapies — a sanctuary of holistic wellness in the heart of Puducherry.
+          </p>
 
-              {/* Central hot sun behind emblem */}
-              <div
-                className="absolute inset-[28%] rounded-full pulse-sync pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(circle, rgba(255,245,200,0.9) 0%, rgba(255,220,140,0.5) 35%, transparent 70%)",
-                  filter: "blur(18px)",
-                  mixBlendMode: "screen",
-                  ["--pulse-min" as any]: 0.75,
-                  ["--pulse-max" as any]: 1,
-                  ["--pulse-scale" as any]: 1.05,
-                }}
-              />
-
-
-              {/* Faint sacred geometry orbital paths — slow cinematic rotation */}
-              <svg
-                aria-hidden
-                viewBox="0 0 100 100"
-                className="absolute inset-0 w-full h-full pointer-events-none orbit-gpu"
-                style={{ animation: "spin 80s linear infinite", transformOrigin: "50% 50%" }}
-              >
-                <g className="pulse-sync" style={{ ["--pulse-min" as any]: 0.55, ["--pulse-max" as any]: 1, ["--pulse-scale" as any]: 1 }}>
-                  <circle cx="50" cy="50" r="34" fill="none" stroke="#D4A24C" strokeOpacity="0.28" strokeWidth="0.18" strokeDasharray="0.4 1.2" />
-                  <circle cx="50" cy="50" r="48" fill="none" stroke="#D4A24C" strokeOpacity="0.20" strokeWidth="0.18" strokeDasharray="0.3 2" />
-                </g>
-              </svg>
-              <svg
-                aria-hidden
-                viewBox="0 0 100 100"
-                className="absolute inset-0 w-full h-full pointer-events-none orbit-gpu"
-                style={{ animation: "spin 140s linear infinite reverse", transformOrigin: "50% 50%" }}
-              >
-                <g className="pulse-sync" style={{ ["--pulse-min" as any]: 0.45, ["--pulse-max" as any]: 0.95, ["--pulse-scale" as any]: 1 }}>
-                  <circle cx="50" cy="50" r="42" fill="none" stroke="#F5D78A" strokeOpacity="0.22" strokeWidth="0.18" />
-                  <circle cx="50" cy="50" r="46" fill="none" stroke="#F5D78A" strokeOpacity="0.16" strokeWidth="0.12" strokeDasharray="0.2 1.8" />
-                </g>
-              </svg>
-
-              {/* 3D STM emblem — center sun */}
-              <div className="absolute inset-[28%] grid place-items-center pointer-events-none">
-                <div className="relative w-full h-full breathe">
-                  {/* Outer metallic embossed ring */}
-                  <div
-                    className="absolute inset-[-14%] rounded-full"
-                    style={{
-                      background:
-                        "conic-gradient(from 220deg, #6e4d1e, #F5D78A, #D4A24C, #8a5e22, #F5D78A, #A87528, #6e4d1e)",
-                      boxShadow:
-                        "0 30px 60px -20px rgba(0,0,0,0.7), 0 0 80px rgba(212,162,76,0.45)",
-                    }}
-                  />
-                  <div
-                    className="absolute inset-[-10%] rounded-full"
-                    style={{
-                      background:
-                        "radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35), transparent 45%), linear-gradient(160deg, #1a3a2a 0%, #0e2519 60%, #0a1c14 100%)",
-                      boxShadow: "inset 0 2px 0 rgba(255,255,255,0.18), inset 0 -8px 24px rgba(0,0,0,0.6)",
-                    }}
-                  />
-                  {/* Logo disc */}
-                  <div
-                    className="relative w-full h-full rounded-full overflow-hidden"
-                    style={{
-                      boxShadow:
-                        "inset 0 3px 0 rgba(255,255,255,0.35), inset 0 -10px 30px rgba(0,0,0,0.6), 0 0 60px rgba(245,215,138,0.35)",
-                    }}
-                  >
-                    <img
-                      src={stmLogo}
-                      alt="STM — Om Sri Thirumoolar emblem"
-                      className="w-full h-full object-cover"
-                      width={400}
-                      height={400}
-                    />
-                    {/* Glossy top reflection */}
-                    <div className="absolute inset-x-0 top-0 h-1/2 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.35),_transparent_70%)] pointer-events-none" />
-                    {/* Gold rim light — pulses with emblem heartbeat */}
-                    <div
-                      className="absolute inset-0 rounded-full pointer-events-none pulse-sync"
-                      style={{
-                        boxShadow: "inset 0 0 0 1.5px rgba(245,215,138,0.55), inset 0 0 30px rgba(245,215,138,0.4)",
-                        ["--pulse-min" as any]: 0.7,
-                        ["--pulse-max" as any]: 1,
-                        ["--pulse-scale" as any]: 1,
-                      }}
-                    />
-                  </div>
-                  {/* Subtle bottom shadow under emblem */}
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-6 rounded-[50%] bg-black/50 blur-xl" />
-                </div>
-              </div>
-
-              {/* Orbital organs — slow cinematic clockwise orbit, organs stay upright */}
-              <div
-                className="absolute inset-0 pointer-events-none orbit-gpu"
-                style={{ animation: "spin 140s linear infinite", transformOrigin: "50% 50%", willChange: "transform" }}
-              >
-                {/* Golden connecting chain — links each organ to the center emblem */}
-                <svg
-                  aria-hidden
-                  viewBox="0 0 100 100"
-                  className="chain-fx absolute inset-0 w-full h-full pointer-events-none overflow-visible"
-                >
-                  <defs>
-                    <radialGradient id="chainNode" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#FFF4C8" stopOpacity="1" />
-                      <stop offset="35%" stopColor="#E8C078" stopOpacity="0.78" />
-                      <stop offset="100%" stopColor="#A87528" stopOpacity="0" />
-                    </radialGradient>
-                    <linearGradient id="chainLine" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#D4A24C" stopOpacity="0.15" />
-                      <stop offset="50%" stopColor="#F2D389" stopOpacity="0.65" />
-                      <stop offset="100%" stopColor="#D4A24C" stopOpacity="0.15" />
-                    </linearGradient>
-                    <filter id="chainGlow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feGaussianBlur stdDeviation="0.55" result="b" />
-                      <feMerge>
-                        <feMergeNode in="b" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                  </defs>
-                  {/* Encircling ring — slowest, softest breath */}
-                  <g
-                    className="pulse-sync"
-                    style={{ ["--pulse-min" as any]: 0.32, ["--pulse-max" as any]: 0.5, ["--pulse-scale" as any]: 1.005, animationDuration: "8.4s" }}
-                  >
-                    <circle cx="50" cy="50" r="41" fill="none" stroke="#D4A24C" strokeOpacity="0.35" strokeWidth="0.14" strokeDasharray="0.4 1.1" />
-                  </g>
-                  {/* Chain spokes — each node breathes on a staggered cinematic delay */}
-                  {[270, 330, 30, 90, 150, 210].map((deg, i) => {
-                    const rad = (deg * Math.PI) / 180;
-                    const r = i === 0 || i === 3 ? 40 : 42;
-                    const sx = 50 + 18 * Math.cos(rad);
-                    const sy = 50 + 18 * Math.sin(rad);
-                    const ex = 50 + (r - 6) * Math.cos(rad);
-                    const ey = 50 + (r - 6) * Math.sin(rad);
-                    const delay = `${(i * 0.7).toFixed(2)}s`;
-                    return (
-                      <g
-                        key={deg}
-                        filter="url(#chainGlow)"
-                        className="pulse-sync"
-                        style={{
-                          ["--pulse-min" as any]: 0.42,
-                          ["--pulse-max" as any]: 0.88,
-                          ["--pulse-scale" as any]: 1,
-                          ["--pulse-delay" as any]: delay,
-                          animationDuration: "6.3s",
-                          transformOrigin: `${sx}px ${sy}px`,
-                        }}
-                      >
-                        {/* Soft outer halo line */}
-                        <line
-                          x1={sx} y1={sy} x2={ex} y2={ey}
-                          stroke="#F2D389" strokeOpacity="0.18" strokeWidth="0.55"
-                          strokeLinecap="round"
-                        />
-                        {/* Crisp inner dotted line */}
-                        <line
-                          x1={sx} y1={sy} x2={ex} y2={ey}
-                          stroke="url(#chainLine)" strokeWidth="0.18"
-                          strokeDasharray="0.5 0.85" strokeLinecap="round"
-                        />
-                        <circle cx={ex} cy={ey} r="1.4" fill="url(#chainNode)" />
-                        <circle cx={ex} cy={ey} r="0.42" fill="#FFF8DC" opacity="0.95" />
-                        <circle cx={sx} cy={sy} r="0.75" fill="url(#chainNode)" />
-                      </g>
-                    );
-                  })}
-                </svg>
-
-                {[
-                  { src: organHeart,   alt: "Heart",   deg: 270, r: 40, size: 96,  depth: 1.2 },
-                  { src: organLungs,   alt: "Lungs",   deg: 330, r: 42, size: 88,  depth: 0.9 },
-                  { src: organSpine,   alt: "Spine",   deg: 30,  r: 42, size: 110, depth: 1.4 },
-                  { src: organStomach, alt: "Stomach", deg: 90,  r: 40, size: 84,  depth: 0.6 },
-                  { src: organKnee,    alt: "Knee",    deg: 150, r: 42, size: 84,  depth: 0.7 },
-                  { src: organBrain,   alt: "Brain",   deg: 210, r: 42, size: 88,  depth: 0.8 },
-                ].map((o, i) => {
-                  const rad = (o.deg * Math.PI) / 180;
-                  const x = 50 + o.r * Math.cos(rad);
-                  const y = 50 + o.r * Math.sin(rad);
-                  return (
-                    <div
-                      key={i}
-                      className="absolute"
-                      style={{
-                        left: `${x}%`,
-                        top: `${y}%`,
-                        width: o.size,
-                        height: o.size,
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    >
-                      {/* Counter-rotate so organ stays upright */}
-                      <div
-                        className="w-full h-full orbit-gpu"
-                        style={{ animation: "spin 90s linear infinite reverse", transformOrigin: "50% 50%" }}
-                      >
-                        {/* Per-organ depth parallax — heavier organs move more */}
-                        <div
-                          className="w-full h-full depth-parallax"
-                          style={{ ["--depth" as any]: o.depth }}
-                        >
-                          <div
-                            className="w-full h-full animate-float"
-                            style={{
-                              animationDuration: `${7 + (i % 3)}s`,
-                              animationDelay: `${i * 0.4}s`,
-                            }}
-                          >
-                            {/* Synced healing aura — soft circular glow */}
-                            <div
-                              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[170%] h-[170%] rounded-full pulse-sync"
-                              style={{
-                                background:
-                                  "radial-gradient(circle, rgba(245,215,138,0.45) 0%, rgba(245,215,138,0.15) 28%, transparent 60%)",
-                                filter: "blur(18px)",
-                                mixBlendMode: "screen",
-                                ["--pulse-min" as any]: 0.4,
-                                ["--pulse-max" as any]: 0.95,
-                                ["--pulse-scale" as any]: 1.12,
-                              }}
-                            />
-                            <img
-                              src={o.src}
-                              alt={o.alt}
-                              width={256}
-                              height={256}
-                              loading="lazy"
-                              decoding="async"
-                              className="relative w-full h-full object-contain"
-                              style={{
-                                filter:
-                                  "drop-shadow(0 10px 18px rgba(0,0,0,0.55)) drop-shadow(0 0 14px rgba(245,215,138,0.45))",
-                                willChange: "transform",
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Cinematic light rays — deferred */}
-              {fxReady && (
-                <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none animate-fade-in">
-                  <div className="cine-ray cine-ray-1" />
-                  <div className="cine-ray cine-ray-3" />
-                </div>
-              )}
-
-              {/* Lower fog */}
-              <div className="absolute -bottom-6 inset-x-[-10%] h-32 bg-[radial-gradient(ellipse_at_center,_rgba(180,210,180,0.18),_transparent_70%)] blur-2xl pointer-events-none" />
-
-              {/* Floating trust chip */}
-              <div className="absolute -bottom-6 right-0 bg-[#0e2519]/85 backdrop-blur-xl rounded-2xl px-4 py-3 border border-[#D4A24C]/40 flex items-center gap-3 shadow-2xl animate-float-slow z-10">
-                <div className="w-9 h-9 rounded-full bg-[#D4A24C]/20 grid place-items-center">
-                  <Leaf size={16} className="text-[#D4A24C]" />
-                </div>
-                <div className="leading-tight">
-                  <div className="text-[10px] tracking-[0.2em] uppercase text-[#F7F2E8]/55">100%</div>
-                  <div className="text-sm font-medium text-[#F7F2E8]">Natural Care</div>
-                </div>
-              </div>
-            </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <Link
+              to="/appointment"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-[0.9rem] font-medium tracking-wide transition-all duration-500 hover:-translate-y-0.5"
+              style={{
+                background: "linear-gradient(135deg,#E5B968 0%,#D4A24C 50%,#A87528 100%)",
+                color: "#18392B",
+                boxShadow: "0 12px 40px -10px rgba(212,162,76,0.55), inset 0 1px 0 rgba(255,255,255,0.3)",
+              }}
+            >
+              Book Consultation <ArrowRight size={16} />
+            </Link>
+            <Link
+              to="/treatments"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-[0.85rem] border border-[#F7F2E8]/30 text-[#F7F2E8] bg-white/5 backdrop-blur hover:bg-white/10 hover:border-[#D4A24C]/60 transition-all duration-500"
+            >
+              Explore Treatments
+            </Link>
           </div>
-        </div>
-
-        {/* Scroll cue */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#F7F2E8]/40 text-[10px] tracking-[0.4em] uppercase animate-pulse">
-          Scroll
         </div>
       </section>
 
