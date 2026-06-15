@@ -169,56 +169,61 @@ function HomePage() {
         className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-16 text-[#F5F5F2]"
         style={{ backgroundColor: "#0a1a0e" }}
       >
-        {/* Background image (full design reference) */}
+        {/* Background image — deep forest */}
         <img
-          src={heroPremium.url}
-          alt="STM Ayurveda — sacred healing emblem encircled by anatomical organs in a luminous herbal forest"
+          src={heroForest}
+          alt=""
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        {/* Top fade to hide painted nav area behind the real nav */}
+        {/* Deeper green wash */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#0d2010_0%,#0a1a0e_55%,#06140c_100%)] mix-blend-multiply pointer-events-none" />
+        {/* Top fade behind real nav */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#06140c] via-[#06140c]/70 to-transparent pointer-events-none" />
         {/* Left-side darkening for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#06140c]/85 via-[#06140c]/35 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#06140c]/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#06140c]/85 via-[#06140c]/30 to-transparent pointer-events-none" />
+        {/* Bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#06140c] via-[#06140c]/60 to-transparent pointer-events-none" />
 
-        {/* Animated sparkle overlay on the right (orbital glow) */}
-        <div className="absolute inset-0 pointer-events-none hidden md:block">
-          {Array.from({ length: 14 }).map((_, i) => {
-            const left = 55 + ((i * 13) % 40);
-            const top = 15 + ((i * 17) % 70);
-            const size = 3 + (i % 4);
-            const dur = 2.4 + (i % 5) * 0.6;
-            return (
-              <span
-                key={i}
-                className="absolute rounded-full"
-                style={{
-                  left: `${left}%`,
-                  top: `${top}%`,
-                  width: size,
-                  height: size,
-                  background: "#F5D78A",
-                  boxShadow: "0 0 10px 2px rgba(245,215,138,0.9), 0 0 22px 6px rgba(212,162,76,0.55)",
-                  animation: `breathe ${dur}s ease-in-out ${(i % 6) * 0.3}s infinite`,
-                  opacity: 0.85,
-                }}
-              />
-            );
-          })}
-        </div>
+        {/* Lush herb overlays — sides + bottom */}
+        <img
+          src={heroHerbsLeft}
+          alt=""
+          aria-hidden="true"
+          className="absolute -left-10 bottom-0 w-[26%] max-w-[420px] opacity-90 pointer-events-none select-none"
+        />
+        <img
+          src={heroHerbsRight}
+          alt=""
+          aria-hidden="true"
+          className="absolute -right-10 top-1/3 w-[24%] max-w-[400px] opacity-80 pointer-events-none select-none"
+        />
+        <img
+          src={heroHerbsLeft}
+          alt=""
+          aria-hidden="true"
+          className="absolute left-1/4 -bottom-6 w-[40%] max-w-[640px] opacity-70 pointer-events-none select-none scale-x-[-1]"
+        />
+        {/* Golden mortar & pestle — lower right corner */}
+        <img
+          src={heroMortar}
+          alt=""
+          aria-hidden="true"
+          className="absolute bottom-2 right-4 w-[180px] md:w-[230px] opacity-90 pointer-events-none select-none mix-blend-screen drop-shadow-[0_0_30px_rgba(212,162,76,0.45)]"
+        />
 
         <div className="relative mx-auto max-w-7xl w-full px-6 lg:px-10 grid lg:grid-cols-2 gap-10 items-center">
           {/* LEFT — text */}
           <div className="animate-fade-up">
             <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] tracking-[0.28em] uppercase text-[#F7F2E8]/90 bg-white/5 border border-[#D4A24C]/40 backdrop-blur">
-              <Sparkles size={13} className="text-[#D4A24C]" /> Puducherry · Since 2009
+              <LotusIcon size={13} className="text-[#D4A24C]" /> Puducherry · Since 2009
             </div>
 
             <h1 className="mt-8 font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-[#F7F2E8] font-bold">
               Ancient Healing,
               <br />
               <span
-                className="italic font-normal"
+                className="italic font-normal text-[1.05em]"
                 style={{
                   backgroundImage: "linear-gradient(135deg,#F5D78A 0%,#E2C06B 45%,#C9A84C 100%)",
                   WebkitBackgroundClip: "text",
@@ -230,12 +235,12 @@ function HomePage() {
               </span>
             </h1>
 
-            <div className="mt-8 flex items-center gap-3">
+            <div className="mt-10 flex items-center gap-3">
               <span className="h-px w-24 bg-gradient-to-r from-[#D4A24C]/80 to-transparent" />
               <Leaf size={14} className="text-[#D4A24C]" />
             </div>
 
-            <p className="mt-8 max-w-xl text-base md:text-lg text-[#F5F5F2]/85 leading-[1.85] font-light">
+            <p className="mt-10 max-w-xl text-base md:text-lg text-[#F5F5F2]/85 leading-[1.85] font-light">
               Restoring balance through Siddha, Ayurveda, Varma and Yoga therapies — a sanctuary of holistic wellness in the heart of Puducherry.
             </p>
 
@@ -244,30 +249,31 @@ function HomePage() {
                 to="/appointment"
                 className="inline-flex items-center gap-2 rounded-full px-7 py-[0.95rem] font-medium tracking-wide transition-all duration-500 hover:-translate-y-0.5"
                 style={{
-                  background: "linear-gradient(135deg,#E5B968 0%,#D4A24C 50%,#A87528 100%)",
+                  background: "linear-gradient(135deg,#E2C06B 0%,#C9A84C 50%,#A87528 100%)",
                   color: "#18392B",
-                  boxShadow: "0 12px 40px -10px rgba(212,162,76,0.6), inset 0 1px 0 rgba(255,255,255,0.35)",
+                  boxShadow: "0 12px 40px -10px rgba(212,162,76,0.65), inset 0 1px 0 rgba(255,255,255,0.4)",
                 }}
               >
                 Book Consultation <ArrowRight size={16} />
               </Link>
               <Link
                 to="/treatments"
-                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.9rem] border border-[#F7F2E8]/40 text-[#F7F2E8] bg-white/5 backdrop-blur hover:bg-white/10 hover:border-[#D4A24C]/60 transition-all duration-500"
+                className="inline-flex items-center gap-2 rounded-full px-7 py-[0.9rem] border border-[#F7F2E8]/50 text-[#F7F2E8] bg-[#06140c]/40 backdrop-blur hover:bg-[#06140c]/60 hover:border-[#D4A24C]/60 transition-all duration-500"
               >
                 Explore Treatments
               </Link>
             </div>
 
             {/* Stats with lotus icons */}
-            <div className="mt-14 grid grid-cols-3 gap-8 max-w-lg">
+            <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-xl">
               {[
                 { value: "15+", label: "Years Experience" },
                 { value: "10k+", label: "Patients Healed" },
                 { value: "4", label: "Disciplines" },
+                { value: "100%", label: "Natural Care" },
               ].map((s) => (
                 <div key={s.label}>
-                  <LotusIcon className="text-[#D4A24C] mb-2" />
+                  <LotusIcon size={20} className="text-[#D4A24C] mb-2" />
                   <p className="font-serif text-2xl md:text-3xl text-[#F7F2E8]">{s.value}</p>
                   <p className="text-[10px] tracking-[0.22em] uppercase text-[#F5F5F2]/65 mt-1">{s.label}</p>
                 </div>
@@ -275,8 +281,146 @@ function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — reserved space for background composition */}
-          <div className="hidden lg:block h-[640px]" />
+          {/* RIGHT — 3D floating organ ring with center logo */}
+          <div className="relative hidden lg:flex items-center justify-center h-[640px]">
+            {/* Orbital golden rings */}
+            <div className="absolute inset-0 grid place-items-center pointer-events-none">
+              {[560, 440, 320].map((s, i) => (
+                <div
+                  key={s}
+                  className="absolute rounded-full animate-spin-slow"
+                  style={{
+                    width: s,
+                    height: s,
+                    border: "1px solid rgba(212,162,76,0.55)",
+                    boxShadow:
+                      "0 0 30px rgba(212,162,76,0.35), inset 0 0 40px rgba(226,192,107,0.18)",
+                    animationDuration: `${70 + i * 25}s`,
+                    animationDirection: i % 2 ? "reverse" : "normal",
+                  }}
+                >
+                  {/* Sparkle stars riding each ring */}
+                  {Array.from({ length: 8 }).map((_, k) => {
+                    const angle = (k / 8) * Math.PI * 2;
+                    const x = Math.cos(angle) * (s / 2);
+                    const y = Math.sin(angle) * (s / 2);
+                    return (
+                      <span
+                        key={k}
+                        className="absolute"
+                        style={{
+                          left: "50%",
+                          top: "50%",
+                          width: 6,
+                          height: 6,
+                          transform: `translate(${x - 3}px, ${y - 3}px) rotate(45deg)`,
+                          background:
+                            "linear-gradient(135deg,#F5D78A,#E2C06B)",
+                          boxShadow:
+                            "0 0 12px 3px rgba(245,215,138,0.9), 0 0 28px 8px rgba(212,162,76,0.5)",
+                          animation: `breathe ${3 + k * 0.3}s ease-in-out ${k * 0.25}s infinite`,
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              ))}
+              {/* Soft golden aura behind logo */}
+              <div
+                className="absolute w-[340px] h-[340px] rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(245,215,138,0.45) 0%, rgba(212,162,76,0.18) 40%, transparent 70%)",
+                  filter: "blur(24px)",
+                }}
+              />
+            </div>
+
+            {/* Free-floating sparkle dots scattered across the ring area */}
+            {Array.from({ length: 22 }).map((_, i) => {
+              const left = 10 + ((i * 17) % 80);
+              const top = 8 + ((i * 23) % 84);
+              const size = 2 + (i % 4);
+              const dur = 2.2 + (i % 5) * 0.5;
+              return (
+                <span
+                  key={`spk-${i}`}
+                  className="absolute rounded-full pointer-events-none"
+                  style={{
+                    left: `${left}%`,
+                    top: `${top}%`,
+                    width: size,
+                    height: size,
+                    background: "#F5D78A",
+                    boxShadow:
+                      "0 0 8px 2px rgba(245,215,138,0.9), 0 0 18px 5px rgba(212,162,76,0.5)",
+                    animation: `breathe ${dur}s ease-in-out ${(i % 6) * 0.3}s infinite`,
+                  }}
+                />
+              );
+            })}
+
+            {/* Center STM logo medallion */}
+            <div
+              className="relative z-10 w-56 h-56 rounded-full overflow-hidden bg-[#F7F2E8] animate-[breathe_5s_ease-in-out_infinite]"
+              style={{
+                border: "4px solid #D4A24C",
+                boxShadow:
+                  "0 0 0 6px rgba(212,162,76,0.18), 0 0 70px 12px rgba(245,215,138,0.55), inset 0 0 30px rgba(212,162,76,0.25)",
+              }}
+            >
+              <img
+                src={stmLogo}
+                alt="STM Ayurveda Clinic Logo"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Floating 3D organs — placed precisely on the rings */}
+            {[
+              { src: organHeart, alt: "Heart", top: "4%", left: "50%", size: 110, delay: "0s", dur: "6s" },
+              { src: organBrain, alt: "Brain", top: "22%", left: "10%", size: 100, delay: "1.2s", dur: "7s" },
+              { src: organLungs, alt: "Lungs", top: "22%", left: "90%", size: 110, delay: "0.6s", dur: "6.5s" },
+              { src: organKnee, alt: "Knee", top: "70%", left: "12%", size: 95, delay: "2s", dur: "7.5s" },
+              { src: organSpine, alt: "Spine", top: "68%", left: "88%", size: 100, delay: "1.6s", dur: "8s" },
+              { src: organStomach, alt: "Stomach", top: "92%", left: "50%", size: 105, delay: "2.4s", dur: "6.8s" },
+            ].map((o) => (
+              <div
+                key={o.alt}
+                className="absolute z-20"
+                style={{
+                  top: o.top,
+                  left: o.left,
+                  transform: "translate(-50%, -50%)",
+                  width: o.size,
+                  height: o.size,
+                  animation: `float ${o.dur} ease-in-out ${o.delay} infinite`,
+                  filter:
+                    "drop-shadow(0 0 18px rgba(245,215,138,0.65)) drop-shadow(0 0 38px rgba(212,162,76,0.4))",
+                }}
+              >
+                <img
+                  src={o.src}
+                  alt={o.alt}
+                  className="w-full h-full object-contain"
+                  style={{ transform: "perspective(600px) rotateY(-6deg)" }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 100% Natural Care badge */}
+        <div className="absolute bottom-10 right-6 md:right-10 z-10">
+          <div className="flex items-center gap-3 rounded-2xl px-5 py-3 bg-[#06140c]/75 backdrop-blur-xl border border-[#D4A24C]/40 text-[#F7F2E8] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)]">
+            <span className="grid place-items-center w-9 h-9 rounded-full bg-[#D4A24C]/15 border border-[#D4A24C]/40">
+              <Leaf size={15} className="text-[#D4A24C]" />
+            </span>
+            <div className="leading-tight">
+              <p className="font-serif text-lg">100%</p>
+              <p className="text-[11px] tracking-wider text-[#F5F5F2]/80">Natural Care</p>
+            </div>
+          </div>
         </div>
 
         {/* 100% Natural Care badge */}
