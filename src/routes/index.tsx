@@ -122,6 +122,31 @@ function Particles() {
   );
 }
 
+function LotusIcon({ className = "", size = 20 }: { className?: string; size?: number }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 4c1.6 2.2 2.4 4.4 2.4 6.6 0 1.4-.8 2.6-2.4 3.4-1.6-.8-2.4-2-2.4-3.4C9.6 8.4 10.4 6.2 12 4z" />
+      <path d="M4.5 9.5c2.4.4 4.2 1.4 5.4 2.8.8 1 .8 2.3-.2 3.7-1.7-.2-3-.8-3.9-1.8-1.1-1.2-1.5-2.8-1.3-4.7z" />
+      <path d="M19.5 9.5c-2.4.4-4.2 1.4-5.4 2.8-.8 1-.8 2.3.2 3.7 1.7-.2 3-.8 3.9-1.8 1.1-1.2 1.5-2.8 1.3-4.7z" />
+      <path d="M4 15c2.4 0 4.6.7 6.4 2-.4 1.4-1.4 2.3-3 2.7-1.6.4-3-.2-4-1.8.1-1 .3-2 .6-2.9z" />
+      <path d="M20 15c-2.4 0-4.6.7-6.4 2 .4 1.4 1.4 2.3 3 2.7 1.6.4 3-.2 4-1.8-.1-1-.3-2-.6-2.9z" />
+      <path d="M12 14v6" />
+    </svg>
+  );
+}
+
 function HomePage() {
   useReveal();
   const heroRef = useRef<HTMLDivElement>(null);
