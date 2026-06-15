@@ -19,7 +19,17 @@ import {
   Users,
 } from "lucide-react";
 
-import heroPremium from "@/assets/hero-stm-premium.png.asset.json";
+import heroForest from "@/assets/hero-forest-bg.jpg";
+import heroHerbsLeft from "@/assets/hero-herbs-left.png";
+import heroHerbsRight from "@/assets/hero-herbs-right.png";
+import heroMortar from "@/assets/hero-mortar.jpg";
+import stmLogo from "@/assets/stm-logo.jpeg";
+import organHeart from "@/assets/organ-heart.png";
+import organBrain from "@/assets/organ-brain.png";
+import organLungs from "@/assets/organ-lungs.png";
+import organKnee from "@/assets/organ-knee.png";
+import organSpine from "@/assets/organ-spine.png";
+import organStomach from "@/assets/organ-stomach.png";
 
 import imgParallaxGarden from "@/assets/parallax-garden.jpg";
 
