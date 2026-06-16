@@ -185,28 +185,7 @@ function HomePage() {
         {/* Bottom fade */}
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#06140c] via-[#06140c]/60 to-transparent pointer-events-none" />
 
-        {/* Decorative herbs — STRICTLY right half only, clipped */}
-        <div className="absolute inset-y-0 right-0 w-[55%] overflow-hidden pointer-events-none">
-          <img
-            src={heroHerbsRight}
-            alt=""
-            aria-hidden="true"
-            className="absolute -right-10 top-1/4 w-[55%] max-w-[400px] opacity-70 select-none"
-          />
-          <img
-            src={heroHerbsLeft}
-            alt=""
-            aria-hidden="true"
-            className="absolute -right-6 -bottom-6 w-[50%] max-w-[380px] opacity-60 select-none scale-x-[-1]"
-          />
-          {/* Golden mortar & pestle — lower right corner */}
-          <img
-            src={heroMortar}
-            alt=""
-            aria-hidden="true"
-            className="absolute bottom-2 right-4 w-[160px] md:w-[210px] opacity-85 select-none mix-blend-screen drop-shadow-[0_0_30px_rgba(212,162,76,0.45)]"
-          />
-        </div>
+        {/* Decorative overlays removed per request — keep the hero background clean */}
 
         <div className="relative mx-auto max-w-7xl w-full px-6 lg:px-10 grid lg:grid-cols-2 gap-10 items-center">
           {/* LEFT — text */}
