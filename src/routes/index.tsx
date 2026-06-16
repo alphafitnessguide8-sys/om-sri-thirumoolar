@@ -334,7 +334,7 @@ function HomePage() {
             </div>
 
             {/* Free-floating sparkle dots scattered across the ring area */}
-            {Array.from({ length: 22 }).map((_, i) => {
+            {Array.from({ length: 10 }).map((_, i) => {
               const left = 10 + ((i * 17) % 80);
               const top = 8 + ((i * 23) % 84);
               const size = 2 + (i % 4);
