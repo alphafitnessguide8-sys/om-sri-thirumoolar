@@ -288,16 +288,17 @@ function HomePage() {
                   style={{
                     width: s,
                     height: s,
-                    border: "1px solid rgba(212,162,76,0.55)",
+                    border: "1.5px solid rgba(226,192,107,0.7)",
                     boxShadow:
-                      "0 0 30px rgba(212,162,76,0.35), inset 0 0 40px rgba(226,192,107,0.18)",
+                      "0 0 40px rgba(212,162,76,0.5), 0 0 80px rgba(245,215,138,0.25), inset 0 0 50px rgba(226,192,107,0.22)",
                     animationDuration: `${70 + i * 25}s`,
                     animationDirection: i % 2 ? "reverse" : "normal",
+                    willChange: "transform",
                   }}
                 >
                   {/* Sparkle stars riding each ring */}
-                  {Array.from({ length: 8 }).map((_, k) => {
-                    const angle = (k / 8) * Math.PI * 2;
+                  {Array.from({ length: 6 }).map((_, k) => {
+                    const angle = (k / 6) * Math.PI * 2;
                     const x = Math.cos(angle) * (s / 2);
                     const y = Math.sin(angle) * (s / 2);
                     return (
