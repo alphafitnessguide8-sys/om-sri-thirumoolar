@@ -180,37 +180,33 @@ function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#0d2010_0%,#0a1a0e_55%,#06140c_100%)] mix-blend-multiply pointer-events-none" />
         {/* Top fade behind real nav */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#06140c] via-[#06140c]/70 to-transparent pointer-events-none" />
-        {/* Left-side darkening for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#06140c]/85 via-[#06140c]/30 to-transparent pointer-events-none" />
+        {/* Strong left-side darkening for text legibility */}
+        <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-[#0a1a0e] via-[#0a1a0e]/95 to-transparent pointer-events-none" />
         {/* Bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#06140c] via-[#06140c]/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#06140c] via-[#06140c]/60 to-transparent pointer-events-none" />
 
-        {/* Lush herb overlays — sides + bottom */}
-        <img
-          src={heroHerbsLeft}
-          alt=""
-          aria-hidden="true"
-          className="absolute -left-10 bottom-0 w-[26%] max-w-[420px] opacity-90 pointer-events-none select-none"
-        />
-        <img
-          src={heroHerbsRight}
-          alt=""
-          aria-hidden="true"
-          className="absolute -right-10 top-1/3 w-[24%] max-w-[400px] opacity-80 pointer-events-none select-none"
-        />
-        <img
-          src={heroHerbsLeft}
-          alt=""
-          aria-hidden="true"
-          className="absolute left-1/4 -bottom-6 w-[40%] max-w-[640px] opacity-70 pointer-events-none select-none scale-x-[-1]"
-        />
-        {/* Golden mortar & pestle — lower right corner */}
-        <img
-          src={heroMortar}
-          alt=""
-          aria-hidden="true"
-          className="absolute bottom-2 right-4 w-[180px] md:w-[230px] opacity-90 pointer-events-none select-none mix-blend-screen drop-shadow-[0_0_30px_rgba(212,162,76,0.45)]"
-        />
+        {/* Decorative herbs — STRICTLY right half only, clipped */}
+        <div className="absolute inset-y-0 right-0 w-[55%] overflow-hidden pointer-events-none">
+          <img
+            src={heroHerbsRight}
+            alt=""
+            aria-hidden="true"
+            className="absolute -right-10 top-1/4 w-[55%] max-w-[400px] opacity-70 select-none"
+          />
+          <img
+            src={heroHerbsLeft}
+            alt=""
+            aria-hidden="true"
+            className="absolute -right-6 -bottom-6 w-[50%] max-w-[380px] opacity-60 select-none scale-x-[-1]"
+          />
+          {/* Golden mortar & pestle — lower right corner */}
+          <img
+            src={heroMortar}
+            alt=""
+            aria-hidden="true"
+            className="absolute bottom-2 right-4 w-[160px] md:w-[210px] opacity-85 select-none mix-blend-screen drop-shadow-[0_0_30px_rgba(212,162,76,0.45)]"
+          />
+        </div>
 
         <div className="relative mx-auto max-w-7xl w-full px-6 lg:px-10 grid lg:grid-cols-2 gap-10 items-center">
           {/* LEFT — text */}
@@ -292,16 +288,17 @@ function HomePage() {
                   style={{
                     width: s,
                     height: s,
-                    border: "1px solid rgba(212,162,76,0.55)",
+                    border: "1.5px solid rgba(226,192,107,0.7)",
                     boxShadow:
-                      "0 0 30px rgba(212,162,76,0.35), inset 0 0 40px rgba(226,192,107,0.18)",
+                      "0 0 40px rgba(212,162,76,0.5), 0 0 80px rgba(245,215,138,0.25), inset 0 0 50px rgba(226,192,107,0.22)",
                     animationDuration: `${70 + i * 25}s`,
                     animationDirection: i % 2 ? "reverse" : "normal",
+                    willChange: "transform",
                   }}
                 >
                   {/* Sparkle stars riding each ring */}
-                  {Array.from({ length: 8 }).map((_, k) => {
-                    const angle = (k / 8) * Math.PI * 2;
+                  {Array.from({ length: 6 }).map((_, k) => {
+                    const angle = (k / 6) * Math.PI * 2;
                     const x = Math.cos(angle) * (s / 2);
                     const y = Math.sin(angle) * (s / 2);
                     return (
@@ -337,7 +334,7 @@ function HomePage() {
             </div>
 
             {/* Free-floating sparkle dots scattered across the ring area */}
-            {Array.from({ length: 22 }).map((_, i) => {
+            {Array.from({ length: 10 }).map((_, i) => {
               const left = 10 + ((i * 17) % 80);
               const top = 8 + ((i * 23) % 84);
               const size = 2 + (i % 4);
