@@ -4,6 +4,7 @@ import { Footer } from "./Footer";
 import { WhatsAppFab } from "./WhatsAppFab";
 import { ScrollProgress } from "./ScrollProgress";
 import { BackToTop } from "./BackToTop";
+import { ChatAssistant } from "./ChatAssistant";
 
 export function SiteLayout({ children }: { children: React.ReactNode }) {
   useReveal();
@@ -15,6 +16,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
       <Footer />
       <WhatsAppFab />
       <BackToTop />
+      <ChatAssistant />
     </div>
   );
 }
