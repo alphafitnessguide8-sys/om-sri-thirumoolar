@@ -379,10 +379,31 @@ function HomePage() {
                       "drop-shadow(0 0 18px rgba(245,215,138,0.65)) drop-shadow(0 0 38px rgba(212,162,76,0.4))",
                   }}
                 >
+                  {/* Glowing aura disc behind each organ */}
+                  <div
+                    className="absolute inset-0 rounded-full -z-10"
+                    style={{
+                      background:
+                        "radial-gradient(circle at center, rgba(245,215,138,0.55) 0%, rgba(212,162,76,0.28) 45%, transparent 72%)",
+                      filter: "blur(10px)",
+                      transform: "scale(1.35)",
+                      animation: `breathe ${3 + (o.size % 4) * 0.4}s ease-in-out ${o.delay} infinite`,
+                    }}
+                  />
+                  {/* Sharp golden ring outline */}
+                  <div
+                    className="absolute inset-0 rounded-full -z-10"
+                    style={{
+                      border: "1.5px solid rgba(245,215,138,0.55)",
+                      boxShadow:
+                        "0 0 18px rgba(245,215,138,0.5), inset 0 0 22px rgba(245,215,138,0.22)",
+                      transform: "scale(1.22)",
+                    }}
+                  />
                   <img
                     src={o.src}
                     alt={o.alt}
-                    className="w-full h-full object-contain"
+                    className="relative z-10 w-full h-full object-contain"
                     style={{ transform: "perspective(600px) rotateY(-6deg)" }}
                   />
                 </div>
@@ -405,18 +426,6 @@ function HomePage() {
           </div>
         </div>
 
-        {/* 100% Natural Care badge */}
-        <div className="absolute bottom-10 right-6 md:right-10 z-10">
-          <div className="flex items-center gap-3 rounded-2xl px-5 py-3 bg-[#06140c]/75 backdrop-blur-xl border border-[#D4A24C]/40 text-[#F7F2E8] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)]">
-            <span className="grid place-items-center w-9 h-9 rounded-full bg-[#D4A24C]/15 border border-[#D4A24C]/40">
-              <Leaf size={15} className="text-[#D4A24C]" />
-            </span>
-            <div className="leading-tight">
-              <p className="font-serif text-lg">100%</p>
-              <p className="text-[11px] tracking-wider text-[#F5F5F2]/80">Natural Care</p>
-            </div>
-          </div>
-        </div>
 
         {/* Scroll cue */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[#F5F5F2]/70">
