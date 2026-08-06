@@ -352,37 +352,43 @@ function HomePage() {
               />
             </div>
 
-            {/* Floating 3D organs — placed precisely on the rings */}
+            {/* Floating 3D organs — mathematically placed on the 560px orbit */}
             {[
-              { src: organHeart, alt: "Heart", top: "4%", left: "50%", size: 110, delay: "0s", dur: "6s" },
-              { src: organBrain, alt: "Brain", top: "22%", left: "10%", size: 100, delay: "1.2s", dur: "7s" },
-              { src: organLungs, alt: "Lungs", top: "22%", left: "90%", size: 110, delay: "0.6s", dur: "6.5s" },
-              { src: organKnee, alt: "Knee", top: "70%", left: "12%", size: 95, delay: "2s", dur: "7.5s" },
-              { src: organSpine, alt: "Spine", top: "68%", left: "88%", size: 100, delay: "1.6s", dur: "8s" },
-              { src: organStomach, alt: "Stomach", top: "92%", left: "50%", size: 105, delay: "2.4s", dur: "6.8s" },
-            ].map((o) => (
-              <div
-                key={o.alt}
-                className="absolute z-20"
-                style={{
-                  top: o.top,
-                  left: o.left,
-                  transform: "translate(-50%, -50%)",
-                  width: o.size,
-                  height: o.size,
-                  animation: `float ${o.dur} ease-in-out ${o.delay} infinite`,
-                  filter:
-                    "drop-shadow(0 0 18px rgba(245,215,138,0.65)) drop-shadow(0 0 38px rgba(212,162,76,0.4))",
-                }}
-              >
-                <img
-                  src={o.src}
-                  alt={o.alt}
-                  className="w-full h-full object-contain"
-                  style={{ transform: "perspective(600px) rotateY(-6deg)" }}
-                />
-              </div>
-            ))}
+              { src: organHeart, alt: "Heart", angle: -90, size: 110, delay: "0s", dur: "6s" },
+              { src: organLungs, alt: "Lungs", angle: -30, size: 110, delay: "0.6s", dur: "6.5s" },
+              { src: organSpine, alt: "Spine", angle: 30, size: 100, delay: "1.6s", dur: "8s" },
+              { src: organStomach, alt: "Stomach", angle: 90, size: 105, delay: "2.4s", dur: "6.8s" },
+              { src: organKnee, alt: "Knee", angle: 150, size: 95, delay: "2s", dur: "7.5s" },
+              { src: organBrain, alt: "Brain", angle: -150, size: 100, delay: "1.2s", dur: "7s" },
+            ].map((o) => {
+              const R = 280; // radius of the outer 560px ring
+              const rad = (o.angle * Math.PI) / 180;
+              const x = Math.cos(rad) * R;
+              const y = Math.sin(rad) * R;
+              return (
+                <div
+                  key={o.alt}
+                  className="absolute z-20 left-1/2 top-1/2"
+                  style={{
+                    width: o.size,
+                    height: o.size,
+                    marginLeft: x - o.size / 2,
+                    marginTop: y - o.size / 2,
+                    animation: `float ${o.dur} ease-in-out ${o.delay} infinite`,
+                    filter:
+                      "drop-shadow(0 0 18px rgba(245,215,138,0.65)) drop-shadow(0 0 38px rgba(212,162,76,0.4))",
+                  }}
+                >
+                  <img
+                    src={o.src}
+                    alt={o.alt}
+                    className="w-full h-full object-contain"
+                    style={{ transform: "perspective(600px) rotateY(-6deg)" }}
+                  />
+                </div>
+              );
+            })}
+
           </div>
         </div>
 
