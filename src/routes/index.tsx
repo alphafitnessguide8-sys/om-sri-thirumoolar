@@ -408,8 +408,8 @@ function HomePage() {
                   <img
                     src={o.src}
                     alt={o.alt}
-                    className="relative z-10 w-full h-full object-contain"
-                    style={{ transform: "perspective(600px) rotateY(-6deg)" }}
+                    className="relative z-10 w-full h-full object-contain p-2.5"
+                    style={{ transform: "perspective(600px) rotateY(-3deg)" }}
                   />
                 </div>
               );
