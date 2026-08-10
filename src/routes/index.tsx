@@ -368,13 +368,18 @@ function HomePage() {
               return (
                 <div
                   key={o.alt}
-                  className="absolute z-20 left-1/2 top-1/2"
+                  className="absolute z-20 left-1/2 top-1/2 rounded-full overflow-hidden"
                   style={{
                     width: o.size,
                     height: o.size,
                     marginLeft: x - o.size / 2,
                     marginTop: y - o.size / 2,
                     animation: `float ${o.dur} ease-in-out ${o.delay} infinite`,
+                    background:
+                      "radial-gradient(circle at 30% 30%, rgba(245,215,138,0.22) 0%, rgba(24,57,43,0.55) 60%, rgba(6,20,12,0.85) 100%)",
+                    border: "1.5px solid rgba(245,215,138,0.45)",
+                    boxShadow:
+                      "0 0 24px rgba(245,215,138,0.45), 0 0 48px rgba(212,162,76,0.25), inset 0 0 20px rgba(245,215,138,0.12)",
                     filter:
                       "drop-shadow(0 0 18px rgba(245,215,138,0.65)) drop-shadow(0 0 38px rgba(212,162,76,0.4))",
                   }}
@@ -403,8 +408,8 @@ function HomePage() {
                   <img
                     src={o.src}
                     alt={o.alt}
-                    className="relative z-10 w-full h-full object-contain"
-                    style={{ transform: "perspective(600px) rotateY(-6deg)" }}
+                    className="relative z-10 w-full h-full object-contain p-2.5"
+                    style={{ transform: "perspective(600px) rotateY(-3deg)" }}
                   />
                 </div>
               );
