@@ -5,7 +5,8 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noopener"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 right-6 z-40 group"
+      className="fixed bottom-6 right-6 z-30 group"
+
 
     >
       <span className="absolute inset-0 rounded-full bg-accent/40 animate-ping" />
