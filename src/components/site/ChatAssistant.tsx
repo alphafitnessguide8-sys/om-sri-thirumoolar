@@ -37,7 +37,7 @@ export function ChatAssistant() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Open STM assistant"
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full grid place-items-center text-[#18392B] shadow-[0_12px_40px_-10px_rgba(212,162,76,0.7)] hover:scale-105 transition-transform"
+        className="fixed bottom-[5.5rem] right-6 z-50 w-14 h-14 rounded-full grid place-items-center text-[#18392B] shadow-[0_12px_40px_-10px_rgba(212,162,76,0.7)] hover:scale-105 transition-transform"
         style={{ background: "linear-gradient(135deg,#F5D78A 0%,#E2C06B 50%,#C9A84C 100%)" }}
       >
         {open ? <X size={22} /> : <MessageCircle size={22} />}
@@ -45,7 +45,7 @@ export function ChatAssistant() {
 
       {/* Panel */}
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-[92vw] max-w-[380px] h-[560px] max-h-[80vh] rounded-2xl overflow-hidden flex flex-col border border-[#D4A24C]/40 bg-[#0a1a0e] text-[#F5F5F2] shadow-2xl animate-fade-in">
+        <div className="fixed bottom-[10rem] right-6 z-50 w-[92vw] max-w-[380px] h-[560px] max-h-[70vh] rounded-2xl overflow-hidden flex flex-col border border-[#D4A24C]/40 bg-[#0a1a0e] text-[#F5F5F2] shadow-2xl animate-fade-in">
           {/* Header */}
           <div
             className="px-4 py-3 flex items-center gap-3 border-b border-[#D4A24C]/30"
