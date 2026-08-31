@@ -27,7 +27,7 @@ export function Footer() {
           </p>
           <div className="mt-6 flex items-center gap-2 text-gold">
             <Leaf size={16} />
-            <span className="text-sm tracking-wide">Survive · Triumph · Merriment</span>
+            <span className="text-sm tracking-wide">Natural Healing • Traditional Care • Lasting Results</span>
           </div>
         </div>
 
