@@ -2,6 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { Leaf, Sparkles, HeartPulse, Sun, Check, ArrowRight } from "lucide-react";
+import { GoldDivider } from "@/components/site/GoldDivider";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 import siddhaImg from "@/assets/treatment-siddha.jpg";
 import ayurvedaImg from "@/assets/treatment-ayurveda.jpg";
 import varmaImg from "@/assets/treatment-varma.jpg";
