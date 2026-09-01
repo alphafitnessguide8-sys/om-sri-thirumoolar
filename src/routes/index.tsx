@@ -2,7 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { GoldDivider } from "@/components/site/GoldDivider";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Leaf,
   Sparkles,
@@ -253,6 +253,40 @@ function HomePage() {
                   <p className="text-[10px] tracking-[0.22em] uppercase text-[#F5F5F2]/65 mt-1">{s.label}</p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* MOBILE / TABLET — lightweight logo medallion with a single golden ring */}
+          <div className="lg:hidden relative flex items-center justify-center h-[300px] mt-12">
+            <div
+              className="absolute rounded-full animate-spin-slow pointer-events-none"
+              style={{
+                width: 260,
+                height: 260,
+                border: "1.5px solid rgba(226,192,107,0.6)",
+                boxShadow:
+                  "0 0 30px rgba(212,162,76,0.4), inset 0 0 40px rgba(226,192,107,0.18)",
+                animationDuration: "90s",
+                willChange: "transform",
+              }}
+            />
+            <div
+              className="absolute w-[240px] h-[240px] rounded-full pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(245,215,138,0.40) 0%, rgba(212,162,76,0.16) 42%, transparent 70%)",
+                filter: "blur(22px)",
+              }}
+            />
+            <div
+              className="relative z-10 w-40 h-40 rounded-full overflow-hidden bg-[#F7F2E8] animate-[breathe_5s_ease-in-out_infinite]"
+              style={{
+                border: "3px solid #D4A24C",
+                boxShadow:
+                  "0 0 0 5px rgba(212,162,76,0.16), 0 0 50px 10px rgba(245,215,138,0.45), inset 0 0 24px rgba(212,162,76,0.22)",
+              }}
+            >
+              <img src={stmLogo} alt="STM Ayurveda Clinic Logo" className="w-full h-full object-cover" />
             </div>
           </div>
 
@@ -609,11 +643,26 @@ function HomePage() {
         </div>
 
         <div className="relative marquee-mask reveal">
-          <div className="flex gap-6 w-max animate-marquee hover:[animation-play-state:paused]">
+          <p className="text-center text-xs text-muted-foreground mb-4 lg:hidden">
+            Tap a card to pause · tap again to resume
+          </p>
+          <div
+            className={`flex gap-6 w-max animate-marquee ${paused ? "[animation-play-state:paused]" : "hover:[animation-play-state:paused]"}`}
+          >
             {[...testimonials, ...testimonials].map((t, i) => (
               <div
                 key={i}
-                className="w-[340px] md:w-[420px] shrink-0 glass-light rounded-3xl p-8 shadow-soft border border-gold/20 relative overflow-hidden"
+                role="button"
+                tabIndex={0}
+                aria-pressed={paused}
+                onClick={() => setPaused((p) => !p)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setPaused((p) => !p);
+                  }
+                }}
+                className="w-[340px] md:w-[420px] shrink-0 glass-light rounded-3xl p-8 shadow-soft border border-gold/20 relative overflow-hidden cursor-pointer select-none"
               >
                 <Quote className="absolute -top-3 -right-3 text-gold/15" size={96} />
                 <div className="flex gap-1 text-gold mb-4 relative">
