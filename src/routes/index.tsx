@@ -276,8 +276,8 @@ function HomePage() {
                   }}
                 >
                   {/* Sparkle stars riding each ring */}
-                  {Array.from({ length: 6 }).map((_, k) => {
-                    const angle = (k / 6) * Math.PI * 2;
+                  {Array.from({ length: 3 }).map((_, k) => {
+                    const angle = (k / 3) * Math.PI * 2;
                     const x = Math.cos(angle) * (s / 2);
                     const y = Math.sin(angle) * (s / 2);
                     return (
@@ -313,7 +313,7 @@ function HomePage() {
             </div>
 
             {/* Free-floating sparkle dots scattered across the ring area */}
-            {Array.from({ length: 10 }).map((_, i) => {
+            {Array.from({ length: 4 }).map((_, i) => {
               const left = 10 + ((i * 17) % 80);
               const top = 8 + ((i * 23) % 84);
               const size = 2 + (i % 4);
