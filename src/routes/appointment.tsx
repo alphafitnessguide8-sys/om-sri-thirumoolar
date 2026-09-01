@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
 import { useState } from "react";
-import { Phone, MessageCircle, Send, Check } from "lucide-react";
+import { Phone, MessageCircle, Send, Check, AlertCircle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import leafImg from "@/assets/leaf-accent.jpg";
 
 export const Route = createFileRoute("/appointment")({
@@ -20,10 +21,25 @@ export const Route = createFileRoute("/appointment")({
 function AppointmentPage() {
   useReveal();
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", treatment: "Siddha Treatment", message: "" });
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+    setSaving(true);
+    const { error: dbError } = await supabase.from("appointment_requests").insert({
+      name: form.name,
+      phone: form.phone,
+      treatment: form.treatment,
+      message: form.message || null,
+    });
+    setSaving(false);
+    if (dbError) {
+      setError("We couldn't save your request just now. Please try again, or call us on 9952232078.");
+      return;
+    }
     const text = `Hello STM, I'd like to book an appointment.%0A%0AName: ${form.name}%0APhone: ${form.phone}%0ATreatment: ${form.treatment}%0ANote: ${form.message}`;
     window.open(`https://wa.me/919952232078?text=${text}`, "_blank");
     setSent(true);
@@ -70,37 +86,45 @@ function AppointmentPage() {
                     <Check size={28} />
                   </div>
                   <h3 className="font-serif text-2xl mt-5">Thank you</h3>
-                  <p className="text-white/70 mt-2">We've opened WhatsApp — please send the message to confirm your booking.</p>
+                  <p className="text-white/70 mt-2">Your request has been received. We've also opened WhatsApp — send the message there to confirm faster.</p>
                 </div>
               ) : (
                 <form onSubmit={submit} className="space-y-5">
                   <div>
-                    <label className="text-xs tracking-widest uppercase text-gold">Full Name</label>
+                    <label htmlFor="appt-name" className="text-xs tracking-widest uppercase text-gold">Full Name</label>
                     <input
                       required
+                      id="appt-name"
+                      name="name"
+                      autoComplete="name"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:border-gold focus:outline-none transition"
+                      className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:border-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label className="text-xs tracking-widest uppercase text-gold">Phone</label>
+                    <label htmlFor="appt-phone" className="text-xs tracking-widest uppercase text-gold">Phone</label>
                     <input
                       required
                       type="tel"
+                      id="appt-phone"
+                      name="phone"
+                      autoComplete="tel"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:border-gold focus:outline-none transition"
+                      className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:border-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition"
                       placeholder="+91"
                     />
                   </div>
                   <div>
-                    <label className="text-xs tracking-widest uppercase text-gold">Treatment Interest</label>
+                    <label htmlFor="appt-treatment" className="text-xs tracking-widest uppercase text-gold">Treatment Interest</label>
                     <select
+                      id="appt-treatment"
+                      name="treatment"
                       value={form.treatment}
                       onChange={(e) => setForm({ ...form, treatment: e.target.value })}
-                      className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none transition"
+                      className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition"
                     >
                       {["Siddha Treatment","Ayurveda Treatment","Varma Therapy","Yoga Therapy","Pain Management","Paralysis Care","Fertility Care","General Consultation"].map(o => (
                         <option key={o} className="bg-primary text-white">{o}</option>
@@ -108,17 +132,25 @@ function AppointmentPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="text-xs tracking-widest uppercase text-gold">Message (optional)</label>
+                    <label htmlFor="appt-message" className="text-xs tracking-widest uppercase text-gold">Message (optional)</label>
                     <textarea
+                      id="appt-message"
+                      name="message"
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       rows={3}
-                      className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:border-gold focus:outline-none transition resize-none"
+                      className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:border-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition resize-none"
                       placeholder="Tell us a little about your concern…"
                     />
                   </div>
-                  <button type="submit" className="btn-gold w-full inline-flex items-center justify-center gap-2">
-                    Send via WhatsApp <Send size={16} />
+                  {error && (
+                    <p role="alert" className="flex items-start gap-2 text-sm text-red-200 bg-red-500/15 border border-red-400/30 rounded-xl px-4 py-3">
+                      <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                      <span>{error}</span>
+                    </p>
+                  )}
+                  <button type="submit" disabled={saving} className="btn-gold w-full inline-flex items-center justify-center gap-2 disabled:opacity-60">
+                    {saving ? "Sending…" : "Send via WhatsApp"} <Send size={16} />
                   </button>
                   <p className="text-xs text-white/50 text-center">By submitting you agree to be contacted by STM.</p>
                 </form>
