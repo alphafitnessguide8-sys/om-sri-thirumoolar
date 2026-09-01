@@ -160,6 +160,7 @@ function LotusIcon({ className = "", size = 20 }: { className?: string; size?: n
 function HomePage() {
   useReveal();
   const heroRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
 
   return (
     <SiteLayout>
