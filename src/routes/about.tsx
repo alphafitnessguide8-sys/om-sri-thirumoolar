@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
-import { Leaf, Sparkles, HeartPulse, Sun } from "lucide-react";
+import { Leaf, Sparkles, HeartPulse, Sun, GraduationCap, Award, Clock } from "lucide-react";
 import about from "@/assets/about-heritage.jpg";
+import practitionerImg from "@/assets/treatment-siddha.jpg";
+import practitionerImg2 from "@/assets/treatment-varma.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -21,6 +23,27 @@ const pillars = [
   { icon: Sparkles, title: "Refined by Ayurveda", text: "The pan-Indian science of balance, sustenance and rasāyana." },
   { icon: HeartPulse, title: "Restored by Varma", text: "The art of the body's vital points — quietly powerful, deeply effective." },
   { icon: Sun, title: "Renewed by Yoga", text: "Movement, breath and stillness as daily medicine." },
+];
+
+const practitioners = [
+  {
+    name: "[PRACTITIONER NAME]",
+    role: "[ROLE — e.g. Chief Siddha Physician]",
+    qualification: "[QUALIFICATION — e.g. BSMS, MD (Siddha)]",
+    years: "[YEARS] years of practice",
+    registration: "[REGISTRATION / COUNCIL NO.]",
+    bio: "[SHORT BIO — a few lines about this practitioner's training, lineage, approach to care and areas of special interest.]",
+    img: practitionerImg,
+  },
+  {
+    name: "[PRACTITIONER NAME]",
+    role: "[ROLE — e.g. Varma & Yoga Therapist]",
+    qualification: "[QUALIFICATION]",
+    years: "[YEARS] years of practice",
+    registration: "[REGISTRATION / COUNCIL NO.]",
+    bio: "[SHORT BIO — a few lines about this practitioner's training, specialisation and approach with patients.]",
+    img: practitionerImg2,
+  },
 ];
 
 function AboutPage() {
@@ -68,6 +91,53 @@ function AboutPage() {
             <Link to="/services" className="btn-gold inline-flex items-center gap-2 mt-2">
               Explore our services
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-14 reveal">
+            <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Led By</p>
+            <h2 className="font-serif text-4xl md:text-5xl text-primary">Meet our practitioners.</h2>
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Every consultation at STM is guided personally by a qualified physician — never
+              delegated, never rushed.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {practitioners.map((p) => (
+              <article key={p.role} className="reveal bg-card rounded-3xl border border-border/60 shadow-soft hover:shadow-elevated transition-all duration-500 overflow-hidden">
+                <div className="grid sm:grid-cols-[minmax(0,14rem)_1fr]">
+                  <div className="overflow-hidden aspect-[4/5] sm:aspect-auto">
+                    <img
+                      src={p.img}
+                      alt={`Portrait of ${p.name}, ${p.role} at STM`}
+                      loading="lazy"
+                      className="img-zoom w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-8 space-y-4">
+                    <div>
+                      <h3 className="font-serif text-2xl text-primary">{p.name}</h3>
+                      <p className="text-sm text-accent mt-1">{p.role}</p>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{p.bio}</p>
+                    <ul className="space-y-2 pt-2 border-t border-border/60">
+                      <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                        <GraduationCap size={16} className="text-accent shrink-0" /> {p.qualification}
+                      </li>
+                      <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                        <Clock size={16} className="text-accent shrink-0" /> {p.years}
+                      </li>
+                      <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                        <Award size={16} className="text-accent shrink-0" /> {p.registration}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
