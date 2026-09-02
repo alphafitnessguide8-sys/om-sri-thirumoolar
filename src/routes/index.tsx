@@ -293,6 +293,8 @@ function HomePage() {
 
           {/* RIGHT — 3D floating organ ring with center logo */}
           <div className="relative hidden lg:flex items-center justify-center h-[640px]">
+            {/* Real 3D lotus centerpiece (lazy, WebGL-gated, reduced-motion aware) */}
+            <HeroCenterpiece className="z-[5]" />
             {/* Orbital golden rings */}
             <div className="absolute inset-0 grid place-items-center pointer-events-none">
               {[560, 440, 320].map((s, i) => (
