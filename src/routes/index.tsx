@@ -1,5 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
+import { HeroCenterpiece } from "@/components/site/HeroCenterpiece";
 import { useReveal } from "@/hooks/use-reveal";
 import { GoldDivider } from "@/components/site/GoldDivider";
 import { useRef, useState } from "react";
