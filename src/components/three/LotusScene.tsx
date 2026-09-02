@@ -38,7 +38,7 @@ function Petals({ count, radius, tilt, scale, color, opacity }: {
         transparent: true,
         opacity,
         emissive: new THREE.Color(GOLD),
-        emissiveIntensity: 0.12,
+        emissiveIntensity: 0.22,
         side: THREE.DoubleSide,
       }),
     [color, opacity],
@@ -85,10 +85,10 @@ function Lotus({ reducedMotion, quality }: SceneProps) {
   });
 
   return (
-    <group ref={group} rotation={[0.16, 0, 0]}>
-      <Petals count={quality === "high" ? 10 : 7} radius={0.72} tilt={0.55} scale={1.15} color={GOLD} opacity={0.95} />
-      <Petals count={quality === "high" ? 8 : 6} radius={0.44} tilt={0.95} scale={0.82} color={GOLD_LIGHT} opacity={0.92} />
-      <Petals count={6} radius={0.22} tilt={1.25} scale={0.5} color={GOLD_LIGHT} opacity={0.9} />
+    <group ref={group} rotation={[0.16, 0, 0]} scale={0.62}>
+      <Petals count={quality === "high" ? 10 : 7} radius={0.72} tilt={0.55} scale={1.15} color={GOLD} opacity={0.42} />
+      <Petals count={quality === "high" ? 8 : 6} radius={0.44} tilt={0.95} scale={0.82} color={GOLD_LIGHT} opacity={0.38} />
+      <Petals count={6} radius={0.22} tilt={1.25} scale={0.5} color={GOLD_LIGHT} opacity={0.35} />
       {/* seed pod */}
       <mesh position={[0, 0.12, 0]}>
         <sphereGeometry args={[0.2, 20, 16]} />
@@ -150,7 +150,7 @@ export default function LotusScene({ reducedMotion = false, quality = "high" }: 
   return (
     <Canvas
       dpr={[1, q === "high" ? 1.75 : 1.25]}
-      camera={{ position: [0, 1.15, 3.4], fov: 42 }}
+      camera={{ position: [0, 1.0, 4.6], fov: 42 }}
       gl={{ antialias: q === "high", alpha: true, powerPreference: "high-performance" }}
       frameloop={rm ? "demand" : "always"}
       style={{ pointerEvents: "none" }}
