@@ -56,7 +56,7 @@ function AboutPage() {
       <section className="pt-40 pb-20 bg-hero text-primary-foreground relative overflow-hidden">
         <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-accent/20 blur-3xl" />
         {/* calm 3D emblem — lazy, WebGL-guarded, reduced-motion aware, desktop/tablet only */}
-        <div className="absolute inset-0 opacity-70">
+        <div className="absolute inset-0 opacity-90">
           <Scene3D scene="emblem" disableBelow={768} />
         </div>
         <CinematicFX rays mist grain={false} vignette className="opacity-60" />
