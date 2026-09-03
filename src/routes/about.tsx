@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
+import { Scene3D } from "@/components/three/Scene3D";
+import { CinematicFX } from "@/components/site/CinematicFX";
 import { Leaf, Sparkles, HeartPulse, Sun, GraduationCap, Award, Clock } from "lucide-react";
 import about from "@/assets/about-heritage.jpg";
 import practitionerImg from "@/assets/treatment-siddha.jpg";
 import practitionerImg2 from "@/assets/treatment-varma.jpg";
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
