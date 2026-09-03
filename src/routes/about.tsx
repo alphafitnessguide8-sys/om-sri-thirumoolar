@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/Layout";
 import { useReveal } from "@/hooks/use-reveal";
+import { Scene3D } from "@/components/three/Scene3D";
+import { CinematicFX } from "@/components/site/CinematicFX";
 import { Leaf, Sparkles, HeartPulse, Sun, GraduationCap, Award, Clock } from "lucide-react";
 import about from "@/assets/about-heritage.jpg";
 import practitionerImg from "@/assets/treatment-siddha.jpg";
 import practitionerImg2 from "@/assets/treatment-varma.jpg";
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -52,7 +55,13 @@ function AboutPage() {
     <SiteLayout>
       <section className="pt-40 pb-20 bg-hero text-primary-foreground relative overflow-hidden">
         <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-accent/20 blur-3xl" />
-        <div className="mx-auto max-w-5xl px-6 text-center animate-fade-up">
+        {/* calm 3D emblem — lazy, WebGL-guarded, reduced-motion aware, desktop/tablet only */}
+        <div className="absolute inset-0 opacity-90">
+          <Scene3D scene="emblem" disableBelow={768} />
+        </div>
+        <CinematicFX rays mist grain={false} vignette className="opacity-60" />
+        <div className="relative mx-auto max-w-5xl px-6 text-center animate-fade-up">
+
           <p className="text-xs tracking-[0.3em] uppercase text-gold mb-5">About STM</p>
           <h1 className="font-serif text-5xl md:text-6xl leading-tight">
             A practice shaped by <span className="text-gradient-gold italic">tradition</span>,
@@ -95,9 +104,12 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-28">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-28 relative overflow-hidden">
+        <CinematicFX rays={false} mist grain={false} vignette={false} className="opacity-40" />
+        <div className="relative mx-auto max-w-7xl px-6">
           <div className="text-center mb-14 reveal">
+
+
             <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Led By</p>
             <h2 className="font-serif text-4xl md:text-5xl text-primary">Meet our practitioners.</h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
