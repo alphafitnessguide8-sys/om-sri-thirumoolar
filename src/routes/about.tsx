@@ -55,7 +55,13 @@ function AboutPage() {
     <SiteLayout>
       <section className="pt-40 pb-20 bg-hero text-primary-foreground relative overflow-hidden">
         <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-accent/20 blur-3xl" />
-        <div className="mx-auto max-w-5xl px-6 text-center animate-fade-up">
+        {/* calm 3D emblem — lazy, WebGL-guarded, reduced-motion aware, desktop/tablet only */}
+        <div className="absolute inset-0 opacity-70">
+          <Scene3D scene="emblem" disableBelow={768} />
+        </div>
+        <CinematicFX rays mist grain={false} vignette className="opacity-60" />
+        <div className="relative mx-auto max-w-5xl px-6 text-center animate-fade-up">
+
           <p className="text-xs tracking-[0.3em] uppercase text-gold mb-5">About STM</p>
           <h1 className="font-serif text-5xl md:text-6xl leading-tight">
             A practice shaped by <span className="text-gradient-gold italic">tradition</span>,
