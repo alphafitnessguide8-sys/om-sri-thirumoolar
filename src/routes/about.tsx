@@ -104,9 +104,10 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center mb-14 reveal">
+      <section className="py-28 relative overflow-hidden">
+        <CinematicFX rays={false} mist grain={false} vignette={false} className="opacity-40" />
+        <div className="relative mx-auto max-w-7xl px-6">
+
             <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Led By</p>
             <h2 className="font-serif text-4xl md:text-5xl text-primary">Meet our practitioners.</h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
