@@ -29,7 +29,7 @@ import organHeart from "@/assets/organ-heart.png";
 import organBrain from "@/assets/organ-brain.png";
 import organLungs from "@/assets/organ-lungs.png";
 import organKnee from "@/assets/organ-knee.png";
-import organSpine from "@/assets/organ-spine.png";
+import organFetus from "@/assets/organ-fetus.png";
 import organStomach from "@/assets/organ-stomach.png";
 
 import imgParallaxGarden from "@/assets/parallax-garden.jpg";
@@ -394,7 +394,7 @@ function HomePage() {
             {[
               { src: organHeart, alt: "Heart", angle: -90, size: 110, delay: "0s", dur: "6s" },
               { src: organLungs, alt: "Lungs", angle: -30, size: 110, delay: "0.6s", dur: "6.5s" },
-              { src: organSpine, alt: "Spine", angle: 30, size: 100, delay: "1.6s", dur: "8s" },
+              { src: organFetus, alt: "Fetus", angle: 30, size: 100, delay: "1.6s", dur: "8s" },
               { src: organStomach, alt: "Stomach", angle: 90, size: 105, delay: "2.4s", dur: "6.8s" },
               { src: organKnee, alt: "Knee", angle: 150, size: 95, delay: "2s", dur: "7.5s" },
               { src: organBrain, alt: "Brain", angle: -150, size: 100, delay: "1.2s", dur: "7s" },
