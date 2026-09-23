@@ -445,6 +445,42 @@ function HomePage() {
                       transform: "scale(1.22)",
                     }}
                   />
+                  {/* Fetus only — living connection: cord flow shimmer + pulsing womb-edge node */}
+                  {o.alt === "Fetus" && (
+                    <>
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+                        style={{ borderRadius: "48% 52% 50% 50% / 42% 44% 56% 58%" }}
+                      >
+                        <span
+                          className="absolute left-0 top-1/2 w-2/5 animate-cord-flow"
+                          style={{
+                            height: 5,
+                            background:
+                              "linear-gradient(90deg, transparent, rgba(255,246,216,0.95), rgba(245,215,138,0.7), transparent)",
+                            filter: "blur(2px)",
+                            boxShadow: "0 0 14px 4px rgba(245,215,138,0.55)",
+                          }}
+                        />
+                      </span>
+                      <span
+                        aria-hidden
+                        className="absolute z-20 rounded-full pointer-events-none"
+                        style={{
+                          left: "70%",
+                          top: "74%",
+                          width: 12,
+                          height: 12,
+                          transform: "translate(-50%, -50%)",
+                          background:
+                            "radial-gradient(circle, #FFF6D8 0%, #F5D78A 40%, rgba(212,162,76,0) 75%)",
+                          boxShadow: "0 0 16px 5px rgba(245,215,138,0.85), 0 0 34px 10px rgba(212,162,76,0.45)",
+                          animation: "breathe 2.6s ease-in-out infinite",
+                        }}
+                      />
+                    </>
+                  )}
                   <img
                     src={o.src}
                     alt={o.alt}
