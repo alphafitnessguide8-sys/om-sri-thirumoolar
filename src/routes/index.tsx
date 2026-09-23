@@ -485,7 +485,15 @@ function HomePage() {
                     src={o.src}
                     alt={o.alt}
                     className={`relative z-10 w-full h-full object-contain ${o.alt === "Fetus" ? "p-3" : "p-2.5"}`}
-                    style={{ transform: "perspective(600px) rotateY(-3deg)" }}
+                    style={
+                      o.alt === "Fetus"
+                        ? {
+                            transformOrigin: "50% 28%",
+                            animation:
+                              "baby-kick 6.5s ease-in-out infinite, baby-head 7.5s ease-in-out 1.2s infinite, baby-stretch 5.5s ease-in-out 0.6s infinite",
+                          }
+                        : { transform: "perspective(600px) rotateY(-3deg)" }
+                    }
                   />
                 </div>
               );
